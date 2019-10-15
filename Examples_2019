@@ -1,0 +1,2695 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2019-08-10",
+    "results": {
+      "skip": 0,
+      "limit": 10,
+      "total": 334458
+    }
+  },
+  "results": [
+    {
+      "reporttype": "1",
+      "receiptdateformat": "102",
+      "receiver": {
+        "receivertype": "6",
+        "receiverorganization": "FDA"
+      },
+      "occurcountry": "US",
+      "safetyreportversion": "1",
+      "receivedateformat": "102",
+      "primarysource": {
+        "qualification": "3",
+        "reportercountry": "US"
+      },
+      "seriousnessother": "1",
+      "transmissiondateformat": "102",
+      "fulfillexpeditecriteria": "2",
+      "safetyreportid": "15431328",
+      "sender": {
+        "senderorganization": "FDA-Public Use",
+        "sendertype": "2"
+      },
+      "receivedate": "20190125",
+      "patient": {
+        "patientonsetage": "68",
+        "summary": {
+          "narrativeincludeclinical": "CASE EVENT DATE: 20180803"
+        },
+        "reaction": [
+          {
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Neurotoxicity"
+          }
+        ],
+        "patientonsetageunit": "801",
+        "patientweight": "70.65",
+        "patientsex": "2",
+        "drug": [
+          {
+            "drugstartdateformat": "102",
+            "drugindication": "DIFFUSE LARGE B-CELL LYMPHOMA REFRACTORY",
+            "drugbatchnumb": "289374431",
+            "drugadministrationroute": "042",
+            "drugstartdate": "20180723",
+            "drugenddateformat": "102",
+            "drugenddate": "20180723",
+            "drugstructuredosageunit": "012",
+            "medicinalproduct": "YESCARTA",
+            "activesubstance": {
+              "activesubstancename": "AXICABTAGENE CILOLEUCEL"
+            },
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "68",
+            "drugdosagetext": "?          OTHER FREQUENCY:ONCE;?"
+          }
+        ]
+      },
+      "transmissiondate": "20190417",
+      "serious": "1",
+      "reportduplicate": {
+        "duplicatesource": "FDA-CTU"
+      },
+      "receiptdate": "20190125",
+      "primarysourcecountry": "US"
+    },
+    {
+      "reporttype": "2",
+      "safetyreportversion": "1",
+      "receivedateformat": "102",
+      "primarysource": {
+        "qualification": "3",
+        "reportercountry": "US"
+      },
+      "transmissiondateformat": "102",
+      "fulfillexpeditecriteria": "1",
+      "safetyreportid": "15778705",
+      "patient": {
+        "patientonsetage": "90",
+        "reaction": [
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Bradycardia"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Hypotension"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Hypoxia"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Extra dose administered"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Cardiac failure acute"
+          }
+        ],
+        "patientonsetageunit": "801",
+        "patientsex": "2",
+        "drug": [
+          {
+            "activesubstance": {
+              "activesubstancename": "METOPROLOL"
+            },
+            "drugadditional": "3",
+            "drugadministrationroute": "065",
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "150",
+            "drugdosagetext": "150 MILLIGRAM",
+            "openfda": {
+              "product_ndc": [
+                "62332-114",
+                "36000-033",
+                "63323-660",
+                "62332-112",
+                "62332-113"
+              ],
+              "package_ndc": [
+                "62332-112-31",
+                "62332-112-30",
+                "63323-660-05",
+                "62332-114-91",
+                "62332-113-30",
+                "62332-113-31",
+                "62332-114-31",
+                "62332-112-91",
+                "62332-113-91",
+                "62332-114-30",
+                "36000-033-10"
+              ],
+              "generic_name": [
+                "METOPROLOL",
+                "METOPROLOL TARTRATE"
+              ],
+              "spl_set_id": [
+                "be1c686e-37a5-4a53-945b-68a6ead35134",
+                "24837d82-0f3f-4482-9af0-31e5f675c30f",
+                "09566368-f91d-43a3-b683-30c844fb125a"
+              ],
+              "brand_name": [
+                "METOPROLOL",
+                "METOPROLOL TARTRATE"
+              ],
+              "manufacturer_name": [
+                "Fresenius Kabi USA, LLC",
+                "Alembic Pharmaceuticals Inc.",
+                "Baxter Healthcare Corporation"
+              ],
+              "unii": [
+                "W5S57Y3A5L"
+              ],
+              "rxcui": [
+                "866511",
+                "866514",
+                "866924",
+                "866508"
+              ],
+              "spl_id": [
+                "bd31df42-b6c6-4141-8cba-916f7eeed8c6",
+                "6443151b-b9c7-4b6f-a620-a43598846de2",
+                "0beadb2e-c866-4124-81ca-287533580137"
+              ],
+              "substance_name": [
+                "METOPROLOL TARTRATE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL",
+                "INTRAVENOUS"
+              ],
+              "application_number": [
+                "ANDA091045",
+                "ANDA202871",
+                "ANDA078950"
+              ]
+            },
+            "drugauthorizationnumb": "77739",
+            "drugstructuredosageunit": "003",
+            "actiondrug": "5",
+            "medicinalproduct": "METOPROLOL."
+          },
+          {
+            "drugindication": "PRODUCT USED FOR UNKNOWN INDICATION",
+            "activesubstance": {
+              "activesubstancename": "METOPROLOL"
+            },
+            "drugadditional": "3",
+            "drugadministrationroute": "065",
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "75",
+            "drugdosagetext": "75 MILLIGRAM",
+            "openfda": {
+              "product_ndc": [
+                "62332-114",
+                "36000-033",
+                "63323-660",
+                "62332-112",
+                "62332-113"
+              ],
+              "package_ndc": [
+                "62332-112-31",
+                "62332-112-30",
+                "63323-660-05",
+                "62332-114-91",
+                "62332-113-30",
+                "62332-113-31",
+                "62332-114-31",
+                "62332-112-91",
+                "62332-113-91",
+                "62332-114-30",
+                "36000-033-10"
+              ],
+              "generic_name": [
+                "METOPROLOL",
+                "METOPROLOL TARTRATE"
+              ],
+              "spl_set_id": [
+                "be1c686e-37a5-4a53-945b-68a6ead35134",
+                "24837d82-0f3f-4482-9af0-31e5f675c30f",
+                "09566368-f91d-43a3-b683-30c844fb125a"
+              ],
+              "brand_name": [
+                "METOPROLOL",
+                "METOPROLOL TARTRATE"
+              ],
+              "manufacturer_name": [
+                "Fresenius Kabi USA, LLC",
+                "Alembic Pharmaceuticals Inc.",
+                "Baxter Healthcare Corporation"
+              ],
+              "unii": [
+                "W5S57Y3A5L"
+              ],
+              "rxcui": [
+                "866511",
+                "866514",
+                "866924",
+                "866508"
+              ],
+              "spl_id": [
+                "bd31df42-b6c6-4141-8cba-916f7eeed8c6",
+                "6443151b-b9c7-4b6f-a620-a43598846de2",
+                "0beadb2e-c866-4124-81ca-287533580137"
+              ],
+              "substance_name": [
+                "METOPROLOL TARTRATE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL",
+                "INTRAVENOUS"
+              ],
+              "application_number": [
+                "ANDA091045",
+                "ANDA202871",
+                "ANDA078950"
+              ]
+            },
+            "drugauthorizationnumb": "77739",
+            "drugstructuredosageunit": "003",
+            "actiondrug": "5",
+            "medicinalproduct": "METOPROLOL."
+          }
+        ]
+      },
+      "serious": "1",
+      "reportduplicate": {
+        "duplicatesource": "AUROBINDO",
+        "duplicatenumb": "US-AUROBINDO-AUR-APL-2018-063904"
+      },
+      "receiptdate": "20190101",
+      "receiptdateformat": "102",
+      "receiver": {
+        "receivertype": "6",
+        "receiverorganization": "FDA"
+      },
+      "companynumb": "US-AUROBINDO-AUR-APL-2018-063904",
+      "occurcountry": "US",
+      "seriousnessother": "1",
+      "duplicate": "1",
+      "sender": {
+        "senderorganization": "FDA-Public Use",
+        "sendertype": "2"
+      },
+      "receivedate": "20190101",
+      "seriousnesshospitalization": "1",
+      "transmissiondate": "20190417",
+      "primarysourcecountry": "US"
+    },
+    {
+      "reporttype": "2",
+      "safetyreportversion": "3",
+      "receivedateformat": "102",
+      "primarysource": {
+        "qualification": "3",
+        "reportercountry": "FR"
+      },
+      "transmissiondateformat": "102",
+      "fulfillexpeditecriteria": "1",
+      "safetyreportid": "15778706",
+      "patient": {
+        "reaction": [
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Product use in unapproved indication"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Live birth"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Diarrhoea"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Exposure during pregnancy"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Pyrexia"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Clostridium difficile infection"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Systemic inflammatory response syndrome"
+          }
+        ],
+        "drug": [
+          {
+            "drugindication": "PREMATURE RUPTURE OF MEMBRANES",
+            "activesubstance": {
+              "activesubstancename": "AMOXICILLIN"
+            },
+            "drugadministrationroute": "065",
+            "drugcharacterization": "1",
+            "drugdosagetext": "UNK",
+            "openfda": {
+              "product_ndc": [
+                "0093-3107",
+                "0143-9939",
+                "0143-9938",
+                "57237-033",
+                "69442-030",
+                "57237-031",
+                "57237-030",
+                "0093-3109",
+                "67253-147",
+                "16714-298",
+                "67253-146",
+                "0093-2268",
+                "0093-4155",
+                "0093-4150",
+                "67253-150",
+                "15749-820",
+                "55695-001",
+                "52959-020",
+                "65862-014",
+                "65862-015",
+                "65862-016",
+                "65862-017",
+                "57237-032",
+                "16714-299",
+                "65862-706",
+                "65862-707",
+                "65862-070",
+                "65862-071",
+                "57237-028",
+                "57237-029",
+                "0143-9285",
+                "67253-148",
+                "52959-011",
+                "0093-2263",
+                "67253-149",
+                "0093-2267",
+                "0093-2264",
+                "0093-4161",
+                "0093-4160",
+                "0143-9887",
+                "0143-9886",
+                "0143-9889",
+                "0143-9888",
+                "67253-144",
+                "42582-214",
+                "42582-213",
+                "15749-825"
+              ],
+              "package_ndc": [
+                "65862-015-01",
+                "57237-033-50",
+                "65862-015-05",
+                "65862-017-20",
+                "52959-020-32",
+                "52959-020-30",
+                "0093-2268-01",
+                "0093-4155-79",
+                "0093-2263-01",
+                "0143-9285-20",
+                "52959-011-40",
+                "65862-071-50",
+                "15749-825-02",
+                "15749-825-04",
+                "0093-3109-05",
+                "65862-017-50",
+                "65862-016-20",
+                "65862-070-50",
+                "52959-020-02",
+                "52959-011-24",
+                "52959-020-00",
+                "52959-020-06",
+                "52959-020-04",
+                "52959-020-05",
+                "0143-9886-50",
+                "52959-020-08",
+                "69442-030-01",
+                "16714-298-02",
+                "57237-032-75",
+                "67253-150-10",
+                "0093-4155-73",
+                "0143-9938-30",
+                "52959-020-18",
+                "57237-029-20",
+                "52959-020-15",
+                "65862-016-30",
+                "52959-020-17",
+                "0093-3107-05",
+                "67253-146-47",
+                "65862-706-80",
+                "69442-030-11",
+                "69442-030-10",
+                "0143-9888-15",
+                "65862-707-80",
+                "57237-030-05",
+                "57237-030-01",
+                "0093-4150-79",
+                "65862-071-75",
+                "57237-028-20",
+                "0093-4150-73",
+                "52959-011-20",
+                "52959-011-21",
+                "65862-707-01",
+                "65862-070-75",
+                "16714-298-01",
+                "52959-020-60",
+                "42582-213-10",
+                "0143-9886-75",
+                "0093-4161-78",
+                "67253-144-10",
+                "42582-213-18",
+                "0093-4161-76",
+                "0093-4161-73",
+                "55695-001-00",
+                "0143-9887-50",
+                "57237-033-01",
+                "0093-4150-80",
+                "0143-9939-20",
+                "65862-706-01",
+                "52959-011-30",
+                "65862-070-01",
+                "65862-071-01",
+                "67253-150-50",
+                "57237-032-01",
+                "15749-820-04",
+                "65862-014-20",
+                "0093-2264-01",
+                "65862-016-50",
+                "57237-028-01",
+                "52959-020-12",
+                "52959-020-42",
+                "0143-9889-80",
+                "0143-9888-80",
+                "42582-214-10",
+                "15749-820-11",
+                "15749-820-10",
+                "42582-214-18",
+                "0143-9889-01",
+                "0143-9887-75",
+                "57237-031-01",
+                "16714-299-02",
+                "67253-146-46",
+                "57237-031-05",
+                "67253-146-45",
+                "52959-011-15",
+                "0143-9939-05",
+                "65862-707-55",
+                "0143-9939-01",
+                "57237-029-01",
+                "0093-3109-53",
+                "52959-020-50",
+                "0093-4160-78",
+                "0093-4160-76",
+                "65862-015-20",
+                "0093-4160-73",
+                "57237-033-75",
+                "65862-017-05",
+                "65862-017-01",
+                "67253-149-43",
+                "67253-147-40",
+                "67253-147-43",
+                "67253-149-40",
+                "0143-9889-15",
+                "67253-147-44",
+                "65862-014-05",
+                "0143-9887-01",
+                "65862-014-01",
+                "0143-9888-01",
+                "52959-020-40",
+                "0143-9886-01",
+                "67253-148-45",
+                "67253-148-46",
+                "67253-148-47",
+                "52959-011-60",
+                "0143-9938-05",
+                "67253-149-44",
+                "0143-9938-01",
+                "65862-016-05",
+                "65862-706-55",
+                "0093-3107-01",
+                "67253-144-50",
+                "52959-020-24",
+                "65862-016-01",
+                "65862-017-30",
+                "52959-020-20",
+                "52959-020-21",
+                "52959-020-22",
+                "52959-020-28",
+                "16714-299-04",
+                "16714-299-01",
+                "16714-299-03",
+                "52959-020-03",
+                "57237-032-50",
+                "0093-2267-01",
+                "0143-9285-01",
+                "0093-4155-80",
+                "15749-825-10"
+              ],
+              "generic_name": [
+                "AMOXICILLIN"
+              ],
+              "spl_set_id": [
+                "5f55a89f-a7ca-497f-a17c-f751431e2cfb",
+                "9ba3c392-33b8-46ad-ab7e-1b6f0f8c9e88",
+                "4c0f348a-a65d-409c-8668-207c82a5e3cb",
+                "3cacd754-73f4-496e-a529-9ca39fa6692d",
+                "9963c7b5-e2f5-40d8-b976-61fb453d17f3",
+                "bb7733f8-6aad-4273-84a0-ef472630203f",
+                "234d0dfc-cb24-413f-b798-129c73eb848e",
+                "520b05ef-420e-47d5-9491-63a7ba9e5423",
+                "bbe590a0-4196-4885-b679-cc1833af567f",
+                "d46f1091-33dc-4f8f-9c34-75dcfedb4b4c",
+                "99103779-6d2f-4e4b-9b7f-0b24d7c6bf4e",
+                "c8591c2a-92ef-4432-b19a-bb46063047ee",
+                "4fb7837e-964c-4d38-a3a5-b384b1bd6e08",
+                "3599277f-1f6e-43f0-9e09-0ec2ec5a0df1",
+                "843f6053-63d9-47d2-81f1-b6aa78a7c20c",
+                "20c86622-85b7-4827-a317-57aee79dfe57",
+                "2b59175e-42f0-0ebc-e054-00144ff8d46c",
+                "7e3a4517-1934-4e03-b96b-4ad65ab076c5",
+                "554239db-69fe-405a-910a-d9f9e3f8b6ed",
+                "5dd36bf2-8521-4da1-baa0-0eae24b2a3ce"
+              ],
+              "brand_name": [
+                "AMOXICILLIN",
+                "MOXATAG"
+              ],
+              "manufacturer_name": [
+                "West-Ward Pharmaceuticals Corp",
+                "Department of State Health Services, Pharmacy Branch",
+                "American Antibiotics,Inc",
+                "Bi-Coastal Pharma International LLC",
+                "Teva Pharmaceuticals USA, Inc.",
+                "Vernalis Therapeutics, Inc.",
+                "NorthStar Rx LLC",
+                "H.J. Harkins Company, Inc.",
+                "DAVA Pharmaceuticals Inc",
+                "Rising Health, LLC",
+                "Aurobindo Pharma Limited"
+              ],
+              "unii": [
+                "804826J2HU"
+              ],
+              "rxcui": [
+                "313797",
+                "308194",
+                "308182",
+                "308192",
+                "308177",
+                "313850",
+                "308189",
+                "239191",
+                "308191",
+                "802550",
+                "598025",
+                "828246"
+              ],
+              "spl_id": [
+                "781a8c42-6384-47ee-b220-f3280ec64fcd",
+                "2b470952-1f38-741f-e054-00144ff88e88",
+                "b38c3c66-2948-43e9-9c56-877f5b25f3fd",
+                "7539b242-a0fb-12c2-e053-2a91aa0a3780",
+                "c48c2f61-87df-4c6b-acfa-383bb8348b0a",
+                "0972267b-1a1b-40da-b95c-2dc7be21720e",
+                "19830636-5307-46a4-8ba3-065198631b3a",
+                "0bdf696f-cc96-4590-af6b-2dc7d1622a3e",
+                "a4168d48-e412-463e-b25c-c6c99224d1bc",
+                "7e0281a6-598d-406f-a5b8-981f618f3362",
+                "a769caf5-befc-4c35-83c9-7a1c0175ba90",
+                "8f802fdd-4e02-4c41-a87a-e2a70616704d",
+                "c7a15abb-9942-4e59-ae15-e62b91cc877a",
+                "d60641a5-6d30-4c1d-bd39-bec9ca61e612",
+                "2b4ec618-ab9d-481f-ad88-616d091a3e27",
+                "b6322d6a-6600-45f0-8f21-058293dc0fcb",
+                "f88ad201-fe54-4d8d-a9cd-7aefb1c1aae2",
+                "8dbf8aaf-5957-45ec-a274-052f593c1cb2",
+                "60804b94-50f2-44c4-a6bf-871cab5af2f1",
+                "56abaa5f-9ca9-4f63-9a41-3e7cc28eeaf3"
+              ],
+              "substance_name": [
+                "AMOXICILLIN"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "ANDA061926",
+                "ANDA065255",
+                "ANDA065378",
+                "ANDA064076",
+                "ANDA065056",
+                "ANDA065387",
+                "ANDA065119",
+                "ANDA065271",
+                "ANDA065322",
+                "ANDA065256",
+                "ANDA065334",
+                "ANDA065325",
+                "ANDA064013",
+                "ANDA061931",
+                "NDA050813",
+                "ANDA204030",
+                "ANDA065291",
+                "ANDA062058"
+              ]
+            },
+            "drugauthorizationnumb": "65256",
+            "actiondrug": "6",
+            "medicinalproduct": "AMOXICILLIN."
+          }
+        ]
+      },
+      "serious": "1",
+      "reportduplicate": {
+        "duplicatesource": "AUROBINDO",
+        "duplicatenumb": "FR-AUROBINDO-AUR-APL-2018-063859"
+      },
+      "receiptdate": "20190131",
+      "receiptdateformat": "102",
+      "receiver": {
+        "receivertype": "6",
+        "receiverorganization": "FDA"
+      },
+      "companynumb": "FR-AUROBINDO-AUR-APL-2018-063859",
+      "occurcountry": "FR",
+      "seriousnessother": "1",
+      "duplicate": "1",
+      "sender": {
+        "senderorganization": "FDA-Public Use",
+        "sendertype": "2"
+      },
+      "receivedate": "20190101",
+      "seriousnesshospitalization": "1",
+      "transmissiondate": "20190417",
+      "primarysourcecountry": "FR"
+    },
+    {
+      "reporttype": "2",
+      "safetyreportversion": "1",
+      "receivedateformat": "102",
+      "primarysource": {
+        "qualification": "1",
+        "reportercountry": "US"
+      },
+      "transmissiondateformat": "102",
+      "fulfillexpeditecriteria": "1",
+      "safetyreportid": "15778707",
+      "patient": {
+        "patientonsetage": "41",
+        "reaction": [
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Drug-induced liver injury"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Hepatic steatosis"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Cholestatic liver injury"
+          }
+        ],
+        "patientonsetageunit": "801",
+        "patientsex": "2",
+        "drug": [
+          {
+            "drugindication": "NAIL INFECTION",
+            "drugadministrationroute": "048",
+            "drugrecurreadministration": "3",
+            "openfda": {
+              "product_ndc": [
+                "76282-209",
+                "69097-859",
+                "31722-209",
+                "65862-079",
+                "16714-795"
+              ],
+              "package_ndc": [
+                "16714-795-02",
+                "31722-209-01",
+                "69097-859-02",
+                "69097-859-12",
+                "31722-209-05",
+                "69097-859-07",
+                "65862-079-30",
+                "76282-209-01",
+                "65862-079-01",
+                "76282-209-30",
+                "16714-795-01",
+                "31722-209-30",
+                "76282-209-05",
+                "65862-079-99"
+              ],
+              "generic_name": [
+                "TERBINAFINE",
+                "TERBINAFINE HYDROCHLORIDE"
+              ],
+              "spl_set_id": [
+                "6dc279cc-9861-4fa8-8083-ca3b3c57b513",
+                "bcf7e761-786b-4ac8-aecd-ea1c745880b1",
+                "6600e2b3-65df-4fc3-8081-d574537d27e3",
+                "8f87e3e1-4c9c-497a-af20-8ab52cfeef60",
+                "18b16aad-1877-4b07-b532-f0ef4843af91"
+              ],
+              "brand_name": [
+                "TERBINAFINE",
+                "TERBINAFINE HYDROCHLORIDE"
+              ],
+              "manufacturer_name": [
+                "Camber Pharmaceuticals, Inc.",
+                "Cipla USA Inc.",
+                "Exelan Pharmaceuticals Inc.",
+                "NorthStar Rx LLC",
+                "Aurobindo Pharma Limited"
+              ],
+              "unii": [
+                "012C11ZU6G"
+              ],
+              "rxcui": [
+                "313222"
+              ],
+              "spl_id": [
+                "161758fc-b0ca-4d9f-9809-7dfc64c9e411",
+                "f3186a46-2fe9-4e3e-bb0a-f8dc4412ad30",
+                "7aad0d1f-9cf3-4e6d-b150-8d553520c3a2",
+                "e167fd25-1405-4002-8af4-6fc73afc2c84",
+                "db0f9041-db29-4a29-9825-09139639992d"
+              ],
+              "substance_name": [
+                "TERBINAFINE HYDROCHLORIDE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "ANDA077533",
+                "ANDA078297"
+              ]
+            },
+            "drugauthorizationnumb": "78297",
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "TERBINAFINE.",
+            "activesubstance": {
+              "activesubstancename": "TERBINAFINE"
+            },
+            "drugadditional": "3",
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "250",
+            "drugdosagetext": "250 MILLIGRAM, DAILY",
+            "actiondrug": "5"
+          }
+        ]
+      },
+      "serious": "1",
+      "reportduplicate": {
+        "duplicatesource": "AUROBINDO",
+        "duplicatenumb": "US-AUROBINDO-AUR-APL-2018-063925"
+      },
+      "receiptdate": "20190101",
+      "receiptdateformat": "102",
+      "receiver": {
+        "receivertype": "6",
+        "receiverorganization": "FDA"
+      },
+      "companynumb": "US-AUROBINDO-AUR-APL-2018-063925",
+      "occurcountry": "US",
+      "seriousnessother": "1",
+      "duplicate": "1",
+      "sender": {
+        "senderorganization": "FDA-Public Use",
+        "sendertype": "2"
+      },
+      "receivedate": "20190101",
+      "transmissiondate": "20190417",
+      "primarysourcecountry": "US"
+    },
+    {
+      "reporttype": "2",
+      "safetyreportversion": "2",
+      "receivedateformat": "102",
+      "primarysource": {
+        "qualification": "3",
+        "reportercountry": "FR"
+      },
+      "transmissiondateformat": "102",
+      "fulfillexpeditecriteria": "1",
+      "safetyreportid": "15778708",
+      "patient": {
+        "patientonsetage": "35",
+        "reaction": [
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Exposure during pregnancy"
+          },
+          {
+            "reactionoutcome": "1",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Systemic inflammatory response syndrome"
+          },
+          {
+            "reactionoutcome": "1",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Clostridium difficile infection"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Product use in unapproved indication"
+          }
+        ],
+        "patientonsetageunit": "801",
+        "patientsex": "2",
+        "drug": [
+          {
+            "drugindication": "URINARY TRACT INFECTION",
+            "activesubstance": {
+              "activesubstancename": "AZITHROMYCIN ANHYDROUS"
+            },
+            "drugadministrationroute": "065",
+            "drugcharacterization": "1",
+            "drugdosagetext": "UNK",
+            "openfda": {},
+            "drugauthorizationnumb": "203294",
+            "actiondrug": "6",
+            "medicinalproduct": "AZITHROMYCIN ANHYDROUS."
+          },
+          {
+            "drugindication": "URINARY TRACT INFECTION",
+            "activesubstance": {
+              "activesubstancename": "CEFIXIME"
+            },
+            "drugadministrationroute": "065",
+            "drugcharacterization": "1",
+            "drugdosagetext": "UNK",
+            "openfda": {
+              "product_ndc": [
+                "67877-584",
+                "62250-664",
+                "62250-663",
+                "27437-208",
+                "27437-205",
+                "27437-207",
+                "27437-206",
+                "27437-201",
+                "65862-752",
+                "27437-203",
+                "62250-668",
+                "68180-416",
+                "43598-673",
+                "68180-405",
+                "65862-751",
+                "16714-766",
+                "16714-767",
+                "68180-202",
+                "68180-407",
+                "43598-674"
+              ],
+              "package_ndc": [
+                "65862-751-50",
+                "65862-752-75",
+                "68180-202-01",
+                "68180-407-04",
+                "68180-202-03",
+                "68180-202-02",
+                "68180-202-05",
+                "68180-202-04",
+                "27437-205-02",
+                "62250-663-27",
+                "27437-203-11",
+                "27437-205-08",
+                "68180-416-08",
+                "62250-664-28",
+                "67877-584-01",
+                "67877-584-05",
+                "68180-407-03",
+                "27437-207-02",
+                "27437-207-03",
+                "27437-207-04",
+                "62250-663-28",
+                "65862-751-01",
+                "27437-201-08",
+                "27437-203-10",
+                "43598-674-51",
+                "43598-674-50",
+                "62250-663-26",
+                "27437-201-01",
+                "27437-208-11",
+                "27437-201-25",
+                "68180-416-11",
+                "27437-205-11",
+                "27437-205-10",
+                "68180-405-01",
+                "62250-668-25",
+                "62250-668-24",
+                "43598-673-50",
+                "16714-767-02",
+                "16714-767-01",
+                "27437-206-06",
+                "27437-206-05",
+                "27437-206-04",
+                "27437-206-03",
+                "27437-206-02",
+                "27437-206-01",
+                "67877-584-50",
+                "27437-208-08",
+                "27437-203-02",
+                "27437-201-10",
+                "62250-664-27",
+                "62250-664-26",
+                "27437-203-08",
+                "16714-766-01",
+                "65862-752-50",
+                "27437-208-02"
+              ],
+              "generic_name": [
+                "CEFIXIME"
+              ],
+              "spl_set_id": [
+                "d0fd45bd-7d52-4fa6-a5f7-f46d5651ffa2",
+                "ef6f6181-baa6-4896-abfa-2097afe1f087",
+                "f5397168-0550-4ab6-8a6d-76ada66c245b",
+                "54db9828-803c-4e82-8202-cee919330786",
+                "6f1df975-f825-4301-87da-d7eba56a6890",
+                "7e2462b2-bfed-4da4-8c47-46838d6153f8",
+                "60d391ad-c7c2-4a6c-9b5c-c7a4da839caa",
+                "6d68dbd9-7d75-4ff1-91db-79ff8ae879ec",
+                "068e6edd-a5fe-40d8-8dcf-ac82b78dced4"
+              ],
+              "brand_name": [
+                "CEFIXIME",
+                "SUPRAX"
+              ],
+              "manufacturer_name": [
+                "Ascend Laboratories, LLC",
+                "Lupin Pharmaceuticals, Inc.",
+                "Dr. Reddys Laboratories, Inc",
+                "NorthStar RxLLC",
+                "Aurobindo Pharma Limited",
+                "Belcher Pharmaceuticals,LLC"
+              ],
+              "unii": [
+                "97I1C92E55"
+              ],
+              "rxcui": [
+                "1043025",
+                "1043030",
+                "1043031",
+                "1373016",
+                "581574",
+                "1373014",
+                "1043022",
+                "213927",
+                "419849",
+                "705008",
+                "409823",
+                "1372999",
+                "309058",
+                "197451"
+              ],
+              "spl_id": [
+                "350b6e57-09ca-48c7-9bc5-0579403e981a",
+                "e9f96ebb-04e9-4d0d-a743-97a40d217b6d",
+                "9f4604c0-f7f8-4e7a-8a19-7a60c416da66",
+                "7b070a58-8903-4263-be45-8c9ca4260078",
+                "7d545266-00f8-5903-e053-2a91aa0ae968",
+                "fe4acd5e-1980-46b0-a87d-589508766117",
+                "9476304d-05fd-4585-b955-372b29c19c86",
+                "1d590e4c-a5ca-480e-9071-3af6152a802d",
+                "7d545266-012b-5903-e053-2a91aa0ae968"
+              ],
+              "substance_name": [
+                "CEFIXIME"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "ANDA204835",
+                "ANDA065355",
+                "ANDA065380",
+                "ANDA210574",
+                "ANDA206938",
+                "ANDA206939",
+                "NDA202091",
+                "ANDA065129",
+                "NDA203195",
+                "ANDA065130"
+              ]
+            },
+            "actiondrug": "6",
+            "medicinalproduct": "CEFIXIME."
+          }
+        ]
+      },
+      "serious": "1",
+      "reportduplicate": {
+        "duplicatesource": "AUROBINDO",
+        "duplicatenumb": "FR-AUROBINDO-AUR-APL-2018-063860"
+      },
+      "receiptdate": "20190119",
+      "receiptdateformat": "102",
+      "receiver": {
+        "receivertype": "6",
+        "receiverorganization": "FDA"
+      },
+      "companynumb": "FR-AUROBINDO-AUR-APL-2018-063860",
+      "occurcountry": "FR",
+      "seriousnessother": "1",
+      "duplicate": "1",
+      "sender": {
+        "senderorganization": "FDA-Public Use",
+        "sendertype": "2"
+      },
+      "receivedate": "20190101",
+      "transmissiondate": "20190417",
+      "primarysourcecountry": "FR"
+    },
+    {
+      "reporttype": "1",
+      "safetyreportversion": "2",
+      "receivedateformat": "102",
+      "primarysource": {
+        "qualification": "1",
+        "reportercountry": "TR"
+      },
+      "transmissiondateformat": "102",
+      "fulfillexpeditecriteria": "1",
+      "safetyreportid": "15778709",
+      "patient": {
+        "patientonsetage": "4",
+        "summary": {
+          "narrativeincludeclinical": "CASE EVENT DATE: 201811"
+        },
+        "reaction": [
+          {
+            "reactionoutcome": "2",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Basal cell carcinoma"
+          }
+        ],
+        "patientonsetageunit": "800",
+        "patientsex": "2",
+        "drug": [
+          {
+            "drugstartdateformat": "602",
+            "drugindication": "PSORIASIS",
+            "drugintervaldosageunitnumb": "1",
+            "drugadministrationroute": "065",
+            "drugdosageform": "UNKNOWN FORMULATION",
+            "drugstartdate": "2018",
+            "openfda": {
+              "product_ndc": [
+                "58406-456",
+                "58406-455",
+                "58406-446",
+                "58406-435",
+                "58406-032",
+                "58406-425",
+                "58406-445",
+                "58406-010",
+                "58406-044",
+                "58406-021"
+              ],
+              "package_ndc": [
+                "58406-044-01",
+                "58406-424-01",
+                "58406-910-01",
+                "58406-425-41",
+                "58406-456-04",
+                "58406-456-01",
+                "58406-021-01",
+                "58406-446-01",
+                "58406-446-04",
+                "58406-021-04",
+                "58406-044-04",
+                "58406-425-34",
+                "58406-445-04",
+                "58406-032-04",
+                "58406-445-01",
+                "58406-435-01",
+                "58406-435-04",
+                "58406-032-01",
+                "58406-455-01",
+                "58406-455-04",
+                "58406-010-01",
+                "58406-010-04"
+              ],
+              "generic_name": [
+                "ETANERCEPT"
+              ],
+              "spl_set_id": [
+                "a002b40c-097d-47a5-957f-7a7b1807af7f"
+              ],
+              "brand_name": [
+                "ENBREL"
+              ],
+              "manufacturer_name": [
+                "Immunex Corporation"
+              ],
+              "unii": [
+                "OP401G7OJC"
+              ],
+              "rxcui": [
+                "802652",
+                "1653225",
+                "809159",
+                "809158",
+                "261105",
+                "253014",
+                "1653223",
+                "727757"
+              ],
+              "spl_id": [
+                "83916b74-3626-4858-8393-5989eac362b1"
+              ],
+              "substance_name": [
+                "ETANERCEPT"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "SUBCUTANEOUS"
+              ],
+              "application_number": [
+                "BLA103795"
+              ]
+            },
+            "drugauthorizationnumb": "103795",
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "ENBREL",
+            "activesubstance": {
+              "activesubstancename": "ETANERCEPT"
+            },
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "50",
+            "drugintervaldosagedefinition": "803",
+            "drugdosagetext": "50 MG, WEEKLY",
+            "drugseparatedosagenumb": "1",
+            "actiondrug": "4"
+          }
+        ]
+      },
+      "serious": "1",
+      "reportduplicate": {
+        "duplicatesource": "AMGEN",
+        "duplicatenumb": "TR-AMGEN-TURSP2018187088"
+      },
+      "receiptdate": "20190106",
+      "receiptdateformat": "102",
+      "receiver": {
+        "receivertype": "6",
+        "receiverorganization": "FDA"
+      },
+      "companynumb": "TR-AMGEN-TURSP2018187088",
+      "occurcountry": "TR",
+      "seriousnessother": "1",
+      "duplicate": "1",
+      "sender": {
+        "senderorganization": "FDA-Public Use",
+        "sendertype": "2"
+      },
+      "receivedate": "20190101",
+      "transmissiondate": "20190417",
+      "primarysourcecountry": "TR"
+    },
+    {
+      "reporttype": "1",
+      "safetyreportversion": "2",
+      "receivedateformat": "102",
+      "primarysource": {
+        "qualification": "2",
+        "reportercountry": "US"
+      },
+      "transmissiondateformat": "102",
+      "fulfillexpeditecriteria": "1",
+      "safetyreportid": "15778710",
+      "patient": {
+        "patientonsetage": "61",
+        "summary": {
+          "narrativeincludeclinical": "CASE EVENT DATE: 201811"
+        },
+        "reaction": [
+          {
+            "reactionoutcome": "1",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Hiatus hernia"
+          },
+          {
+            "reactionoutcome": "1",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Urticaria"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Rash"
+          }
+        ],
+        "patientonsetageunit": "801",
+        "patientsex": "2",
+        "drug": [
+          {
+            "drugstartdateformat": "102",
+            "drugindication": "PLASMA CELL MYELOMA",
+            "drugbatchnumb": "C2173E",
+            "drugadministrationroute": "048",
+            "drugdosageform": "CAPSULES",
+            "drugstartdate": "20181106",
+            "drugenddateformat": "102",
+            "drugrecurreadministration": "3",
+            "openfda": {
+              "product_ndc": [
+                "59572-504",
+                "59572-503",
+                "59572-502",
+                "59572-501"
+              ],
+              "package_ndc": [
+                "59572-501-21",
+                "59572-501-00",
+                "59572-503-00",
+                "59572-503-21",
+                "59572-504-21",
+                "59572-502-00",
+                "59572-502-21",
+                "59572-504-00"
+              ],
+              "generic_name": [
+                "POMALIDOMIDE"
+              ],
+              "spl_set_id": [
+                "2b25ef01-5c9e-11e1-b86c-0800200c9a66"
+              ],
+              "brand_name": [
+                "POMALYST"
+              ],
+              "manufacturer_name": [
+                "Celgene Corporation"
+              ],
+              "unii": [
+                "D2UX06XLB5"
+              ],
+              "rxcui": [
+                "1369718",
+                "1369734",
+                "1369726",
+                "1369736",
+                "1369724",
+                "1369730",
+                "1369732",
+                "1369728"
+              ],
+              "spl_id": [
+                "ca6ba4fa-edd5-4174-a8a7-553c6317c5f5"
+              ],
+              "substance_name": [
+                "POMALIDOMIDE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "NDA204026"
+              ]
+            },
+            "drugauthorizationnumb": "204026",
+            "drugenddate": "20181126",
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "POMALYST",
+            "activesubstance": {
+              "activesubstancename": "POMALIDOMIDE"
+            },
+            "drugadditional": "1",
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "1",
+            "drugdosagetext": "1 MILLIGRAM",
+            "actiondrug": "2"
+          },
+          {
+            "drugindication": "PRODUCT USED FOR UNKNOWN INDICATION",
+            "drugintervaldosageunitnumb": "1",
+            "drugadministrationroute": "048",
+            "drugdosageform": "TABLETS",
+            "openfda": {
+              "product_ndc": [
+                "68382-102",
+                "68382-103",
+                "68382-104",
+                "76282-250",
+                "76282-251",
+                "68180-137",
+                "51672-1348",
+                "33342-053",
+                "0143-9809",
+                "59746-281",
+                "59746-280",
+                "0093-5850",
+                "0093-5851",
+                "0093-5852",
+                "69097-848",
+                "65162-705",
+                "68001-196",
+                "68001-195",
+                "54879-010",
+                "54879-011",
+                "59115-100",
+                "31722-250",
+                "31722-251",
+                "65862-375",
+                "65862-374",
+                "59115-102",
+                "43547-282",
+                "43547-281",
+                "43547-280",
+                "68001-197",
+                "70771-1145",
+                "0143-9808",
+                "70771-1147",
+                "70771-1146",
+                "0143-9807",
+                "76282-249",
+                "31722-249",
+                "68180-136",
+                "59746-279",
+                "69097-847",
+                "0378-3855",
+                "0378-3856",
+                "0378-3857",
+                "68180-135",
+                "69097-849",
+                "16729-170",
+                "65862-373",
+                "54879-009",
+                "16729-168",
+                "16729-169",
+                "57237-094",
+                "59115-101",
+                "57237-093",
+                "57237-092"
+              ],
+              "package_ndc": [
+                "59115-100-01",
+                "76282-251-30",
+                "59115-102-01",
+                "59746-281-30",
+                "57237-094-90",
+                "76282-250-90",
+                "70771-1147-5",
+                "70771-1147-3",
+                "70771-1147-1",
+                "70771-1147-0",
+                "0143-9807-01",
+                "16729-169-43",
+                "0143-9807-05",
+                "70771-1147-9",
+                "76282-250-10",
+                "76282-249-05",
+                "76282-249-01",
+                "59746-280-90",
+                "76282-249-90",
+                "65862-373-01",
+                "16729-170-43",
+                "65862-374-90",
+                "31722-250-90",
+                "59746-280-10",
+                "68382-102-01",
+                "68180-135-01",
+                "0093-5851-93",
+                "0378-3856-77",
+                "65862-375-01",
+                "0378-3857-10",
+                "65862-375-05",
+                "57237-094-01",
+                "68001-197-03",
+                "68001-197-00",
+                "0093-5850-05",
+                "57237-094-05",
+                "65862-374-10",
+                "0093-5850-01",
+                "0093-5851-19",
+                "76282-249-10",
+                "59115-101-01",
+                "59746-279-90",
+                "0093-5850-93",
+                "68180-137-01",
+                "59746-280-05",
+                "43547-282-11",
+                "59746-279-10",
+                "16729-170-10",
+                "59746-280-01",
+                "0093-5850-19",
+                "76282-250-30",
+                "43547-280-10",
+                "43547-280-11",
+                "65862-374-05",
+                "0093-5851-05",
+                "16729-168-43",
+                "0093-5851-01",
+                "65862-375-90",
+                "31722-249-05",
+                "31722-249-01",
+                "54879-009-01",
+                "43547-281-11",
+                "43547-281-10",
+                "31722-251-30",
+                "65862-374-59",
+                "16729-169-01",
+                "51672-1348-1",
+                "68382-102-05",
+                "59746-279-05",
+                "51672-1348-8",
+                "59746-279-01",
+                "31722-250-30",
+                "16729-169-10",
+                "0093-5852-05",
+                "0378-3856-10",
+                "0093-5852-01",
+                "16729-169-16",
+                "16729-169-17",
+                "65862-375-30",
+                "76282-251-01",
+                "69097-847-02",
+                "54879-010-01",
+                "54879-010-05",
+                "68180-136-01",
+                "31722-249-10",
+                "57237-092-90",
+                "68382-103-16",
+                "68382-103-10",
+                "51672-1348-9",
+                "65862-373-30",
+                "76282-249-30",
+                "65862-375-39",
+                "59746-279-30",
+                "31722-250-01",
+                "16729-170-16",
+                "16729-170-17",
+                "31722-250-05",
+                "70771-1145-9",
+                "70771-1146-3",
+                "70771-1146-0",
+                "70771-1146-1",
+                "70771-1146-5",
+                "70771-1145-1",
+                "70771-1145-0",
+                "70771-1145-3",
+                "70771-1146-9",
+                "70771-1145-5",
+                "69097-847-07",
+                "0093-5852-19",
+                "69097-847-05",
+                "59115-101-55",
+                "0143-9809-01",
+                "54879-011-01",
+                "54879-011-05",
+                "68382-103-06",
+                "68382-103-05",
+                "57237-093-01",
+                "68382-103-01",
+                "69097-848-15",
+                "59115-102-55",
+                "68001-196-00",
+                "68001-196-03",
+                "33342-053-28",
+                "16729-170-01",
+                "31722-250-10",
+                "59746-281-01",
+                "65162-705-88",
+                "59746-281-05",
+                "31722-251-90",
+                "69097-847-15",
+                "0378-3855-77",
+                "31722-251-10",
+                "69097-847-12",
+                "0093-5852-93",
+                "31722-249-90",
+                "68180-137-06",
+                "68382-104-06",
+                "68382-104-05",
+                "31722-249-30",
+                "68382-104-01",
+                "0143-9808-05",
+                "0143-9808-01",
+                "31722-251-01",
+                "65862-373-05",
+                "68382-102-10",
+                "31722-251-05",
+                "68382-102-16",
+                "57237-093-05",
+                "76282-251-10",
+                "69097-849-05",
+                "69097-849-07",
+                "69097-849-02",
+                "59746-281-10",
+                "43547-282-10",
+                "57237-093-90",
+                "68382-102-06",
+                "57237-092-01",
+                "57237-092-05",
+                "65862-375-10",
+                "68382-104-10",
+                "59746-281-90",
+                "68382-104-16",
+                "68001-195-00",
+                "69097-848-12",
+                "16729-168-01",
+                "65862-373-10",
+                "65862-373-19",
+                "0378-3857-77",
+                "69097-849-15",
+                "69097-849-12",
+                "76282-251-05",
+                "69097-848-02",
+                "59746-280-30",
+                "65862-373-90",
+                "76282-251-90",
+                "76282-250-05",
+                "76282-250-01",
+                "65862-374-30",
+                "65862-374-01",
+                "16729-168-17",
+                "16729-168-16",
+                "69097-848-07",
+                "69097-848-05",
+                "16729-168-10"
+              ],
+              "generic_name": [
+                "ESCITALOPRAM OXALATE",
+                "ESCITALOPRAM",
+                "ESCITSLOPRAM"
+              ],
+              "spl_set_id": [
+                "40c2d59d-78aa-45d1-8068-fc7d4ec053ab",
+                "155e973a-f4ff-4e5a-b937-09f1e106fe39",
+                "bd44ce7d-fe59-4ebb-9cc9-0f8b9906642a",
+                "09894a38-4e3a-475d-96cd-c6c8ed87869a",
+                "c871d3fe-5ca2-410c-976d-9ec4b72c878f",
+                "d5fbc8ce-bd41-4bd0-b413-0dea97e596c3",
+                "76d0e2a8-2ed2-4596-9179-8c360f4a0978",
+                "88abb4e3-617c-4c16-aec5-8acdaae6d388",
+                "61f27814-bc32-4de5-b12a-29fe1ee9771e",
+                "6d443905-ae95-436d-8303-e984f3c7d475",
+                "a98f0040-e8e4-464e-a6fb-1ece98213497",
+                "41f7392a-1f5c-4542-9c5c-f9e109851381",
+                "8a3f4bc9-cd6e-49b1-ab6c-982b70f51fd2",
+                "4d5c3142-b850-49b9-9f5c-81fe15ea7bfb",
+                "2db02476-325f-ee47-a7e5-b5aed56c364c",
+                "84b2028d-eff4-434d-b71e-6a3c0812f625",
+                "31ce0b82-58fe-44f3-8887-c55d8df1b773",
+                "9a6c8116-396d-413b-b8e7-5eb321781bd5",
+                "cc2aab5d-a9ff-4277-ab33-aa1f5aeffa95",
+                "8f1db566-4401-4699-912e-a49f8b6a2de9"
+              ],
+              "brand_name": [
+                "ESCITALOPRAM OXALATE",
+                "ESCITALOPRAM"
+              ],
+              "manufacturer_name": [
+                "West-Ward Pharmaceuticals Corp",
+                "Amneal Pharmaceuticals LLC",
+                "SOLCO HEALTHCARE US, LLC",
+                "Jubilant Cadista Pharmaceuticals Inc.",
+                "Teva Pharmaceuticals USA, Inc.",
+                "Aurobindo Pharma Limited",
+                "Camber Pharmaceuticals",
+                "Zydus Pharmaceuticals (USA) Inc.",
+                "Taro Pharmaceuticals U.S.A., Inc.",
+                "Citron Pharma LLC",
+                "Mylan Pharmaceuticals Inc.",
+                "Lupin Pharmaceuticals, Inc.",
+                "Cipla USA Inc.",
+                "Macleods Pharmaceuticals Limited",
+                "Exelan Pharmaceuticals Inc.",
+                "Hikma Pharmaceutical",
+                "Accord Healthcare Inc.",
+                "STI Pharma LLC",
+                "Cadila Healthcare Limited",
+                "BluePoint Laboratories"
+              ],
+              "unii": [
+                "5U85DBW7LO"
+              ],
+              "rxcui": [
+                "351250",
+                "349332",
+                "351285",
+                "351249"
+              ],
+              "spl_id": [
+                "f36417fc-e452-4dac-8d4e-d22ed645a2af",
+                "f6b14a85-d828-47f1-8a0a-b4e1c10f3894",
+                "35720dbf-467c-4bcc-894c-4a56b6206ace",
+                "456dcee0-a3e2-4cbc-9a33-91463a0d0430",
+                "bc5aee07-b6b0-474d-8810-2e97e31cea2c",
+                "386eadcc-127e-49ab-8e40-2318090b53eb",
+                "e280a343-4949-4c92-96f7-5744d8cf52c9",
+                "4e3c06e5-0950-424c-b4bc-98882b8fa8c1",
+                "6a6f8273-7541-4712-a648-d4c6647826e4",
+                "d6af3041-1115-48ec-866e-ac07ae043e43",
+                "8a1adfe5-4fdc-47fb-a7ba-363c40e96b26",
+                "6404ddfe-f72d-4237-aea2-542cd677467e",
+                "83354bef-f84d-4a25-bce8-537231787b6f",
+                "161c3985-2071-4440-b192-096139f8bdc6",
+                "12f6a619-58cb-4428-bfa5-66859253efed",
+                "322655e3-fff3-4292-abf5-fb9634227072",
+                "b33ea9f7-1fa9-4ba8-8a3c-6f9897015044",
+                "7fd26687-e947-4244-beb2-2b206b2157ff",
+                "3b4a1c2f-5dcc-4530-9243-86657c940c0b",
+                "8df1082b-6757-6e6d-e053-2995a90ac71f"
+              ],
+              "substance_name": [
+                "ESCITALOPRAM OXALATE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "ANDA078032",
+                "ANDA090432",
+                "ANDA078766",
+                "ANDA202754",
+                "ANDA078169",
+                "ANDA202389",
+                "ANDA202227",
+                "NDA021323",
+                "ANDA077512",
+                "ANDA076765",
+                "ANDA077734",
+                "ANDA202280",
+                "ANDA079121",
+                "ANDA078604"
+              ]
+            },
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "ESCITALOPRAM",
+            "activesubstance": {
+              "activesubstancename": "ESCITALOPRAM OXALATE"
+            },
+            "drugcharacterization": "2",
+            "drugstructuredosagenumb": "10",
+            "drugintervaldosagedefinition": "804",
+            "drugdosagetext": "20 MILLIGRAM",
+            "drugseparatedosagenumb": "2"
+          },
+          {
+            "drugstartdateformat": "610",
+            "drugadministrationroute": "048",
+            "drugdosageform": "CAPSULES",
+            "drugstartdate": "201708",
+            "drugrecurreadministration": "3",
+            "openfda": {
+              "product_ndc": [
+                "59572-425",
+                "59572-420",
+                "59572-415",
+                "59572-405",
+                "59572-402",
+                "59572-410"
+              ],
+              "package_ndc": [
+                "59572-402-28",
+                "59572-420-21",
+                "59572-425-21",
+                "59572-405-28",
+                "59572-402-00",
+                "59572-410-00",
+                "59572-405-00",
+                "59572-425-00",
+                "59572-415-00",
+                "59572-415-21",
+                "59572-420-00",
+                "59572-410-28"
+              ],
+              "generic_name": [
+                "LENALIDOMIDE"
+              ],
+              "spl_set_id": [
+                "5fa97bf5-28a2-48f1-8955-f56012d296be"
+              ],
+              "brand_name": [
+                "REVLIMID"
+              ],
+              "manufacturer_name": [
+                "Celgene Corporation"
+              ],
+              "unii": [
+                "F0P408N6V4"
+              ],
+              "rxcui": [
+                "643712",
+                "643714",
+                "1429367",
+                "643720",
+                "643722",
+                "1242231",
+                "1242233",
+                "1428947",
+                "602910",
+                "616114",
+                "602912",
+                "616116"
+              ],
+              "spl_id": [
+                "1f462eb0-4995-4b06-93ce-27e3fcbe32d5"
+              ],
+              "substance_name": [
+                "LENALIDOMIDE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "NDA021880"
+              ]
+            },
+            "drugauthorizationnumb": "204026",
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "REVLIMID",
+            "activesubstance": {
+              "activesubstancename": "LENALIDOMIDE"
+            },
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "25",
+            "drugdosagetext": "10-25 MILLIGRAM",
+            "actiondrug": "6"
+          },
+          {
+            "drugindication": "PRODUCT USED FOR UNKNOWN INDICATION",
+            "drugintervaldosageunitnumb": "1",
+            "drugadministrationroute": "048",
+            "drugdosageform": "TABLETS",
+            "openfda": {
+              "product_ndc": [
+                "0310-0751",
+                "0310-0752",
+                "0310-0754",
+                "0310-0755"
+              ],
+              "package_ndc": [
+                "0310-0755-90",
+                "0310-0752-90",
+                "0310-0751-90",
+                "0310-0752-39",
+                "0310-0751-39",
+                "0310-0754-30"
+              ],
+              "generic_name": [
+                "ROSUVASTATIN CALCIUM"
+              ],
+              "spl_set_id": [
+                "bb0f3b5e-4bc6-41c9-66b9-6257e2513512"
+              ],
+              "brand_name": [
+                "CRESTOR"
+              ],
+              "manufacturer_name": [
+                "AstraZeneca Pharmaceuticals LP"
+              ],
+              "unii": [
+                "83MVU38M7Q"
+              ],
+              "rxcui": [
+                "859426",
+                "859424",
+                "859421",
+                "859751",
+                "859753",
+                "859749",
+                "859747",
+                "859419"
+              ],
+              "spl_id": [
+                "e7bc5f68-8cbd-4841-b74d-a4862baea587"
+              ],
+              "substance_name": [
+                "ROSUVASTATIN CALCIUM"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "NDA021366"
+              ]
+            },
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "CRESTOR",
+            "activesubstance": {
+              "activesubstancename": "ROSUVASTATIN CALCIUM"
+            },
+            "drugcharacterization": "2",
+            "drugstructuredosagenumb": "5",
+            "drugintervaldosagedefinition": "804",
+            "drugdosagetext": "5 MILLIGRAM",
+            "drugseparatedosagenumb": "1"
+          },
+          {
+            "drugstartdateformat": "610",
+            "drugadministrationroute": "048",
+            "drugdosageform": "CAPSULES",
+            "drugstartdate": "201703",
+            "drugrecurreadministration": "3",
+            "openfda": {
+              "product_ndc": [
+                "59572-425",
+                "59572-420",
+                "59572-415",
+                "59572-405",
+                "59572-402",
+                "59572-410"
+              ],
+              "package_ndc": [
+                "59572-402-28",
+                "59572-420-21",
+                "59572-425-21",
+                "59572-405-28",
+                "59572-402-00",
+                "59572-410-00",
+                "59572-405-00",
+                "59572-425-00",
+                "59572-415-00",
+                "59572-415-21",
+                "59572-420-00",
+                "59572-410-28"
+              ],
+              "generic_name": [
+                "LENALIDOMIDE"
+              ],
+              "spl_set_id": [
+                "5fa97bf5-28a2-48f1-8955-f56012d296be"
+              ],
+              "brand_name": [
+                "REVLIMID"
+              ],
+              "manufacturer_name": [
+                "Celgene Corporation"
+              ],
+              "unii": [
+                "F0P408N6V4"
+              ],
+              "rxcui": [
+                "643712",
+                "643714",
+                "1429367",
+                "643720",
+                "643722",
+                "1242231",
+                "1242233",
+                "1428947",
+                "602910",
+                "616114",
+                "602912",
+                "616116"
+              ],
+              "spl_id": [
+                "1f462eb0-4995-4b06-93ce-27e3fcbe32d5"
+              ],
+              "substance_name": [
+                "LENALIDOMIDE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "NDA021880"
+              ]
+            },
+            "drugauthorizationnumb": "204026",
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "REVLIMID",
+            "activesubstance": {
+              "activesubstancename": "LENALIDOMIDE"
+            },
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "10",
+            "drugdosagetext": "10 MILLIGRAM",
+            "actiondrug": "6"
+          },
+          {
+            "drugindication": "PRODUCT USED FOR UNKNOWN INDICATION",
+            "drugintervaldosageunitnumb": "1",
+            "drugadministrationroute": "061",
+            "drugdosageform": "GEL",
+            "openfda": {
+              "product_ndc": [
+                "17139-613",
+                "17139-617"
+              ],
+              "package_ndc": [
+                "17139-617-40",
+                "17139-613-50",
+                "17139-617-43",
+                "17139-617-20"
+              ],
+              "generic_name": [
+                "ESTRADIOL"
+              ],
+              "spl_set_id": [
+                "762ac371-bb8b-47e7-b48f-e80d452c9dd4",
+                "87bb0e2f-9fa6-438b-9d5f-d0a90af770ed"
+              ],
+              "brand_name": [
+                "ESTROGEL"
+              ],
+              "manufacturer_name": [
+                "ASCEND Therapeutics US, LLC"
+              ],
+              "unii": [
+                "4TI98Z838E"
+              ],
+              "rxcui": [
+                "226597",
+                "581549"
+              ],
+              "spl_id": [
+                "74285ccb-8cb6-4c29-a5ec-1fe1999658b6",
+                "50bbc7fb-e676-4432-89fa-84bc2552713d"
+              ],
+              "substance_name": [
+                "ESTRADIOL"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "TOPICAL",
+                "TRANSDERMAL"
+              ],
+              "application_number": [
+                "NDA021166"
+              ]
+            },
+            "drugstructuredosageunit": "002",
+            "medicinalproduct": "ESTROGEL",
+            "activesubstance": {
+              "activesubstancename": "ESTRADIOL"
+            },
+            "drugcharacterization": "2",
+            "drugstructuredosagenumb": "1.25",
+            "drugintervaldosagedefinition": "804",
+            "drugdosagetext": "1.25 GRAM",
+            "drugseparatedosagenumb": "1"
+          },
+          {
+            "drugstartdateformat": "602",
+            "drugintervaldosageunitnumb": "2",
+            "drugbatchnumb": "C2173E",
+            "drugadministrationroute": "048",
+            "drugdosageform": "CAPSULES",
+            "drugstartdate": "2018",
+            "drugenddateformat": "602",
+            "drugrecurreadministration": "3",
+            "openfda": {
+              "product_ndc": [
+                "59572-504",
+                "59572-503",
+                "59572-502",
+                "59572-501"
+              ],
+              "package_ndc": [
+                "59572-501-21",
+                "59572-501-00",
+                "59572-503-00",
+                "59572-503-21",
+                "59572-504-21",
+                "59572-502-00",
+                "59572-502-21",
+                "59572-504-00"
+              ],
+              "generic_name": [
+                "POMALIDOMIDE"
+              ],
+              "spl_set_id": [
+                "2b25ef01-5c9e-11e1-b86c-0800200c9a66"
+              ],
+              "brand_name": [
+                "POMALYST"
+              ],
+              "manufacturer_name": [
+                "Celgene Corporation"
+              ],
+              "unii": [
+                "D2UX06XLB5"
+              ],
+              "rxcui": [
+                "1369718",
+                "1369734",
+                "1369726",
+                "1369736",
+                "1369724",
+                "1369730",
+                "1369732",
+                "1369728"
+              ],
+              "spl_id": [
+                "ca6ba4fa-edd5-4174-a8a7-553c6317c5f5"
+              ],
+              "substance_name": [
+                "POMALIDOMIDE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "NDA204026"
+              ]
+            },
+            "drugauthorizationnumb": "204026",
+            "drugenddate": "2018",
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "POMALYST",
+            "activesubstance": {
+              "activesubstancename": "POMALIDOMIDE"
+            },
+            "drugadditional": "1",
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "1",
+            "drugintervaldosagedefinition": "804",
+            "drugdosagetext": "1 MILLIGRAM",
+            "drugseparatedosagenumb": "1",
+            "actiondrug": "2"
+          },
+          {
+            "drugstartdateformat": "610",
+            "drugindication": "PLASMA CELL MYELOMA",
+            "drugadministrationroute": "048",
+            "drugdosageform": "CAPSULES",
+            "drugstartdate": "201606",
+            "drugrecurreadministration": "3",
+            "openfda": {
+              "product_ndc": [
+                "59572-425",
+                "59572-420",
+                "59572-415",
+                "59572-405",
+                "59572-402",
+                "59572-410"
+              ],
+              "package_ndc": [
+                "59572-402-28",
+                "59572-420-21",
+                "59572-425-21",
+                "59572-405-28",
+                "59572-402-00",
+                "59572-410-00",
+                "59572-405-00",
+                "59572-425-00",
+                "59572-415-00",
+                "59572-415-21",
+                "59572-420-00",
+                "59572-410-28"
+              ],
+              "generic_name": [
+                "LENALIDOMIDE"
+              ],
+              "spl_set_id": [
+                "5fa97bf5-28a2-48f1-8955-f56012d296be"
+              ],
+              "brand_name": [
+                "REVLIMID"
+              ],
+              "manufacturer_name": [
+                "Celgene Corporation"
+              ],
+              "unii": [
+                "F0P408N6V4"
+              ],
+              "rxcui": [
+                "643712",
+                "643714",
+                "1429367",
+                "643720",
+                "643722",
+                "1242231",
+                "1242233",
+                "1428947",
+                "602910",
+                "616114",
+                "602912",
+                "616116"
+              ],
+              "spl_id": [
+                "1f462eb0-4995-4b06-93ce-27e3fcbe32d5"
+              ],
+              "substance_name": [
+                "LENALIDOMIDE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "NDA021880"
+              ]
+            },
+            "drugauthorizationnumb": "204026",
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "REVLIMID",
+            "activesubstance": {
+              "activesubstancename": "LENALIDOMIDE"
+            },
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "25",
+            "drugdosagetext": "25 MILLIGRAM",
+            "actiondrug": "6"
+          }
+        ]
+      },
+      "serious": "1",
+      "reportduplicate": {
+        "duplicatesource": "CELGENE",
+        "duplicatenumb": "US-CELGENEUS-USA-20181201657"
+      },
+      "receiptdate": "20190102",
+      "receiptdateformat": "102",
+      "receiver": {
+        "receivertype": "6",
+        "receiverorganization": "FDA"
+      },
+      "companynumb": "US-CELGENEUS-USA-20181201657",
+      "occurcountry": "US",
+      "duplicate": "1",
+      "sender": {
+        "senderorganization": "FDA-Public Use",
+        "sendertype": "2"
+      },
+      "receivedate": "20190101",
+      "seriousnesshospitalization": "1",
+      "transmissiondate": "20190417",
+      "primarysourcecountry": "US"
+    },
+    {
+      "reporttype": "1",
+      "safetyreportversion": "2",
+      "receivedateformat": "102",
+      "primarysource": {
+        "qualification": "2",
+        "reportercountry": "US"
+      },
+      "transmissiondateformat": "102",
+      "fulfillexpeditecriteria": "1",
+      "safetyreportid": "15778711",
+      "patient": {
+        "patientonsetage": "69",
+        "summary": {
+          "narrativeincludeclinical": "CASE EVENT DATE: 201812"
+        },
+        "reaction": [
+          {
+            "reactionoutcome": "1",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Bronchitis"
+          },
+          {
+            "reactionoutcome": "1",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Blood potassium decreased"
+          },
+          {
+            "reactionoutcome": "1",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Pneumonia"
+          }
+        ],
+        "patientonsetageunit": "801",
+        "patientsex": "2",
+        "drug": [
+          {
+            "drugstartdateformat": "102",
+            "drugindication": "PLASMA CELL MYELOMA",
+            "drugintervaldosageunitnumb": "1",
+            "drugbatchnumb": "A2588A",
+            "drugadministrationroute": "048",
+            "drugdosageform": "CAPSULES",
+            "drugstartdate": "20181030",
+            "drugrecurreadministration": "3",
+            "openfda": {
+              "product_ndc": [
+                "59572-504",
+                "59572-503",
+                "59572-502",
+                "59572-501"
+              ],
+              "package_ndc": [
+                "59572-501-21",
+                "59572-501-00",
+                "59572-503-00",
+                "59572-503-21",
+                "59572-504-21",
+                "59572-502-00",
+                "59572-502-21",
+                "59572-504-00"
+              ],
+              "generic_name": [
+                "POMALIDOMIDE"
+              ],
+              "spl_set_id": [
+                "2b25ef01-5c9e-11e1-b86c-0800200c9a66"
+              ],
+              "brand_name": [
+                "POMALYST"
+              ],
+              "manufacturer_name": [
+                "Celgene Corporation"
+              ],
+              "unii": [
+                "D2UX06XLB5"
+              ],
+              "rxcui": [
+                "1369718",
+                "1369734",
+                "1369726",
+                "1369736",
+                "1369724",
+                "1369730",
+                "1369732",
+                "1369728"
+              ],
+              "spl_id": [
+                "ca6ba4fa-edd5-4174-a8a7-553c6317c5f5"
+              ],
+              "substance_name": [
+                "POMALIDOMIDE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "NDA204026"
+              ]
+            },
+            "drugauthorizationnumb": "204026",
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "POMALYST",
+            "activesubstance": {
+              "activesubstancename": "POMALIDOMIDE"
+            },
+            "drugadditional": "1",
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "4",
+            "drugintervaldosagedefinition": "804",
+            "drugdosagetext": "4 MILLIGRAM",
+            "drugseparatedosagenumb": "1",
+            "actiondrug": "1"
+          },
+          {
+            "drugstartdateformat": "610",
+            "drugbatchnumb": "A2588A",
+            "drugadministrationroute": "048",
+            "drugdosageform": "CAPSULES",
+            "drugstartdate": "201811",
+            "drugrecurreadministration": "3",
+            "openfda": {
+              "product_ndc": [
+                "59572-504",
+                "59572-503",
+                "59572-502",
+                "59572-501"
+              ],
+              "package_ndc": [
+                "59572-501-21",
+                "59572-501-00",
+                "59572-503-00",
+                "59572-503-21",
+                "59572-504-21",
+                "59572-502-00",
+                "59572-502-21",
+                "59572-504-00"
+              ],
+              "generic_name": [
+                "POMALIDOMIDE"
+              ],
+              "spl_set_id": [
+                "2b25ef01-5c9e-11e1-b86c-0800200c9a66"
+              ],
+              "brand_name": [
+                "POMALYST"
+              ],
+              "manufacturer_name": [
+                "Celgene Corporation"
+              ],
+              "unii": [
+                "D2UX06XLB5"
+              ],
+              "rxcui": [
+                "1369718",
+                "1369734",
+                "1369726",
+                "1369736",
+                "1369724",
+                "1369730",
+                "1369732",
+                "1369728"
+              ],
+              "spl_id": [
+                "ca6ba4fa-edd5-4174-a8a7-553c6317c5f5"
+              ],
+              "substance_name": [
+                "POMALIDOMIDE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "NDA204026"
+              ]
+            },
+            "drugauthorizationnumb": "204026",
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "POMALYST",
+            "activesubstance": {
+              "activesubstancename": "POMALIDOMIDE"
+            },
+            "drugadditional": "1",
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "3",
+            "drugdosagetext": "3 MILLIGRAM",
+            "actiondrug": "1"
+          }
+        ]
+      },
+      "serious": "1",
+      "reportduplicate": {
+        "duplicatesource": "CELGENE",
+        "duplicatenumb": "US-CELGENEUS-USA-20181208931"
+      },
+      "receiptdate": "20190102",
+      "seriousnesslifethreatening": "1",
+      "receiptdateformat": "102",
+      "receiver": {
+        "receivertype": "6",
+        "receiverorganization": "FDA"
+      },
+      "companynumb": "US-CELGENEUS-USA-20181208931",
+      "occurcountry": "US",
+      "duplicate": "1",
+      "sender": {
+        "senderorganization": "FDA-Public Use",
+        "sendertype": "2"
+      },
+      "receivedate": "20190101",
+      "seriousnesshospitalization": "1",
+      "transmissiondate": "20190417",
+      "primarysourcecountry": "US"
+    },
+    {
+      "reporttype": "1",
+      "safetyreportversion": "1",
+      "receivedateformat": "102",
+      "primarysource": {
+        "qualification": "2",
+        "reportercountry": "BR"
+      },
+      "transmissiondateformat": "102",
+      "fulfillexpeditecriteria": "1",
+      "safetyreportid": "15778712",
+      "patient": {
+        "patientonsetage": "71",
+        "summary": {
+          "narrativeincludeclinical": "CASE EVENT DATE: 20181219"
+        },
+        "reaction": [
+          {
+            "reactionoutcome": "5",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Plasma cell myeloma"
+          }
+        ],
+        "patientonsetageunit": "801",
+        "patientsex": "2",
+        "drug": [
+          {
+            "drugstartdateformat": "102",
+            "drugindication": "PLASMA CELL MYELOMA",
+            "drugintervaldosageunitnumb": "1",
+            "drugadministrationroute": "048",
+            "drugdosageform": "CAPSULES",
+            "drugstartdate": "20181210",
+            "drugenddateformat": "102",
+            "drugrecurreadministration": "3",
+            "openfda": {
+              "product_ndc": [
+                "59572-425",
+                "59572-420",
+                "59572-415",
+                "59572-405",
+                "59572-402",
+                "59572-410"
+              ],
+              "package_ndc": [
+                "59572-402-28",
+                "59572-420-21",
+                "59572-425-21",
+                "59572-405-28",
+                "59572-402-00",
+                "59572-410-00",
+                "59572-405-00",
+                "59572-425-00",
+                "59572-415-00",
+                "59572-415-21",
+                "59572-420-00",
+                "59572-410-28"
+              ],
+              "generic_name": [
+                "LENALIDOMIDE"
+              ],
+              "spl_set_id": [
+                "5fa97bf5-28a2-48f1-8955-f56012d296be"
+              ],
+              "brand_name": [
+                "REVLIMID"
+              ],
+              "manufacturer_name": [
+                "Celgene Corporation"
+              ],
+              "unii": [
+                "F0P408N6V4"
+              ],
+              "rxcui": [
+                "643712",
+                "643714",
+                "1429367",
+                "643720",
+                "643722",
+                "1242231",
+                "1242233",
+                "1428947",
+                "602910",
+                "616114",
+                "602912",
+                "616116"
+              ],
+              "spl_id": [
+                "1f462eb0-4995-4b06-93ce-27e3fcbe32d5"
+              ],
+              "substance_name": [
+                "LENALIDOMIDE"
+              ],
+              "product_type": [
+                "HUMAN PRESCRIPTION DRUG"
+              ],
+              "route": [
+                "ORAL"
+              ],
+              "application_number": [
+                "NDA021880"
+              ]
+            },
+            "drugauthorizationnumb": "021880",
+            "drugenddate": "20181219",
+            "drugstructuredosageunit": "003",
+            "medicinalproduct": "REVLIMID",
+            "activesubstance": {
+              "activesubstancename": "LENALIDOMIDE"
+            },
+            "drugcharacterization": "1",
+            "drugstructuredosagenumb": "25",
+            "drugintervaldosagedefinition": "804",
+            "drugdosagetext": "25 MILLIGRAM",
+            "drugseparatedosagenumb": "1",
+            "actiondrug": "6"
+          }
+        ]
+      },
+      "serious": "1",
+      "reportduplicate": {
+        "duplicatesource": "CELGENE",
+        "duplicatenumb": "BR-CELGENEUS-BRA-20181208599"
+      },
+      "receiptdate": "20190101",
+      "receiptdateformat": "102",
+      "receiver": {
+        "receivertype": "6",
+        "receiverorganization": "FDA"
+      },
+      "seriousnessdeath": "1",
+      "companynumb": "BR-CELGENEUS-BRA-20181208599",
+      "occurcountry": "BR",
+      "duplicate": "1",
+      "sender": {
+        "senderorganization": "FDA-Public Use",
+        "sendertype": "2"
+      },
+      "receivedate": "20190101",
+      "transmissiondate": "20190417",
+      "primarysourcecountry": "BR"
+    },
+    {
+      "reporttype": "2",
+      "safetyreportversion": "1",
+      "receivedateformat": "102",
+      "primarysource": {
+        "qualification": "3",
+        "literaturereference": "DE CURRAIZC C, ET AL. ANTIBACTERIALS/CORTICOSTEROIDS CLOSTRIDIUM DIFFICI/E INFECTIONS: 12 CASE REPORTS.. REACTIONS WEEKLY. 2018?1732:P44",
+        "reportercountry": "FR"
+      },
+      "transmissiondateformat": "102",
+      "fulfillexpeditecriteria": "1",
+      "safetyreportid": "15778713",
+      "patient": {
+        "patientonsetage": "36",
+        "reaction": [
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Diarrhoea"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Systemic inflammatory response syndrome"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Clostridium difficile infection"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Pseudomembranous colitis"
+          },
+          {
+            "reactionoutcome": "6",
+            "reactionmeddraversionpt": "21.1",
+            "reactionmeddrapt": "Exposure during pregnancy"
+          }
+        ],
+        "patientonsetageunit": "801",
+        "patientsex": "2",
+        "drug": [
+          {
+            "drugindication": "PRODUCT USED FOR UNKNOWN INDICATION",
+            "activesubstance": {
+              "activesubstancename": "AMOXICILLIN\\CLAVULANIC ACID"
+            },
+            "drugadministrationroute": "065",
+            "drugcharacterization": "1",
+            "drugdosageform": "TABLET",
+            "drugdosagetext": "UNK",
+            "drugauthorizationnumb": "91568",
+            "actiondrug": "6",
+            "medicinalproduct": "AMOXICILLIN+CLAVULANIC ACID"
+          },
+          {
+            "drugindication": "PROPHYLAXIS",
+            "activesubstance": {
+              "activesubstancename": "PENICILLIN G"
+            },
+            "drugadministrationroute": "065",
+            "drugcharacterization": "1",
+            "drugdosagetext": "UNK",
+            "actiondrug": "6",
+            "medicinalproduct": "BENZYLPENICILLIN"
+          }
+        ]
+      },
+      "serious": "1",
+      "reportduplicate": {
+        "duplicatesource": "AUROBINDO",
+        "duplicatenumb": "FR-AUROBINDO-AUR-APL-2018-063861"
+      },
+      "receiptdate": "20190101",
+      "receiptdateformat": "102",
+      "receiver": {
+        "receivertype": "6",
+        "receiverorganization": "FDA"
+      },
+      "companynumb": "FR-AUROBINDO-AUR-APL-2018-063861",
+      "occurcountry": "FR",
+      "seriousnessother": "1",
+      "duplicate": "1",
+      "sender": {
+        "senderorganization": "FDA-Public Use",
+        "sendertype": "2"
+      },
+      "receivedate": "20190101",
+      "transmissiondate": "20190417",
+      "primarysourcecountry": "FR"
+    }
+  ]
+}
