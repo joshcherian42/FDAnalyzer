@@ -1,3 +1,4 @@
+import tqdm
 import yaml
 import os
 import sys
@@ -5,6 +6,7 @@ import json
 import pandas as pd
 import datetime
 from itertools import product
+from multiprocessing import pool, Pool
 
 DEBUG = False
 
@@ -56,7 +58,7 @@ class Decoder:
             "Time"
         ]
 
-    def decode(self, events, df=None):
+    def decode(self, events, df=None, verbose=False):
         """
         decode translates event or events into agree upon format and return a dataframe created from the input event or events
         :param events: a list of event
@@ -71,9 +73,20 @@ class Decoder:
         else:
             df = pd.DataFrame(columns=self.columns)
 
-        for event in events:
-            df = self._decode(df, event)
+        p = Pool()
+        if verbose:
+            results = list(tqdm.tqdm(p.imap(self._decode, events)))
+        else:
+            results = list(p.map(self._decode, events))
+        p.close()
+        p.join()
 
+        if DEBUG:
+            print(len(results))
+            print(results[0])
+
+        for frame in results:
+            df = df.append(frame, ignore_index=True)
         return df
 
     def look_up(self, value, col_name):
@@ -83,7 +96,7 @@ class Decoder:
         except AttributeError:
             raise AttributeError("{} does not exist or yet to be implemented".format(col_name))
 
-    def _decode(self, df, event):
+    def _decode(self, event):
         iid = self._get_id(event)
         sex = self._get_sex(event)
         age = self._get_age(event)
@@ -109,6 +122,7 @@ class Decoder:
 
         if DEBUG:
             print("drug profiles: {}".format(drug_profiles))
+        df = pd.DataFrame(columns=self.columns)
         for combination in product(symtomps, drug_profiles):
             if DEBUG:
                 print("combination: {}".format(combination))
@@ -235,6 +249,6 @@ if __name__ == "__main__":
     # print(event)
     event = event[0:100]
     decoder = Decoder()
-    info = decoder.decode(event)
+    info = decoder.decode(event, verbose=True)
     print(info.head(100))
     print(len(info.index))
