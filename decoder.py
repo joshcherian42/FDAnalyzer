@@ -56,11 +56,12 @@ class Decoder:
             "Time"
         ]
 
-    def decode(self, events, df=None, verbose=False):
+    def decode(self, events, df=None, verbose=False, multiprocessing=True):
         """
         decode translates event or events into agree upon format and return a dataframe created from the input event or events
         :param events: a list of event
         :param df: existing dataframe. if not given, a new data frame will be created, else append to this data frame
+        :param multiprocessing: whether to use multiprocessing or not
         :return: Dataframe
         """
         if type(events) != list:
@@ -71,13 +72,16 @@ class Decoder:
         else:
             df = pd.DataFrame(columns=self.columns)
 
-        p = Pool()
-        if verbose:
-            results = list(tqdm.tqdm(p.imap(self._decode, events)))
+        if multiprocessing:
+            p = Pool()
+            if verbose:
+                results = list(tqdm.tqdm(p.imap(self._decode, events)))
+            else:
+                results = list(p.map(self._decode, events))
+            p.close()
+            p.join()
         else:
-            results = list(p.map(self._decode, events))
-        p.close()
-        p.join()
+            results = list(map(self._decode, events))
 
         if DEBUG:
             print(len(results))
@@ -158,12 +162,12 @@ class Decoder:
     @staticmethod
     def _get_age(event):
         to_year = {
-            '800': 10,
-            '801': 1,
-            '802': 1 / 12,
-            '803': 1 / (12 * 4),
-            '804': 1 / 365,
-            '805': 1 / 8760,
+            '800': 10,          # decade
+            '801': 1,           # year
+            '802': 1 / 12,      # month
+            '803': 1 / (12 * 4),# week
+            '804': 1 / 365,     # days
+            '805': 1 / 8760,    # hour
         }
         try:
             age = event['patient']['patientonsetage']
