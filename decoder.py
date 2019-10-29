@@ -1,17 +1,15 @@
-import tqdm
-import yaml
 import os
-import sys
 import json
+import tqdm
 import pandas as pd
 import datetime
 from itertools import product
-from multiprocessing import pool, Pool
+from multiprocessing import Pool
 
 DEBUG = False
 
-NDC = "NDC_fields.yaml"
-ADV = "Adverse_Event_fields.yaml"
+# NDC = "NDC_fields.yaml"
+# ADV = "Adverse_Event_fields.yaml"
 
 
 class Decoder:
@@ -240,15 +238,20 @@ class Decoder:
             return 0
 
 
-if __name__ == "__main__":
-    import json
-
-    events = json.load(open("drug/event/2004q1/drug-event-0001-of-0005.json", 'r'))
-    event = events['results']
-    print(len(event))
-    # print(event)
-    event = event[0:100]
-    decoder = Decoder()
-    info = decoder.decode(event, verbose=True)
-    print(info.head(100))
-    print(len(info.index))
+# if __name__ == "__main__":
+#     import json
+#
+#     root_path = "drug/event"
+#     decoder = Decoder()
+#     df = None
+#     for folder in tqdm.tqdm(os.listdir(root_path)):
+#         folder_p = os.path.join(root_path, folder)
+#         for sub_file in os.listdir(folder_p):
+#             file_path = os.path.join(folder_p, sub_file)
+#             events = json.load(open(file_path, "r"))
+#             events = events['results']
+#             if df is None:
+#                 decoder.decode(events)
+#             else:
+#                 df = decoder.decode(events, df)
+#                 print(len(df.index))
