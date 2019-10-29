@@ -22,6 +22,8 @@ class FDADataset:
         self.file_ptr = -1
 
         self.decoder = Decoder()
+        self.look_up = self.decoder.look_up
+
         self.json_events = []
         if batch_size == 0:
             raise ValueError("Batch size cannot be 0")

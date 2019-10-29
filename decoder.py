@@ -94,6 +94,11 @@ class Decoder:
     def look_up(self, value, col_name):
         try:
             attr = self.__getattribute__(col_name)
+            if value not in attr.keys():
+                if int(value) not in attr.keys():
+                    raise ValueError("no such value exists")
+                else:
+                    return attr[int(value)]
             return attr[value]
         except AttributeError:
             raise AttributeError("{} does not exist or yet to be implemented".format(col_name))
