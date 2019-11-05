@@ -9,6 +9,9 @@
 
 <script>
     // write your d3 code here.. 
+    function scrollToElem(elemId) {
+        document.querySelector('.main').scrollTo(0, document.getElementById(elemId).offsetTop - document.querySelector('.main').offsetTop)
+    }
 </script>
 
 <div id = "left" class = "column">
@@ -24,22 +27,22 @@
 
     <div class = 'header'>
         <ul>
-         <li><a href="#Motivation">Motivation</a></li>
-         <li><a href="#Questions">Research Questions</a></li>
-         <li><a href=”#Process”>Data Mining</a></li>
-         <li><a href=”#Results”>Results</a></li>
+         <li><a onclick="scrollToElem('Motivation');">Motivation</a></li>
+         <li><a onclick="scrollToElem('Questions');">Research Questions</a></li>
+         <li><a onclick="scrollToElem('Process');">Data Mining</a></li>
+         <li><a onclick="scrollToElem('Results');">Results</a></li>
        </ul>
     </div> 
 
     <div class = 'main'>
         <div class = 'content'>
             <h1>FDAnalyzer</h1>
-            <h2><span id = 'Motivation'></span>Why does anyone care? </h2>
+            <h2 id="Motivation">Why does anyone care? </h2>
             <p> <span style="color: rgba(255,13,5,1)">Adverse drug events (ADEs)</span>, i.e., unintended pharmacologic effects, are a major source of concern when determining what medicine a patient needs. The study of the detection, understanding, and prevention of adverse events in order to promote and maintain drug safety is known as <span style="color: rgba(255,13,5,1)">pharmacovigilance (PhV)</span>. </p> 
 
             <p>To support the goals of pharmacovigilance, data mining techniques can provide insights into the sources and causes behind these adverse events so that healthcare professionals and responsible consumers can make better-informed choices when prescribing drugs or purchasing over-the-counter medicine, respectively.</p>
 
-            <h2><span id = 'Questions'></span>What are we trying to find out? </h2>
+            <h2 id="Questions">What are we trying to find out? </h2>
             <p>Are certain groups prone to adverse effects from similar drugs or drug components?</p>
             <p>What adverse events are associated with different drug components? Are any of them unexpected?</p>
             <p>Can we discover adverse events caused by drug interactions?</p>
@@ -48,9 +51,9 @@
             <h2> Where did we get our data? </h2>
             <p> We used data from the <span style="color: rgba(255,13,5,1)">FDA Adverse Events Reporting System (FAERS).</span></p> 
             <p>You can find the dataset here: <a href="https://open.fda.gov/data/faers/">FAERS DATA</a></p>
-            <h2><span id = 'Process'></span>What did we do?</h2>
+            <h2 id="Process">What did we do?</h2>
             <p>To gain insights into the causes of ADEs, we will use both association rule mining and clustering methods to find unexpected relationships in the data. Our first milestone focuses on data cleaning to convert the data into a format where we analyze the ADEs, the drugs taken, the drugs’ components, and the patients’ demographics. Then, the second milestone focuses on the data analysis. The association rule mining will look for associations between the combination of patient demographics and drugs to predict ADEs. In a similar fashion, we want to encode the patients’ demographics and symptoms, apply clustering methods, and determine if the clusters have similar associated drugs. Our third milestone involves predicting the drug that caused an ADE given a patient’s symptoms and demographics and visualizing our findings. We intend to use sklearn packages to create our classifier. </p>
-            <h2> <span id = 'Results'></span>What did we find? </h2>
+            <h2 id="Results">What did we find? </h2>
         </div>
     </div>
 </div>
