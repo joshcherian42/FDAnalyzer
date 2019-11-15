@@ -1,3 +1,13 @@
 /drug
 .idea/
 .ipynb_checkpoints/
+/drug_brands
+/drug_generic
+/drug_graph
+/drug_sample
+*.zip
+*.csv
+condense_events.ipynb
+condense_events_generics.ipynb
+condense_events_no_name_sample.ipynb
+condense_events_drugs.ipynb
