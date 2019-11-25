@@ -12,15 +12,7 @@ function scrollToElem(elemId) {
  *
  */
 function load_viz() {
-    console.log("hi")
-    // drugData = prep_data("/sample_data/3_events/drugs.csv");
-    // console.log(drugData.links)
-    
-    // var canvas = document.querySelector("canvas"),
-    // context = canvas.getContext("2d"),
-    // width = canvas.width,
-    // height = canvas.height;
-    // let color = "rgba(255,13,5,1)"
+
     let scalingX = 200
     let scalingY = 100
     var svg = d3.select("svg"),
@@ -71,7 +63,6 @@ function load_viz() {
         })
 
         node.on("mouseover", function(d) {
-
             var connectedNodeIds = graph
               .links
               .filter(x => x.source.id == d.id || x.target.id == d.id)
@@ -91,13 +82,16 @@ function load_viz() {
             d3.select(".links")
               .selectAll("line")
               .attr("opacity", function(c) {
-                if ((connectedNodeIds.indexOf(c.source) == -1 || connectedNodeIds.indexOf(c.target) == -1) && c.id != d.id) return 0.3;
-                else return 1;
+                if ((connectedNodeIds.indexOf(c.source.id) > -1 && c.target.id == d.id) ||
+                    (connectedNodeIds.indexOf(c.target.id) > -1 && c.source.id == d.id)) {
+                    return 1;
+                }
+                else return 0.2;
               });
 
             d3.select(this).transition()
                 .duration(500)
-                .attr("r", parseInt(d3.select(this).attr("r")) * 1.5)
+                .attr("r", d.count * 7 * 1.5)
                 .attr("opacity", 0.7);
             
         });
@@ -109,7 +103,7 @@ function load_viz() {
               .attr("opacity", 1);
             d3.select(this).transition()
                 .duration(500)
-                .attr("r", parseInt(d3.select(this).attr("r")) / 1.5)
+                .attr("r", d.count * 7)
                 .attr("opacity", 1);
             d3.select(".links")
               .selectAll("line")
@@ -133,94 +127,25 @@ function load_viz() {
             node
                 .attr("cx", function(d) { return d.x - scalingX; })
                 .attr("cy", function(d) { return d.y + scalingY; });
-                // .attr("fill", function(c) { return color(c.group)})
-                
         }
     });
 
     function dragstarted(d) {
-      if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-      d.fx = d.x;
-      d.fy = d.y;
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
     }
 
     function dragged(d) {
-      d.fx = d3.event.x;
-      d.fy = d3.event.y;
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
     }
 
     function dragended(d) {
-      if (!d3.event.active) simulation.alphaTarget(0);
-      d.fx = null;
-      d.fy = null;
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
     }
-}
-
-function mouseover () {
-    console.log(d3.select(this).select("circle").transition()
-        .duration(750)
-        .attr("r", 1))
-    d3.select(this).select("circle").transition()
-        .duration(750)
-        .attr("r", 1);
-}
-
-function mouseout() {
-    console.log("hi")
-  d3.select(this).select("circle").transition()
-      .duration(750)
-      .attr("r", 8);
-}
-//     var simulation = d3.forceSimulation()
-//         .force("link", d3.forceLink().id(function(d) { return d.id; }))
-//         .force("charge", d3.forceManyBody())
-//         .force("center", d3.forceCenter());
-
-//     d3.json("/sample_data/sample/events.json", function(error, graph) {
-//         if (error) throw error;
-//         console.log(graph)
-//         simulation
-//             .nodes(graph.nodes)
-//             .on("tick", ticked);
-
-//         simulation.force("link")
-//               .links(graph.links);
-
-//         function ticked() {
-//             context.clearRect(0, 0, width, height);
-//             context.save();
-//             context.translate(width / 2, height / 2 + 40);
-
-//             context.beginPath();
-//             graph.links.forEach(drawLink);
-//             context.strokeStyle = "#666";
-//             context.stroke();
-
-//             context.beginPath();
-//             graph.nodes.forEach(drawNode);
-//             context.fillStyle = color;
-//             context.fill();
-//             context.strokeStyle = color;
-//             context.stroke();
-
-//             context.restore();
-//         }
-//     });
-
-//     function drawLink(d) {
-//         context.lineWidth = d.weight / 10
-//         context.moveTo(d.source.x * 5, d.source.y * 5);
-//         context.lineTo(d.target.x*5, d.target.y*5);
-//     }
-
-//     function drawNode(d) {
-//         context.moveTo(d.x*5, d.y*5);
-//         context.arc(d.x*5, d.y*5, 10, 0, 2 * Math.PI);
-//     }
-// }
-
-function click(d) {
-    
 }
 
 /**
