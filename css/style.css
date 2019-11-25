@@ -9,6 +9,9 @@ body {
     display: flex;
     box-sizing: border-box;
 }
+.links line {
+  stroke: #666;
+}
 
 h1 {
     font-weight: 300;
@@ -85,6 +88,14 @@ h2 span {
     flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
     overflow-y: auto;  /*adds scroll to this container*/    
     height: 100%;
+}
+
+#results_viz {
+  display: flex;
+}
+
+#drug_info {
+  width: 200px;
 }
 
 a {
