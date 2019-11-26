@@ -27,7 +27,7 @@ function load_viz() {
         }).distanceMin(200).distanceMax(1000))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-    d3.json("/sample_data/sample/events.json", function(error, graph) {
+    d3.json("https://pages.github.tamu.edu/sjr45/sjr45.github.io/", function(error, graph) {
         if (error) throw error;
 
         var link = svg.append("g")
