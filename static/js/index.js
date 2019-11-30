@@ -22,7 +22,7 @@ function networkViz() {
         }).distanceMin(200).distanceMax(1000))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-    d3.json("/sample_data/sample/events.json", function(error, graph) {
+    d3.json("/getevents", function(error, graph) {
         if (error) throw error;
 
         var link = svg.append("g")
@@ -146,16 +146,13 @@ function networkViz() {
 }
 
 function circularPacking() {
-    let scalingX = 200, scalingY = 200
+    let scalingX = 200, scalingY = 200;
 
     var svgCircle = d3.select("#drug-viz-circle-svg"),
         width = document.getElementById("drug-viz-circle").getBoundingClientRect().width,
         height = document.getElementById("drug-viz-circle").getBoundingClientRect().height
     var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-    
-
-    d3.json("/sample_data/bubble_viz/drug_nodes_sample.json", function(error, graph) {
+    d3.json("/getdrugs", function(error, graph) {
             
         // Get drugs that have events in common with the selected drugs and the number of events they have in common
         var filteredData = graph.filter(d => selectedDrugs.indexOf(d.brand_name) !== -1);
@@ -329,7 +326,7 @@ function circularPacking() {
  * Load visualizations onto page
  *
  */
-function loadViz() {
+function loadViz(data) {
     // var numitems =  document.getElementById("myUL").getElementsByTagName("li").length;
     // var containerSize = document.getElementById("myUL").offsetWidth
 
@@ -338,35 +335,33 @@ function loadViz() {
     // populateDrugList()
     // networkViz()
     // circularPacking()
-    console.log('hello')
-    initializeEvents()
-    populateSearch()
+    // console.log(data);
+    // fetchJSON(function (stuff) {
+    //     console.log(stuff);
+    //
+    // },"/getdrugs")
+    initializeEvents();
+    populateSearch();
+    testEvents();
     
 }
 
 function loadJSON(callback) {   
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open('GET', "/sample_data/bubble_viz/drug_nodes_sample.json", true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-      callback(JSON.parse(xobj.responseText));
-    }
-  };
-  xobj.send(null);  
+  fetchJSON(callback, "/getdrugs");
 }
 
 /**
  * Populates the search area with drugs
  *
  */
-function populateSearch() {
+async function populateSearch() {
     var ul = document.getElementById('unselected-drug-list')
     var selectedDrugsList = document.getElementById('selected-drugs-list')
-    loadJSON(function(json) {
+    fetchJSON(function(json) {
+        // console.log(json[0]);
         json.forEach(function(drug) {
             var li = document.createElement("li");
-            var a = document.createElement('a')
+            var a = document.createElement('a');
             a.appendChild(document.createTextNode(drug.brand_name));
             li.addEventListener('click', function(e) {
                 console.log("clicked " + e.target.innerText);
@@ -374,22 +369,23 @@ function populateSearch() {
                 console.log(selectedDrugs)
                 circularPacking()
                 if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
-                    li.style.border = "1px solid black"
-                    ul.removeChild(li)
-                    selectedDrugsList.appendChild(li)
+                    li.style.border = "1px solid black";
+                    ul.removeChild(li);
+                    selectedDrugsList.appendChild(li);
                 } else {
-                    selectedDrugsList.removeChild(li)
-                    ul.appendChild(li)
-                    li.style.border = "1px solid #ddd"
+                    selectedDrugsList.removeChild(li);
+                    ul.appendChild(li);
+                    li.style.border = "1px solid #ddd";
                 }
-                createEventTable()
-            })
-            a.href = "#"
-            li.appendChild(a)
+            });
+            a.href = "#";
+            li.appendChild(a);
             ul.appendChild(li);
+
+
         })
         // console.log(json)
-    });
+    },"/getdrugs");
 }
 
 /**
@@ -505,4 +501,27 @@ function initializeEvents() {
             })
         })
     }, path)
+}
+
+function testEvents() {
+    fetchJSON(function (data) {
+        data.forEach(function (item) {
+            console.log(item)
+        })
+    }, "/getdrugs")
+}
+function fetchJSON(callback, path) {
+    fetch(path, {
+      headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+
+    })
+        .then((resp)=> resp.json())
+        .then((resp)=>callback(resp))
+        .catch(function (error) {
+            console.log("something went wrong");
+            console.log(JSON.stringify(error))
+        })
 }

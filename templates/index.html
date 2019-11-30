@@ -3,12 +3,12 @@
 <head>
     <title>FDAnalyzer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css') }}">
 
     <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script type="text/javascript" src = "js/index.js"></script>
+    <script type="text/javascript" src = "{{url_for('static', filename='js/index.js')}}"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway:300, 700&display=swap&subset=latin-ext" rel="stylesheet">
 </head>
 <body onload="loadViz();">
@@ -31,14 +31,14 @@
          <li><a onclick="scrollToElem('Process');">Data Mining</a></li>
          <li><a onclick="scrollToElem('Results');">Results</a></li>
        </ul>
-    </div> 
+    </div>
 
     <div class = 'main'>
         <div class = 'content'>
             <div class = 'text' >
                 <h1>FDAnalyzer</h1>
                 <h2 id = "Motivation">Why does anyone care? </h2>
-                <p> <span style="color: rgba(255,13,5,1)">Adverse drug events (ADEs)</span>, i.e., unintended pharmacologic effects, are a major source of concern when determining what medicine a patient needs. The study of the detection, understanding, and prevention of adverse events in order to promote and maintain drug safety is known as <span style="color: rgba(255,13,5,1)">pharmacovigilance (PhV)</span>. </p> 
+                <p> <span style="color: rgba(255,13,5,1)">Adverse drug events (ADEs)</span>, i.e., unintended pharmacologic effects, are a major source of concern when determining what medicine a patient needs. The study of the detection, understanding, and prevention of adverse events in order to promote and maintain drug safety is known as <span style="color: rgba(255,13,5,1)">pharmacovigilance (PhV)</span>. </p>
 
                 <p>To support the goals of pharmacovigilance, data mining techniques can provide insights into the sources and causes behind these adverse events so that healthcare professionals and responsible consumers can make better-informed choices when prescribing drugs or purchasing over-the-counter medicine, respectively.</p>
 
@@ -49,7 +49,7 @@
                 <p>Can we predict what drugs or drug components caused a patient's adverse events given the events and the patient's demographics?</p>
                 <p>Can we develop an effective visualization to communicate our findings without sensationalizing them or misleading people?</p>
                 <h2> Where did we get our data? </h2>
-                <p> We used data from the <span style="color: rgba(255,13,5,1)">FDA Adverse Events Reporting System (FAERS).</span></p> 
+                <p> We used data from the <span style="color: rgba(255,13,5,1)">FDA Adverse Events Reporting System (FAERS).</span></p>
                 <p>You can find the dataset here: <a href="https://open.fda.gov/data/faers/">FAERS DATA</a></p>
                 <h2 id = "Process">What did we do?</h2>
                 <p>To gain insights into the causes of ADEs, we will use both association rule mining and clustering methods to find unexpected relationships in the data. Our first milestone focuses on data cleaning to convert the data into a format where we analyze the ADEs, the drugs taken, the drugs' components, and the patients' demographics. Then, the second milestone focuses on the data analysis. The association rule mining will look for associations between the combination of patient demographics and drugs to predict ADEs. In a similar fashion, we want to encode the patients' demographics and symptoms, apply clustering methods, and determine if the clusters have similar associated drugs. Our third milestone involves predicting the drug that caused an ADE given a patient's symptoms and demographics and visualizing our findings. We intend to use sklearn packages to create our classifier. </p>
