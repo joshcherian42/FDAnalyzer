@@ -145,6 +145,10 @@ function networkViz() {
     }
 }
 
+/**
+ * Loads circular packing visualization
+ *
+ */
 function circularPacking() {
     let scalingX = 200, scalingY = 200
 
@@ -166,7 +170,7 @@ function circularPacking() {
             filteredData.common_events = 0
         })
 
-
+        
         if (!events.length) {
             svgCircle.selectAll("*").remove()
 
@@ -218,7 +222,7 @@ function circularPacking() {
             graphData.forEach(function(d) {
                 drugs.push(d.brand_name.toUpperCase())
             })
-
+            
             updateSearch(drugs)
 
             if (graphData.length === 0) {
@@ -238,7 +242,7 @@ function circularPacking() {
                 if (tooltips.length) {
                     tooltips[0].parentNode.removeChild(tooltips[0])
                 }
-
+                
                 var Tooltip = d3.select("#drug-viz-circle")
                                 .insert("div", ":first-child")
                                 .style("opacity", 0)
@@ -267,7 +271,7 @@ function circularPacking() {
                                     .enter()
                                     .append("circle")
                                     .attr("class", "node")
-                                    .attr("r", function(d){
+                                    .attr("r", function(d){ 
                                         if (bubbleData.length === 0 ) {
                                             return size(d.single_event)
                                         } else {
@@ -287,7 +291,7 @@ function circularPacking() {
                                     .on("start", dragstarted)
                                     .on("drag", dragged)
                                     .on("end", dragended));
-
+            
                 // Features of the forces applied to the nodes:
                 var simulation = d3.forceSimulation()
                                    .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
@@ -333,13 +337,10 @@ function loadViz() {
     // var numitems =  document.getElementById("myUL").getElementsByTagName("li").length;
     // var containerSize = document.getElementById("myUL").offsetWidth
 
-    // console.log(containerSize)
     // document.getElementById("myUL").style.columnCount = parseInt(numitems/3);
     // populateDrugList()
     // networkViz()
     // circularPacking()
-    console.log('hello')
-    initializeEvents()
     populateSearch()
     
 }
@@ -379,16 +380,14 @@ function populateSearch() {
                     selectedDrugsList.appendChild(li)
                 } else {
                     selectedDrugsList.removeChild(li)
-                    ul.appendChild(li)
+                    ul.appendChild(li)    
                     li.style.border = "1px solid #ddd"
                 }
-                createEventTable()
             })
             a.href = "#"
             li.appendChild(a)
             ul.appendChild(li);
         })
-        // console.log(json)
     });
 }
 
@@ -424,7 +423,7 @@ function updateSearch (drugs) {
 
     ul = document.getElementById("unselected-drug-list");
     li = ul.getElementsByTagName('li');
-
+    
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
@@ -447,62 +446,4 @@ function updateSelectedDrugs(drugName) {
     } else {
         selectedDrugs.splice(index, 1);
     }
-}
-
-/* Scott's Implementation of table */
-function createEventTable() {
-    var path_drug = "/sample_data/bubble_viz/drug_nodes_sample.json"; // TODO : remember to change this to correct html.
-    var path_events = "events.json";
-
-    var div = document.getElementById('event-table')
-    // destructor
-    while (div.firstChild) {
-        div.removeChild(div.firstChild);
-    }
-    // constructor
-    readJSON(function (json) {
-        var events = new Set();
-        json.forEach(function (item) {
-            console.log(item);
-            if(selectedDrugs.includes(item['brand_name'])) {
-                console.log('found');
-                console.log(events.size);
-                if (events.size===0) {
-                    item['event_ids'].forEach(function (iid) {
-                        events.add(iid);
-                    })
-                } else {
-                    events = new Set(
-                        [...events].filter(x=>item['event_ids'].includes(x))
-                    );
-                }
-            }
-        })
-        console.log(events);
-
-    }, path_drug)
-}
-
-function readJSON(callback, path) {
-    var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open('GET', path, true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-        console.log("hey")
-      callback(JSON.parse(xobj.responseText));
-    }
-  };
-  xobj.send(null);
-}
-
-function initializeEvents() {
-    var path = "all_events.json" // TODO: replace this with html
-    readJSON(function (json) {
-        json.forEach(function (item) {
-            item.forEach(function (el) {
-                console.log(el)
-            })
-        })
-    }, path)
 }
