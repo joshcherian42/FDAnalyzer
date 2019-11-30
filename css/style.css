@@ -11,6 +11,7 @@ body {
 }
 #drug-viz-circle {
   width: 100%;
+  position: relative;
 }
 svg {
   width: 100%;
@@ -29,7 +30,8 @@ svg {
 
 #selected-drugs {
   border-bottom: 1px #ddd solid;
-  padding-bottom: 10px
+  padding-bottom: 10px;
+  width: 430px;
 }
 .drug-list {
   /* Remove default list styling */

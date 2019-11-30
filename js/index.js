@@ -234,93 +234,80 @@ function circularPacking() {
             } else {
                 var size = d3.scaleLinear()
                              .domain([0, 100])
-                             .range([20, 55])  // circle will be between 7 and 55 px wide
+                             .range([20, 55])  // circle will be between 20 and 55 px wide
                 svgCircle.selectAll("*").remove()
 
                 //Display drug name on hover
+                tooltips = document.getElementsByClassName("tooltip")
+                if (tooltips.length) {
+                    tooltips[0].parentNode.removeChild(tooltips[0])
+                }
+                
                 var Tooltip = d3.select("#drug-viz-circle")
-                            .append("div")
-                            .style("opacity", 0)
-                            .attr("class", "tooltip")
-                            .style("background-color", "white")
-                            .style("border", "solid")
-                            .style("border-width", "2px")
-                            .style("border-radius", "5px")
-                            .style("padding", "5px")
-                            .style("position", "absolute")
+                                .insert("div", ":first-child")
+                                .style("opacity", 0)
+                                .attr("class", "tooltip")
+                                .style("padding", "5px")
+                                .style("position", "absolute")
+                                .style("font-size", "40px")
+                                .style("font-weight", 300)
+                                .style("left", "25px")
+                                .style("top", "0px");
 
                 var mouseover = function(d) {
-                    Tooltip.transition()        
-                    .duration(200)      
-                    .style("opacity", .9);      
-                    Tooltip.html(d.brand_name)
-                    .style("left", d3.event.pageX + "px")     
-                    .style("top", (d3.event.pageY - 28) + "px")
-                    .attr('mouseOverX', d3.event.pageX)
-                    .attr('mouseOverY', d3.event.pageY - 28);
+                    Tooltip.style("opacity", 1)
                 }
                 var mousemove = function(d) {
-                     Tooltip.transition()        
-                    .duration(0)      
-                    .style("opacity", .9);      
-                    if (d.mouseOverX) {
-                        Tooltip.style("left", d.mouseOverX + "px")     
-                        .style("top", (d.mouseOverY) + "px");
-                    } else {
-                        Tooltip.attr('mouseOverX', d3.event.pageX)
-                        .attr('mouseOverY', d3.event.pageY - 28);
-                    }
+                    Tooltip
+                        .html(d.brand_name)
+                        .style("opacity", 1)
                 }
                 var mouseleave = function(d) {
-                    Tooltip.transition()
-                    .style("opacity", 0)
+                    Tooltip.style("opacity", 0)
                 }
-
                 var node = svgCircle.append("g")
-                                     .selectAll("circle")
-                                     .data(graphData)
-                                     .enter()
-                                     .append("circle")
-                                     .attr("class", "node")
-                                     .attr("r", function(d){ 
+                                    .selectAll("circle")
+                                    .data(graphData)
+                                    .enter()
+                                    .append("circle")
+                                    .attr("class", "node")
+                                    .attr("r", function(d){ 
                                         if (bubbleData.length === 0 ) {
                                             return size(d.single_event)
                                         } else {
                                             return size(d.common_events)
                                         }
-
-                                     })
-                                     .attr("cx", width / 2)
-                                     .attr("cy", height / 2)
-                                     .style("fill", function(d){ return color(d.region)})
-                                     .style("fill-opacity", 0.8)
-                                     .attr("stroke", "black")
-                                     .style("stroke-width", 1)
-                                     .on("mouseover", mouseover) // What to do when hovered
-                                     .on("mousemove", mousemove)
-                                     .on("mouseout", mouseleave)
-                                     .call(d3.drag() // call specific function when circle is dragged
-                                     .on("start", dragstarted)
-                                     .on("drag", dragged)
-                                     .on("end", dragended));
+                                    })
+                                    .attr("cx", width / 2)
+                                    .attr("cy", height / 2)
+                                    .style("fill", function(d){ return color(d.region)})
+                                    .style("fill-opacity", 0.8)
+                                    .attr("stroke", "black")
+                                    .style("stroke-width", 1)
+                                    .on("mouseover", mouseover) // What to do when hovered
+                                    .on("mousemove", mousemove)
+                                    .on("mouseout", mouseleave)
+                                    .call(d3.drag() // call specific function when circle is dragged
+                                    .on("start", dragstarted)
+                                    .on("drag", dragged)
+                                    .on("end", dragended));
             
                 // Features of the forces applied to the nodes:
                 var simulation = d3.forceSimulation()
-                  .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-                  .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
-                  .force("collide", d3.forceCollide().strength(.2).radius(function(d){ return (size(d.common_events)+3) }).iterations(1)) // Force that avoids circle overlapping
+                                   .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
+                                   .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
+                                   .force("collide", d3.forceCollide().strength(.2).radius(function(d){ return (size(d.common_events)+3) }).iterations(1)) // Force that avoids circle overlapping
 
                 // Apply these forces to the nodes and update their positions.
                 // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
                 simulation
                     .nodes(graph)
                     .on("tick", function(d){
-                node
-                    .attr("cx", function(d){ return d.x - scalingX; })
-                    .attr("cy", function(d){ return d.y - scalingY; })
-                });
+                        node
+                            .attr("cx", function(d){ return d.x - scalingX; })
+                            .attr("cy", function(d){ return d.y - scalingY; })
+                    });
 
-                // What happens when a circle is dragged?
                 function dragstarted(d) {
                     if (!d3.event.active) simulation.alphaTarget(.03).restart();
                     d.fx = d.x;
@@ -340,7 +327,6 @@ function circularPacking() {
         }
     });
 }
-
 
 
 /**
