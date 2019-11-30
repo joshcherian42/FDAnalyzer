@@ -62,7 +62,7 @@ svg {
 }
 
 #scroll-list {
-  height: 600px;
+  height: 1000px;
   overflow-y: hidden;
   overflow-x: hidden;
 }

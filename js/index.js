@@ -145,6 +145,10 @@ function networkViz() {
     }
 }
 
+/**
+ * Loads circular packing visualization
+ *
+ */
 function circularPacking() {
     let scalingX = 200, scalingY = 200
 
@@ -166,165 +170,172 @@ function circularPacking() {
             filteredData.common_events = 0
         })
 
-        //Get intersection of event arrays
-        var events = events.shift().filter(function(v) {
-            return events.every(function(a) {
-                return a.indexOf(v) !== -1;
-            });
-        });
-
-        bubbleData = []
-        singleBubbleData = []
-        events.forEach (function(e) {
-            drugsInEventData = graph.filter(d => d.event_ids.indexOf(e) !== -1)
-            drugsInEventData.forEach (function(d) {
-                if (drugsInEventData.length > selectedDrugs.length) {
-                    var index = bubbleData.findIndex(p => p.brand_name == d.brand_name)
-                    if (index === -1) {
-                        d.common_events = 1
-                        bubbleData.push(d)
-                    } else {
-                        bubbleData[index].common_events += 1
-                    }
-                } else {
-                    var index = singleBubbleData.findIndex(p => p.brand_name == drugsInEventData[0].brand_name)
-                    if (index === -1) {
-                        drugsInEventData[0].single_event = 1
-                        singleBubbleData.push(d)
-                    } else {
-                        singleBubbleData[index].single_event += 1
-                    }
-                }
-            })
-        })
-
-        if (bubbleData.length === 0 ) {
-            graphData = singleBubbleData
-        } else {
-            graphData = bubbleData
-        }
-
-
-        if (graphData.length === 0) {
-            svgCircle.selectAll("*").remove()
-            svgCircle.append("text")
-                     .attr('x', width / 2  - scalingY)
-                     .attr('y', height / 2)
-                     .text('There were no events reported with this combination of drugs')
-        } else {
-            var size = d3.scaleLinear()
-                         .domain([0, 100])
-                         .range([20, 55])  // circle will be between 7 and 55 px wide
+        
+        if (!events.length) {
             svgCircle.selectAll("*").remove()
 
-            //Display drug name on hover
-            var Tooltip = d3.select("#drug-viz-circle")
-                        .append("div")
-                        .style("opacity", 0)
-                        .attr("class", "tooltip")
-                        .style("background-color", "white")
-                        .style("border", "solid")
-                        .style("border-width", "2px")
-                        .style("border-radius", "5px")
-                        .style("padding", "5px")
-                        .style("position", "absolute")
-
-            var mouseover = function(d) {
-                Tooltip.transition()        
-                .duration(200)      
-                .style("opacity", .9);      
-                Tooltip.html(d.brand_name)
-                .style("left", d3.event.pageX + "px")     
-                .style("top", (d3.event.pageY - 28) + "px")
-                .attr('mouseOverX', d3.event.pageX)
-                .attr('mouseOverY', d3.event.pageY - 28);
+            var ul = document.getElementById('drug-list')
+            while(ul.firstChild ){
+                ul.removeChild(ul.firstChild);
             }
-            var mousemove = function(d) {
-                 Tooltip.transition()        
-                .duration(0)      
-                .style("opacity", .9);      
-                if (d.mouseOverX) {
-                    Tooltip.style("left", d.mouseOverX + "px")     
-                    .style("top", (d.mouseOverY) + "px");
-                } else {
-                    Tooltip.attr('mouseOverX', d3.event.pageX)
+            populateSearch()
+        } else {
+            //Get intersection of event arrays
+            var events = events.shift().filter(function(v) {
+                return events.every(function(a) {
+                    return a.indexOf(v) !== -1;
+                });
+            });
+
+            bubbleData = []
+            singleBubbleData = []
+            events.forEach (function(e) {
+                drugsInEventData = graph.filter(d => d.event_ids.indexOf(e) !== -1)
+                drugsInEventData.forEach (function(d) {
+                    if (drugsInEventData.length > selectedDrugs.length) {
+                        var index = bubbleData.findIndex(p => p.brand_name == d.brand_name)
+                        if (index === -1) {
+                            d.common_events = 1
+                            bubbleData.push(d)
+                        } else {
+                            bubbleData[index].common_events += 1
+                        }
+                    } else {
+                        var index = singleBubbleData.findIndex(p => p.brand_name == drugsInEventData[0].brand_name)
+                        if (index === -1) {
+                            drugsInEventData[0].single_event = 1
+                            singleBubbleData.push(d)
+                        } else {
+                            singleBubbleData[index].single_event += 1
+                        }
+                    }
+                })
+            })
+
+            if (bubbleData.length === 0 ) {
+                graphData = singleBubbleData
+            } else {
+                graphData = bubbleData
+            }
+
+            drugs = []
+            graphData.forEach(function(d) {
+                drugs.push(d.brand_name.toUpperCase())
+            })
+            
+            updateSearch(drugs)
+
+            if (graphData.length === 0) {
+                svgCircle.selectAll("*").remove()
+                svgCircle.append("text")
+                         .attr('x', width / 2  - scalingY)
+                         .attr('y', height / 2)
+                         .text('There were no events reported with this combination of drugs')
+            } else {
+                var size = d3.scaleLinear()
+                             .domain([0, 100])
+                             .range([20, 55])  // circle will be between 7 and 55 px wide
+                svgCircle.selectAll("*").remove()
+
+                //Display drug name on hover
+                var Tooltip = d3.select("#drug-viz-circle")
+                            .append("div")
+                            .style("opacity", 0)
+                            .attr("class", "tooltip")
+                            .style("background-color", "white")
+                            .style("border", "solid")
+                            .style("border-width", "2px")
+                            .style("border-radius", "5px")
+                            .style("padding", "5px")
+                            .style("position", "absolute")
+
+                var mouseover = function(d) {
+                    Tooltip.transition()        
+                    .duration(200)      
+                    .style("opacity", .9);      
+                    Tooltip.html(d.brand_name)
+                    .style("left", d3.event.pageX + "px")     
+                    .style("top", (d3.event.pageY - 28) + "px")
+                    .attr('mouseOverX', d3.event.pageX)
                     .attr('mouseOverY', d3.event.pageY - 28);
                 }
+                var mousemove = function(d) {
+                     Tooltip.transition()        
+                    .duration(0)      
+                    .style("opacity", .9);      
+                    if (d.mouseOverX) {
+                        Tooltip.style("left", d.mouseOverX + "px")     
+                        .style("top", (d.mouseOverY) + "px");
+                    } else {
+                        Tooltip.attr('mouseOverX', d3.event.pageX)
+                        .attr('mouseOverY', d3.event.pageY - 28);
+                    }
+                }
+                var mouseleave = function(d) {
+                    Tooltip.transition()
+                    .style("opacity", 0)
+                }
 
+                var node = svgCircle.append("g")
+                                     .selectAll("circle")
+                                     .data(graphData)
+                                     .enter()
+                                     .append("circle")
+                                     .attr("class", "node")
+                                     .attr("r", function(d){ 
+                                        if (bubbleData.length === 0 ) {
+                                            return size(d.single_event)
+                                        } else {
+                                            return size(d.common_events)
+                                        }
 
-                // Tooltip
-                // .html(d.brand_name)
-                // .style("left", (d3.event.pageX) + "px")     
-                // .style("top", (d3.event.pageY - 28) + "px");
-            }
-            var mouseleave = function(d) {
-                Tooltip.transition()
-                .style("opacity", 0)
-                console.log("mouseleave")
-            }
+                                     })
+                                     .attr("cx", width / 2)
+                                     .attr("cy", height / 2)
+                                     .style("fill", function(d){ return color(d.region)})
+                                     .style("fill-opacity", 0.8)
+                                     .attr("stroke", "black")
+                                     .style("stroke-width", 1)
+                                     .on("mouseover", mouseover) // What to do when hovered
+                                     .on("mousemove", mousemove)
+                                     .on("mouseout", mouseleave)
+                                     .call(d3.drag() // call specific function when circle is dragged
+                                     .on("start", dragstarted)
+                                     .on("drag", dragged)
+                                     .on("end", dragended));
+            
+                // Features of the forces applied to the nodes:
+                var simulation = d3.forceSimulation()
+                  .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
+                  .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
+                  .force("collide", d3.forceCollide().strength(.2).radius(function(d){ return (size(d.common_events)+3) }).iterations(1)) // Force that avoids circle overlapping
 
-            var node = svgCircle.append("g")
-                                 .selectAll("circle")
-                                 .data(graphData)
-                                 .enter()
-                                 .append("circle")
-                                 .attr("class", "node")
-                                 .attr("r", function(d){ 
-                                    if (bubbleData.length === 0 ) {
-                                        return size(d.single_event)
-                                    } else {
-                                        return size(d.common_events)
-                                    }
+                // Apply these forces to the nodes and update their positions.
+                // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
+                simulation
+                    .nodes(graph)
+                    .on("tick", function(d){
+                node
+                    .attr("cx", function(d){ return d.x - scalingX; })
+                    .attr("cy", function(d){ return d.y - scalingY; })
+                });
 
-                                 })
-                                 .attr("cx", width / 2)
-                                 .attr("cy", height / 2)
-                                 .style("fill", function(d){ return color(d.region)})
-                                 .style("fill-opacity", 0.8)
-                                 .attr("stroke", "black")
-                                 .style("stroke-width", 1)
-                                 .on("mouseover", mouseover) // What to do when hovered
-                                 .on("mousemove", mousemove)
-                                 .on("mouseout", mouseleave)
-                                 .call(d3.drag() // call specific function when circle is dragged
-                                 .on("start", dragstarted)
-                                 .on("drag", dragged)
-                                 .on("end", dragended));
-        
-            // Features of the forces applied to the nodes:
-            var simulation = d3.forceSimulation()
-              .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
-              .force("charge", d3.forceManyBody().strength(.1)) // Nodes are attracted one each other of value is > 0
-              .force("collide", d3.forceCollide().strength(.2).radius(function(d){ return (size(d.common_events)+3) }).iterations(1)) // Force that avoids circle overlapping
+                // What happens when a circle is dragged?
+                function dragstarted(d) {
+                    if (!d3.event.active) simulation.alphaTarget(.03).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+                function dragged(d) {
+                    d.fx = d3.event.x;
+                    d.fy = d3.event.y;
 
-            // Apply these forces to the nodes and update their positions.
-            // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
-            simulation
-                .nodes(graph)
-                .on("tick", function(d){
-            node
-                .attr("cx", function(d){ return d.x; })
-                .attr("cy", function(d){ return d.y; })
-            });
-
-            // What happens when a circle is dragged?
-            function dragstarted(d) {
-                console.log('dragstarted')
-                if (!d3.event.active) simulation.alphaTarget(.03).restart();
-                d.fx = d.x;
-                d.fy = d.y;
-            }
-            function dragged(d) {
-                console.log('dragged')
-                d.fx = d3.event.x;
-                d.fy = d3.event.y;
-
-            }
-            function dragended(d) {
-                console.log('dragended')
-                if (!d3.event.active) simulation.alphaTarget(.03);
-                d.fx = null;
-                d.fy = null;
+                }
+                function dragended(d) {
+                    if (!d3.event.active) simulation.alphaTarget(.03);
+                    d.fx = null;
+                    d.fy = null;
+                }
             }
         }
     });
@@ -340,7 +351,6 @@ function loadViz() {
     // var numitems =  document.getElementById("myUL").getElementsByTagName("li").length;
     // var containerSize = document.getElementById("myUL").offsetWidth
 
-    // console.log(containerSize)
     // document.getElementById("myUL").style.columnCount = parseInt(numitems/3);
     // populateDrugList()
     // networkViz()
@@ -377,12 +387,19 @@ function populateSearch() {
                 updateSelectedDrugs(e.target.innerText);
                 console.log(selectedDrugs)
                 circularPacking()
+                if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
+                    li.style.border = "1px solid black"
+                    var drugList = li.parentNode
+                    drugList.removeChild(li)
+                    drugList.insertBefore(li, drugList.childNodes[0])
+                } else {
+                    li.style.border = "1px solid #ddd"
+                }
             })
             a.href = "#"
             li.appendChild(a)
             ul.appendChild(li);
         })
-        // console.log(json)
     });
 }
 
@@ -391,25 +408,49 @@ function populateSearch() {
  *
  */
 function filterSearch() {
-  // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('drug-search');
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("drug-list");
-  li = ul.getElementsByTagName('li');
+    // Declare variables
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('drug-search');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("drug-list");
+    li = ul.getElementsByTagName('li');
 
-  // Loop through all list items, and hide those who don't match the search query
-  for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+        } else {
+          li[i].style.display = "none";
+        }
     }
-  }
 }
 
+/**
+ * Updates the search with only drugs that have events in common with the selected drugs
+ *
+ */
+function updateSearch (drugs) {
+
+    ul = document.getElementById("drug-list");
+    li = ul.getElementsByTagName('li');
+    
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (drugs.indexOf(txtValue.toUpperCase()) > -1 || li[i].style.border === "1px solid black") {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+/**
+ * Maintains array of selected drugs
+ *
+ */
 function updateSelectedDrugs(drugName) {
     var index = selectedDrugs.indexOf(drugName)
     if (index === -1) {
