@@ -24,22 +24,26 @@ svg {
   font-size: 16px; /* Increase font-size */
   padding: 10px 8px 12px 40px; /* Add some padding */
   border: 1px solid #ddd; /* Add a grey border */
-  margin-bottom: 12px; /* Add some space below the input */
+  margin-bottom: 5px; /* Add some space below the input */
 }
 
-#drug-list {
+#selected-drugs {
+  border-bottom: 1px #ddd solid;
+  padding-bottom: 10px
+}
+.drug-list {
   /* Remove default list styling */
   list-style-type: none;
-  width: 480px;
+  width: 450px;
   padding: 0;
   margin: 0;
 }
 
-#drug-list li {
+.drug-list li {
   display: inline-block;
   margin-right: 15px;
   border: 1px solid #ddd; /* Add a border to all links */
-  margin-top: 20px; /* Prevent double borders */
+  margin-top: 15px; /* Prevent double borders */
   background-color: #f6f6f6; /* Grey background color */
   padding: 7px 12px; /* Add some padding */
   text-decoration: none; /* Remove default text underline */
@@ -51,14 +55,10 @@ svg {
   opacity: 1;
 }
 
-#drug-list li:hover {
+.drug-list li:hover {
   opacity: 0.6;
   color: #eee;
   transition-duration: 0.5s;
-}
-
-#drug-list.active {
-
 }
 
 #scroll-list {
@@ -71,7 +71,7 @@ svg {
   overflow-y: auto;
 }
 
-#drug-list li a {
+.drug-list li a {
   
 }
 
@@ -190,7 +190,7 @@ a::after {
   transition: .075s linear all;
 }
 
-#drug-list li a:after {
+.drug-list li a:after {
   height: 0px; /* Add a hover effect to all links, except for headers */
 }
 

@@ -174,7 +174,7 @@ function circularPacking() {
         if (!events.length) {
             svgCircle.selectAll("*").remove()
 
-            var ul = document.getElementById('drug-list')
+            var ul = document.getElementById('unselected-drug-list')
             while(ul.firstChild ){
                 ul.removeChild(ul.firstChild);
             }
@@ -376,7 +376,8 @@ function loadJSON(callback) {
  *
  */
 function populateSearch() {
-    var ul = document.getElementById('drug-list')
+    var ul = document.getElementById('unselected-drug-list')
+    var selectedDrugsList = document.getElementById('selected-drugs-list')
     loadJSON(function(json) {
         json.forEach(function(drug) {
             var li = document.createElement("li");
@@ -389,10 +390,11 @@ function populateSearch() {
                 circularPacking()
                 if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
                     li.style.border = "1px solid black"
-                    var drugList = li.parentNode
-                    drugList.removeChild(li)
-                    drugList.insertBefore(li, drugList.childNodes[0])
+                    ul.removeChild(li)
+                    selectedDrugsList.appendChild(li)
                 } else {
+                    selectedDrugsList.removeChild(li)
+                    ul.appendChild(li)    
                     li.style.border = "1px solid #ddd"
                 }
             })
@@ -412,7 +414,7 @@ function filterSearch() {
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById('drug-search');
     filter = input.value.toUpperCase();
-    ul = document.getElementById("drug-list");
+    ul = document.getElementById("unselected-drug-list");
     li = ul.getElementsByTagName('li');
 
     // Loop through all list items, and hide those who don't match the search query
@@ -433,7 +435,7 @@ function filterSearch() {
  */
 function updateSearch (drugs) {
 
-    ul = document.getElementById("drug-list");
+    ul = document.getElementById("unselected-drug-list");
     li = ul.getElementsByTagName('li');
     
     for (i = 0; i < li.length; i++) {

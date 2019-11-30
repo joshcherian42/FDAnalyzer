@@ -55,8 +55,11 @@
             <div id = "results-viz">
                 <div id = "drug-info">
                     <input type="text" id="drug-search" onkeyup="filterSearch()" placeholder="Search for drugs.." title="Type in a drug">
+                    <div id = "selected-drugs">
+                        <ul class = "drug-list" id="selected-drugs-list">
+                    </div>
                     <div id="scroll-list">
-                        <ul id="drug-list">
+                        <ul class = "drug-list" id="unselected-drug-list">
                         </ul>
                     </div>
 
