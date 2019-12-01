@@ -1,4 +1,4 @@
-/drug
+/random/drug
 .idea/
 .ipynb_checkpoints/
 /drug_brands
@@ -8,7 +8,7 @@
 *.zip
 *.csv
 all_events.json
-condense_events.ipynb
+random/condense_events.ipynb
 condense_events_generics.ipynb
 condense_events_no_name_sample.ipynb
 condense_events_drugs.ipynb

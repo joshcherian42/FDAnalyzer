@@ -1,4 +1,4 @@
-var selectedDrugs = new Array() 
+var selectedDrugs = new Array()
 
 // $(document).ready(function() {
 //     populateSearch();
@@ -343,10 +343,6 @@ function loadViz(data) {
     //     console.log(stuff);
     //
     // },"/getdrugs")
-    fetchJSON(function (json) {
-        console.log(json)
-    }, "/getEvents");
-    initializeEvents();
     populateSearch();
     // testEvents();
 }
@@ -369,17 +365,6 @@ async function populateSearch() {
             var a = document.createElement('a');
             a.appendChild(document.createTextNode(drug.brand_name));
             li.addEventListener('click', function(e) {
-            // // $("li").click(function(e){
-            //     $.ajax({
-            //         type: "POST",
-            //         url: "onSelect",
-            //         data: JSON.stringify({ "drug_name" : drug.brand_name } ),
-            //         contentType: "application/json; charset=utf-8",
-            //         dataType: "json",
-            //         success: function (data) {
-            //             alert(JSON.stringify(data));
-            //         }
-            //     });
                 console.log("clicked " + e.target.innerText);
                 updateSelectedDrugs(e.target.innerText);
                 circularPacking();
@@ -433,6 +418,10 @@ function filterSearch() {
  *
  */
 function updateSearch (drugs) {
+    console.log("hey");
+    postJSON(function (value) {
+        console.log(value);
+    }, selectedDrugs, 'getdrugs')
 
     ul = document.getElementById("unselected-drug-list");
     li = ul.getElementsByTagName('li');
@@ -508,17 +497,6 @@ function readJSON(callback, path) {
   xobj.send(null);
 }
 
-function initializeEvents() {
-    var path = "all_events.json" // TODO: replace this with html
-    readJSON(function (json) {
-        json.forEach(function (item) {
-            item.forEach(function (el) {
-                console.log(el)
-            })
-        })
-    }, path)
-}
-
 // function testEvents() {
 //     fetchJSON(function (data) {
 //         data.forEach(function (item) {
@@ -542,3 +520,19 @@ function fetchJSON(callback, path) {
             console.log(JSON.stringify(error))
         })
 }
+
+function postJSON(callback, data, path) {
+    fetch(path, {
+        headers : {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       },
+        method: 'post',
+        body: JSON.stringify({"data" : data})
+  }).then(function(response) {
+    return response.json();
+  }).then(function(data) {
+      callback(data);
+  });
+}
+

@@ -1,6 +1,6 @@
 import os
 
-from decoder import Decoder
+from random.decoder import Decoder
 import json
 
 class FDADataset:
