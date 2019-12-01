@@ -1,4 +1,8 @@
 var selectedDrugs = new Array() 
+
+// $(document).ready(function() {
+//     populateSearch();
+// });
 /**
  * Scroll to element on header click
  *
@@ -6,7 +10,6 @@ var selectedDrugs = new Array()
 function scrollToElem(elemId) {
         document.querySelector('.main').scrollTo(0, document.getElementById(elemId).offsetTop - document.querySelector('.main').offsetTop);
 }
-
 
 function networkViz() {
     let scalingX = 200
@@ -340,10 +343,12 @@ function loadViz(data) {
     //     console.log(stuff);
     //
     // },"/getdrugs")
+    fetchJSON(function (json) {
+        console.log(json)
+    }, "/getEvents");
     initializeEvents();
     populateSearch();
-    testEvents();
-    
+    // testEvents();
 }
 
 function loadJSON(callback) {   
@@ -364,10 +369,20 @@ async function populateSearch() {
             var a = document.createElement('a');
             a.appendChild(document.createTextNode(drug.brand_name));
             li.addEventListener('click', function(e) {
+            // // $("li").click(function(e){
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "onSelect",
+            //         data: JSON.stringify({ "drug_name" : drug.brand_name } ),
+            //         contentType: "application/json; charset=utf-8",
+            //         dataType: "json",
+            //         success: function (data) {
+            //             alert(JSON.stringify(data));
+            //         }
+            //     });
                 console.log("clicked " + e.target.innerText);
                 updateSelectedDrugs(e.target.innerText);
-                console.log(selectedDrugs)
-                circularPacking()
+                circularPacking();
                 if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
                     li.style.border = "1px solid black";
                     ul.removeChild(li);
@@ -378,6 +393,7 @@ async function populateSearch() {
                     li.style.border = "1px solid #ddd";
                 }
             });
+
             a.href = "#";
             li.appendChild(a);
             ul.appendChild(li);
@@ -503,13 +519,14 @@ function initializeEvents() {
     }, path)
 }
 
-function testEvents() {
-    fetchJSON(function (data) {
-        data.forEach(function (item) {
-            console.log(item)
-        })
-    }, "/getdrugs")
-}
+// function testEvents() {
+//     fetchJSON(function (data) {
+//         data.forEach(function (item) {
+//             console.log(item)
+//         })
+//     }, "/getdrugs")
+// }
+
 function fetchJSON(callback, path) {
     fetch(path, {
       headers : {
