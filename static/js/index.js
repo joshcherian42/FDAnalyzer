@@ -153,7 +153,7 @@ function networkViz() {
 }
 
 function circularPacking(data) {
-    let scalingX = 500, scalingY = 550;
+    let scalingX = 1050, scalingY = 550;
 
     var svgCircle = d3.select("#drug-viz-circle-svg"),
         width = document.getElementById("drug-viz-circle").getBoundingClientRect().width,
