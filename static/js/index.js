@@ -156,7 +156,7 @@ function circularPacking() {
         height = document.getElementById("drug-viz-circle").getBoundingClientRect().height
     var color = d3.scaleOrdinal(d3.schemeCategory20);
     d3.json("/getdrugs", function(error, graph) {
-            
+        console.log(graph)
         // Get drugs that have events in common with the selected drugs and the number of events they have in common
         var filteredData = graph.filter(d => selectedDrugs.indexOf(d.brand_name) !== -1);
         
@@ -351,6 +351,7 @@ function loadJSON(callback) {
   fetchJSON(callback, "/getdrugs");
 }
 
+
 /**
  * Populates the search area with drugs
  *
@@ -358,12 +359,12 @@ function loadJSON(callback) {
 async function populateSearch() {
     var ul = document.getElementById('unselected-drug-list')
     var selectedDrugsList = document.getElementById('selected-drugs-list')
+
     fetchJSON(function(json) {
-        // console.log(json[0]);
         json.forEach(function(drug) {
             var li = document.createElement("li");
             var a = document.createElement('a');
-            a.appendChild(document.createTextNode(drug.brand_name));
+            a.appendChild(document.createTextNode(drug));
             li.addEventListener('click', function(e) {
                 console.log("clicked " + e.target.innerText);
                 updateSelectedDrugs(e.target.innerText);
@@ -448,6 +449,10 @@ function updateSelectedDrugs(drugName) {
     } else {
         selectedDrugs.splice(index, 1);
     }
+
+    postJSON(function (data) {
+        console.log(data)
+    }, selectedDrugs, "/getevents")
 }
 
 /* Scott's Implementation of table */
@@ -482,19 +487,6 @@ function createEventTable() {
         console.log(events);
 
     }, path_drug)
-}
-
-function readJSON(callback, path) {
-    var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open('GET', path, true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-        console.log("hey")
-      callback(JSON.parse(xobj.responseText));
-    }
-  };
-  xobj.send(null);
 }
 
 // function testEvents() {
