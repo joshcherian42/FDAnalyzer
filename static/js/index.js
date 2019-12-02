@@ -8,7 +8,11 @@ var selectedDrugs = new Array()
  *
  */
 function scrollToElem(elemId) {
-        document.querySelector('.main').scrollTo(0, document.getElementById(elemId).offsetTop - document.querySelector('.main').offsetTop);
+    document.querySelector('.main').scrollTo(0, document.getElementById(elemId).offsetTop - document.querySelector('.main').offsetTop);
+}
+
+function showSearch() {
+    document.getElementById("search-dropdown").classList.toggle("show");
 }
 
 function networkViz() {
@@ -149,7 +153,7 @@ function networkViz() {
 }
 
 function circularPacking(data) {
-    let scalingX = 500, scalingY = 700;
+    let scalingX = 500, scalingY = 550;
 
     var svgCircle = d3.select("#drug-viz-circle-svg"),
         width = document.getElementById("drug-viz-circle").getBoundingClientRect().width,
@@ -424,14 +428,6 @@ function createEventTable() {
 
     }, path_drug)
 }
-
-// function testEvents() {
-//     fetchJSON(function (data) {
-//         data.forEach(function (item) {
-//             console.log(item)
-//         })
-//     }, "/getdrugs")
-// }
 
 function fetchJSON(callback, path) {
     fetch(path, {

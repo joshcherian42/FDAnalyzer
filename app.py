@@ -42,15 +42,15 @@ def getEvents():
     selected_drugs = request.json['data']
     # get events between these drugs
     print("selected drugs: ", selected_drugs)
-    
+
     events_mask = EVENTS.drugs.apply(lambda x: set(selected_drugs).issubset(x.split(',')))
 
     events = EVENTS[events_mask].id.tolist()
-    
+
     all_drugs = []
     # events = list(events)
     print("sample of events : ", len(events))
-    print("some events: ", events[0:20] )
+    print("some events: ", events[0:20])
     drugs = EVENTS.loc[EVENTS.id.isin(events)].dropna()
     drugs = drugs.drugs.tolist()
     for d in drugs:
@@ -75,7 +75,6 @@ def _init():
     EVENTS = pd.read_csv(EVENT_PATH)
     DRUG_EVENTS = pd.read_csv(DRUG_EVENT_PATH)
     EVENTS = EVENTS.dropna()
-
 
 
 if __name__ == '__main__':
