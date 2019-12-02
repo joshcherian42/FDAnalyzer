@@ -6,7 +6,6 @@ import threading
 from collections import Counter
 import json
 import pandas as pd
-import gzip
 
 app = Flask(__name__)
 Compress(app)
@@ -77,8 +76,7 @@ def getEvents():
     count = Counter(all_drugs)
     events = EVENTS.loc[EVENTS.id.isin(events)]
     events = events.set_index("id")
-    data = jsonify({"count": count, "events": events.to_dict("index")})
-    return data
+    return jsonify({"count": count, "events": events.to_dict("index")})
 
 
 def init():
