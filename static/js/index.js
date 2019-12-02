@@ -188,6 +188,7 @@ function circularPacking(data) {
                         .style("opacity", 0)
                         .attr("class", "tooltip")
                         .style("padding", "5px")
+                        .style("padding-top", "0px")
                         .style("position", "absolute")
                         .style("font-size", "40px")
                         .style("font-weight", 300)
