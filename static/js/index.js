@@ -282,7 +282,11 @@ function loadViz(data) {
     //     console.log(stuff);
     //
     // },"/getdrugs")
-    populateSearch();
+    // populateSearch();
+    testEvent = {age: 62, death: 0, disability: 0, drugs: "gabapentin,metoprolol,prednisone,prograf,sulfur,vfend,voriconazole", hospital: 0, lifethreaten: 0,
+                 num_drugs: 7, num_missing: 1, num_symps: 8, other: 1, sender: "Consumer or non-health professional", sex: "Male",
+                 symptoms: "abasia,balance disorder,drug ineffective,erythema,hallucination,mouth haemorrhage,pruritus,pulmonary mycosis"}
+    populateEvents(testEvent)
     // testEvents();
 }
 
@@ -322,8 +326,6 @@ async function populateSearch() {
             a.href = "#";
             li.appendChild(a);
             ul.appendChild(li);
-
-
         })
     },"/getdrugs");
 }
@@ -390,8 +392,8 @@ function updateSelectedDrugs(drugName) {
     if (selectedDrugs.length) {
         console.log(selectedDrugs)
         postJSON(function (data) {
-            circularPacking(data['count'])
-            // console.log(d3.entries(data['count']));
+            // circularPacking(data['count'])
+            populateEvents(data['events'])
         }, selectedDrugs, "/getevents")
     } else {
         var svgCircle = d3.select("#drug-viz-circle-svg")
@@ -432,6 +434,94 @@ function createEventTable() {
 
     }, path_drug)
 }
+
+
+function populateEvents (event) {
+    //Loop through eventsData
+    // event = eventsData['1aadd6']
+    // console.log(event)
+    // console.log("A " + event.age + "-old " + event.sex)
+    var eventInfo = document.getElementById('event-info')
+    
+    var eventCard = document.createElement('div')
+    eventCard.className = "event-card"
+
+    // Create summary
+    var eventDetails = document.createElement('div')
+    eventDetails.className = "event-details"
+
+    var eventDetailsP = document.createElement('p')
+    
+    var eventDrugs = event.drugs.split(',')
+    eventDetailsP.innerHTML = "A " + event.age + "-old " + event.sex.toLowerCase() + " took " + eventDrugs.slice(0, -1).join(', ') + ", and " + eventDrugs[eventDrugs.length - 1] + "."
+    eventDetails.append(eventDetailsP)
+    eventCard.append(eventDetails)
+    
+    // Symptoms
+    var symptoms = document.createElement('div')
+    symptoms.className = 'Symptoms'
+
+    symptomsTitle = document.createElement('p')
+    symptomsTitle.className = 'title'
+    symptomsTitle.innerHTML = 'Symptoms:'
+
+    symptomsList = document.createElement('p')
+    symptomsList.innerHTML = event.symptoms.split(',').join(', ')
+
+    symptoms.append(symptomsTitle)
+    symptoms.append(symptomsList)
+    eventCard.append(symptoms)
+    
+    // Outcome
+    var outcome = document.createElement('div')
+    outcome.className = 'Outcome'
+
+    outcomeTitle = document.createElement('p')
+    outcomeTitle.className = 'title'
+    outcomeTitle.innerHTML = 'Outcome:'
+
+    outcomeList = document.createElement('p')
+    if (event.hospital === 1) {
+        outcomeList.innerHTML = 'Hospital'
+    } else if (event.lifethreaten === 1) {
+        outcomeList.innerHTML = 'Life Threatening'
+    } else if (event.death === 1) {
+        outcomeList.innerHTML = 'Death'
+    } else if (event.disability === 1) {
+        outcomeList.innerHTML = 'Disability'
+    } else if (event.other === 1) {
+        outcomeList.innerHTML = 'Other'
+    } else {
+        console.log("You done fucked up")
+    }
+    // outcome.innerHTML = event.symptoms.split(',').join(', ')
+
+    //hospital: 0, lifethreaten: 0, death: 0, disability: 0, other: 1
+    outcome.append(outcomeTitle)
+    outcome.append(outcomeList)
+    eventCard.append(outcome)
+
+    // Sender
+    var sender = document.createElement('div')
+    sender.className = 'Sender'
+
+    senderTitle = document.createElement('p')
+    senderTitle.className = 'title'
+    senderTitle.innerHTML = 'Reported By:'
+
+    senderList = document.createElement('p')
+    senderList.innerHTML = event.sender
+
+    sender.append(senderTitle)
+    sender.append(senderList)
+    eventCard.append(sender)
+
+    eventInfo.append(eventCard)
+    
+
+    // console.log("A " + event.age + "-old " + event.sex.toLowerCase() + " took " + eventDrugs.slice(0, -1).join(', ') + ", and " + eventDrugs[eventDrugs.length - 1] + ".")
+}
+
 
 function fetchJSON(callback, path) {
     fetch(path, {

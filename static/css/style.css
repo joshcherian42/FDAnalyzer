@@ -313,7 +313,7 @@ a:active {
 .event-card > * {
   width: 100%;
   display: flex;
-  line-height: 20px;
+  line-height: 22px;
 }
 
 .event-card > * p {

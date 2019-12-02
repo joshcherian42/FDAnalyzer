@@ -100,6 +100,7 @@ def _init_events():
     EVENTS = pd.read_csv(EVENT_PATH)
     EVENTS = EVENTS.dropna()
 
+
 def _init_drug_events():
     global DRUG_EVENTS
     DRUG_EVENTS = pd.read_csv(DRUG_EVENT_PATH)
