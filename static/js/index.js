@@ -326,7 +326,6 @@ async function populateSearch() {
 
 
         })
-        // console.log(json)
     },"/getdrugs");
 }
 
@@ -389,11 +388,16 @@ function updateSelectedDrugs(drugName) {
     } else {
         selectedDrugs.splice(index, 1);
     }
-
-    postJSON(function (data) {
-        circularPacking(data['count'])
-        // console.log(d3.entries(data['count']));
-    }, selectedDrugs, "/getevents")
+    if (selectedDrugs.length) {
+        console.log(selectedDrugs)
+        postJSON(function (data) {
+            circularPacking(data['count'])
+            // console.log(d3.entries(data['count']));
+        }, selectedDrugs, "/getevents")
+    } else {
+        var svgCircle = d3.select("#drug-viz-circle-svg")
+        svgCircle.selectAll("*").remove()
+    }
 }
 
 /* Scott's Implementation of table */

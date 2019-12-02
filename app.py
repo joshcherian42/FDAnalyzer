@@ -42,27 +42,29 @@ def getEvents():
     selected_drugs = request.json['data']
     # get events between these drugs
     print("selected drugs: ", selected_drugs)
+    if selected_drugs:
+        events_mask = EVENTS.drugs.apply(lambda x: set(selected_drugs).issubset(x.split(',')))
 
-    events_mask = EVENTS.drugs.apply(lambda x: set(selected_drugs).issubset(x.split(',')))
+        events = EVENTS[events_mask].id.tolist()
 
-    events = EVENTS[events_mask].id.tolist()
+        all_drugs = []
 
-    all_drugs = []
-    # events = list(events)
-    print("sample of events : ", len(events))
-    print("some events: ", events[0:20])
-    drugs = EVENTS.loc[EVENTS.id.isin(events)].dropna()
-    drugs = drugs.drugs.tolist()
-    for d in drugs:
-        d = [i.strip(' ') for i in d.split(',')]
-        all_drugs.extend(d)
+        print("sample of events : ", len(events))
+        print("some events: ", events[0:20])
+        drugs = EVENTS.loc[EVENTS.id.isin(events)].dropna()
+        drugs = drugs.drugs.tolist()
+        for d in drugs:
+            d = [i.strip(' ') for i in d.split(',')]
+            all_drugs.extend(d)
 
-    print("number of events ", len(events))
-    print("number of drugs ", len(all_drugs))
-    count = Counter(all_drugs)
-    events = EVENTS.loc[EVENTS.id.isin(events)]
-    events = events.set_index("id")
-    return jsonify({"count": count, "events": events.to_dict("index")})
+        print("number of events ", len(events))
+        print("number of drugs ", len(all_drugs))
+        count = Counter(all_drugs)
+        events = EVENTS.loc[EVENTS.id.isin(events)]
+        events = events.set_index("id")
+        return jsonify({"count": count, "events": events.to_dict("index")})
+    else:
+        return jsonify({"count": {}, "events": {}})
 
 
 def _init():
