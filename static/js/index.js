@@ -209,7 +209,6 @@ function circularPacking(data) {
         }
 
         var bubbleData = d3.entries(data);
-        console.log(bubbleData)
         var node = svgCircle.append("g")
                             .selectAll("circle")
                             .data(bubbleData)
@@ -450,12 +449,14 @@ function postJSON(callback, data, path) {
     fetch(path, {
         headers : {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Accept-Encoding': 'gzip'
        },
         method: 'post',
         body: JSON.stringify({"data" : data})
   }).then(function(response) {
-    return response.json();
+      console.log(response);
+      return response.json();
   }).then(function(data) {
       callback(data);
   });
