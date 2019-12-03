@@ -172,7 +172,7 @@ h2 span {
   position: absolute;
   max-height:700px;
   width: 500px;
-  top: 45px;
+  top: 84px;
   overflow-y: auto;
   z-index: 2;
 }
@@ -251,21 +251,6 @@ a:active {
   background-color: #3e8e41;
 }
 
-/* The search field */
-#myInput {
-  box-sizing: border-box;
-  background-image: url('searchicon.png');
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-  padding: 14px 20px 12px 45px;
-  border: none;
-  border-bottom: 1px solid #ddd;
-}
-
-/* The search field when it gets focus/clicked on */
-#myInput:focus {outline: 3px solid #ddd;}
-
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
@@ -338,3 +323,32 @@ a:active {
   text-transform: uppercase;
   font-size: small;
 }
+
+#results-viz h2 {
+  position: absolute;
+  top: 35px;
+  font-weight: 300;
+  border-bottom: 1px solid #ddd;
+}
+
+#selected-drugs-tooltip {
+  position: absolute;
+  min-height: 100px;
+  min-width:200px;
+  max-width: 400px;
+  top: 600px;
+  left: 550px;
+  background-color: white;
+  border:1px solid #ddd;
+  border-radius: 2px;
+  display: none;
+}
+
+#selected-drugs-tooltip p {
+  padding-left: 5px;
+}
+
+#selected-drugs-tooltip p:first-child {
+  border-bottom: 1px solid #ddd;
+}
+

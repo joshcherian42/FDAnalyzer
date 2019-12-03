@@ -170,17 +170,13 @@ function reSize(maxSize, value) {
 
 
 function circularPacking(data) {
-    let scalingX = 300, scalingY = 50;
-    console.log(data['max_count'])
+    let scalingX = 300, scalingY = 120;
+
     var svgCircle = d3.select("#drug-viz-circle-svg"),
         width = document.getElementById("drug-viz-circle").getBoundingClientRect().width,
         height = document.getElementById("drug-viz-circle").getBoundingClientRect().height
 
     var color = d3.scaleOrdinal(d3.schemeCategory20);
-
-    var size = d3.scaleLinear()
-                 .domain([0, 200])
-                 .range([20, 100])  // circle will be between 20 and 55 px wide
 
     if (!selectedDrugs) {
         svgCircle.selectAll("*").remove()
@@ -296,9 +292,9 @@ async function populateSearch() {
             var a = document.createElement('a');
             a.appendChild(document.createTextNode(drug));
             li.addEventListener('click', function(e) {
-                console.log("clicked " + e.target.innerText);
+
                 updateSelectedDrugs(e.target.innerText);
-                // circularPacking();
+
                 if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
                     li.style.border = "1px solid black";
                     ul.removeChild(li);
@@ -371,6 +367,7 @@ function updateSearch (drugs) {
  */
 function updateSelectedDrugs(drugName) {
     var eventInfo = document.getElementById('event-info')
+    var selectedDrugTooltip = document.getElementById('selected-drugs-tooltip')
 
     while(eventInfo.firstChild ){
         eventInfo.removeChild(eventInfo.firstChild);
@@ -382,6 +379,7 @@ function updateSelectedDrugs(drugName) {
     } else {
         selectedDrugs.splice(index, 1);
     }
+
     if (selectedDrugs.length) {
         console.log(selectedDrugs)
         postJSON(function (data) {
@@ -392,12 +390,18 @@ function updateSelectedDrugs(drugName) {
         var svgCircle = d3.select("#drug-viz-circle-svg")
         svgCircle.selectAll("*").remove()
     }
+
+    selectedDrugTooltip.lastElementChild.innerHTML = selectedDrugs.join(', ');
+    if (selectedDrugs.length) {
+        selectedDrugTooltip.style.display = "block";
+    } else {
+        selectedDrugTooltip.style.display = "none";
+    }
 }
 
 
 function populateEvents (eventsData) {
-    //Loop through eventsData
-    
+
     var eventInfo = document.getElementById('event-info')
 
     Object.keys(eventsData).forEach(function(key) {
