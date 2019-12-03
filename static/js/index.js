@@ -1,4 +1,5 @@
-var selectedDrugs = new Array()
+var selectedDrugs = new Array();
+var drugstoShow = 19;
 
 /**
  * Scroll to element on header click
@@ -331,6 +332,10 @@ async function populateSearch() {
 
             a.href = "#";
             li.appendChild(a);
+
+            if (ul.childElementCount > drugstoShow) {
+                li.style.display = 'none'
+            }
             ul.appendChild(li);
         })
     },"/getdrugs");
@@ -347,13 +352,19 @@ function filterSearch() {
     filter = input.value.toUpperCase();
     ul = document.getElementById("unselected-drug-list");
     li = ul.getElementsByTagName('li');
+    var num_visible = 0;
 
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          li[i].style.display = "";
+          if (num_visible > drugstoShow) {
+            li[i].style.display = "none";  
+          } else {
+            li[i].style.display = "";
+          }
+          num_visible += 1
         } else {
           li[i].style.display = "none";
         }
@@ -366,18 +377,21 @@ function filterSearch() {
  */
 function updateSearch (drugs) {
     document.getElementById('viz-instructions').innerHTML = 'Loading...'
-    postJSON(function (value) {
-        console.log(value);
-    }, selectedDrugs, 'getdrugs')
-
     ul = document.getElementById("unselected-drug-list");
     li = ul.getElementsByTagName('li');
+    var num_visible = 0
 
     for (i = 0; i < li.length; i++) {
+
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
         if (drugs.indexOf(txtValue.toUpperCase()) > -1 || li[i].style.border === "1px solid black") {
-            li[i].style.display = "";
+            if (num_visible > drugstoShow) {
+                li[i].style.display = "none";  
+            } else {
+                li[i].style.display = "";
+            }
+            num_visible += 1
         } else {
             li[i].style.display = "none";
         }
@@ -407,6 +421,7 @@ function updateSelectedDrugs(drugName) {
         console.log(selectedDrugs);
         document.getElementById('viz-instructions').innerHTML = 'Loading...';
         postJSON(function (data) {
+            // updateSearch(data['drugs'])
             circularPacking(data);
             populateEvents(data['events']);
         }, selectedDrugs, "/getevents");
@@ -449,14 +464,22 @@ function populateEvents (eventsData) {
         var eventDetailsP = document.createElement('p')
         
         var eventDrugs = event.drugs.split(',')
-        // var age = event.age
+        
+        //Grammar fixes
         if (event.age < 1) {
             var age = 'An infant '
         }
         else {
             var age = "A " + event.age + "-year-old "
         }
-        eventDetailsP.innerHTML = age + event.sex.toLowerCase() + " took " + eventDrugs.slice(0, -1).join(', ') + ", and " + eventDrugs[eventDrugs.length - 1] + "."
+
+        if (eventDrugs.length == 2) {
+            var and = ' and '
+        } else {
+            var and = ', and '
+        }
+
+        eventDetailsP.innerHTML = age + event.sex.toLowerCase() + " took " + eventDrugs.slice(0, -1).join(', ') + and + eventDrugs[eventDrugs.length - 1] + "."
         eventDetails.append(eventDetailsP)
         eventCard.append(eventDetails)
         

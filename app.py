@@ -39,7 +39,7 @@ def getDrugs():
         global DRUG_EVENTS
         DRUG_EVENTS = DRUG_EVENTS[DRUG_EVENTS['event_ids'].astype(str) != '[]']
 
-        return jsonify(DRUG_EVENTS['brand_name'].tolist()[0:20])
+        return jsonify(DRUG_EVENTS['brand_name'].tolist())
     else:
         print(request.json['data'])
         return jsonify([])
@@ -83,7 +83,7 @@ def getEvents():
     
     events = EVENTS.loc[EVENTS.id.isin(events)]
     events = events.set_index("id")
-    return jsonify({"count": count_thresh, "max_count":count.most_common(1)[-1][-1], "num_drugs": len(all_drugs), "events": events.to_dict("index")})
+    return jsonify({"count": count_thresh, "max_count":count.most_common(1)[-1][-1], "num_drugs": len(all_drugs), "drugs": drugs, "events": events.to_dict("index")})
 
 
 def init():
