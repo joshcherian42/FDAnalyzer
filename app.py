@@ -1,3 +1,6 @@
+import time
+
+import numpy as np
 from flask import Flask, render_template
 from flask import request, jsonify
 from flask_compress import Compress
@@ -53,7 +56,7 @@ def getEvents():
 
     if threads[1].isAlive():
         threads[1].join()
-
+    t = time.time()
     selected_drugs = request.json['data']
     # get events between these drugs
     print("selected drugs: ", selected_drugs)
@@ -67,26 +70,68 @@ def getEvents():
     # events = list(events)
     print("sample of events : ", len(events))
     print("some events: ", events[0:20])
-    drugs = EVENTS.loc[EVENTS.id.isin(events)].dropna()
-    drugs = drugs.drugs.tolist()
-    for d in drugs:
-        d = [i.strip(' ') for i in d.split(',')]
-        all_drugs.extend(d)
+    #drugs = EVENTS.loc[EVENTS.id.isin(events)].dropna()
+
+    events = EVENTS.loc[EVENTS.id.isin(events)]
+    events = events.set_index("id")
+    events['rgb'] = events.apply(lambda row: translate(row), axis=1)
+
+    drug_colors = {}
+    for i in range(len(events.index)):
+        drugs = events.iat[i, 0]
+        rgb = events.iat[i, -1]
+        for i in drugs.split(','):
+            all_drugs.append(i)
+            if i not in drug_colors:
+                drug_colors[i] = np.array(rgb)
+            else:
+                drug_colors[i] += rgb
 
     count = Counter(all_drugs)
-
-    print("number of events ", len(events))
-    print("number of drugs ", len(count.keys()))
+    for drug in count:
+        # print(type(drug_colors[drug]), count[drug])
+        drug_colors[drug] = drug_colors[drug] // count[drug]
+        drug_colors[drug] = drug_colors[drug].tolist()
 
     if len(count.keys()) > 1000:
         count_thresh = {k:v for k,v in count.items() if v >= 5}
     else:
         count_thresh = count
-    
-    events = EVENTS.loc[EVENTS.id.isin(events)]
-    events = events.set_index("id")
-    return jsonify({"count": count_thresh, "max_count":count.most_common(1)[-1][-1], "num_drugs": len(all_drugs), "drugs": drugs, "events": events.to_dict("index")})
+    print ("time taken to complete: ", time.time()-t)
+    return jsonify({"count": count_thresh, "max_count":count.most_common(1)[-1][-1], "num_drugs": len(all_drugs),
+                    "drugs": events.drugs.tolist(), "events": events.to_dict("index"),  "color": drug_colors})
 
+
+def translate(row):
+    if row['death'] == 1:
+        return [169, 169, 169]
+    elif row['hospital'] == 1:
+        return [0, 0, 128]
+    elif row['disability'] == 1:
+        return [141, 2, 31]
+    elif row['lifethreaten'] == 1:
+        return [150, 123, 182]
+    else:
+        return [255, 162, 33]
+
+
+def getRGB(events, drugs):
+    drug_color = pd.DataFrame(columns=["id", "rgb", "total"])
+    drug_color['id'] = drugs
+    drug_color['rgb'] = [np.zeros(3) for _ in range(len(drugs))]
+    drug_color['total'] = [0] * len(drugs)
+    drug_color = drug_color.set_index("id")
+
+    def assign_color(row):
+        mask = drug_color.index.isin(row.drugs.split(','))
+        drug_color.loc[mask, "rgb"] = drug_color.loc[mask, "rgb"].apply(lambda x: x + row.rgb)
+        drug_color.loc[mask, "total"] += 1
+
+    events.apply(lambda row: assign_color(row), axis=1)
+
+    drug_color['rgb'] /= drug_color['total']
+    drug_color['rgb'] = drug_color.rgb.apply(lambda x: x.tolist())
+    return drug_color.to_dict('index')
 
 def init():
     print("Initializing DB")
@@ -113,12 +158,6 @@ def _init_events():
 def _init_drug_events():
     global DRUG_EVENTS
     DRUG_EVENTS = pd.read_csv(DRUG_EVENT_PATH)
-
-
-def compress(data):
-    json_str = json.dumps(data) + "\n"
-    json_bytes = json_str.encode("utf-8")
-    return gzip.compress(json_bytes)
 
 
 if __name__ == '__main__':
