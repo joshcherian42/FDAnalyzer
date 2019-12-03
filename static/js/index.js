@@ -214,13 +214,10 @@ function circularPacking(data) {
                         .insert("div", ":first-child")
                         .style("opacity", 0)
                         .attr("class", "tooltip")
-                        .style("padding", "5px")
-                        .style("padding-top", "0px")
+                        .style("padding-left", "20px")
                         .style("position", "absolute")
                         .style("font-size", "40px")
-                        .style("font-weight", 300)
-                        .style("left", "25px")
-                        .style("top", "0px");
+                        .style("font-weight", 300);
 
         var mouseover = function(d) {
             Tooltip.style("opacity", 1)
@@ -237,6 +234,7 @@ function circularPacking(data) {
         var bubbleData = d3.entries(data['count']);
         var node = svgCircle.append("g")
                             .selectAll("circle")
+                            .attr('width', width)
                             .data(bubbleData)
                             .enter()
                             .append("circle")
@@ -244,7 +242,7 @@ function circularPacking(data) {
                             .attr("r", function(d){return reSize(data['max_count'], d.value)})
                             .attr("cx", width / 2)
                             .attr("cy", height / 2)
-                            .style("fill", function(d){ return color(d.region)})
+                            .style("fill", 'rgba(255,13,5,1)')
                             .style("fill-opacity", 0.8)
                             .attr("stroke", "black")
                             .style("stroke-width", 1)
@@ -270,8 +268,8 @@ function circularPacking(data) {
             .nodes(bubbleData)
             .on("tick", function(d){
                 node
-                    .attr("cx", function(d){ return d.x - scalingX; })
-                    .attr("cy", function(d){ return d.y - scalingY; })
+                    .attr("cx", function(d){ return d.x; })
+                    .attr("cy", function(d){ return d.y; })
             });
 
         function dragstarted(d) {
@@ -313,7 +311,6 @@ async function populateSearch() {
                 updateSelectedDrugs(e.target.innerText);
 
                 if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
-                    li.style.border = "1px solid black";
                     ul.removeChild(li);
 
                     if (selectedDrugsList.innerHTML.indexOf("You can select") !== -1) {
@@ -326,7 +323,6 @@ async function populateSearch() {
                         selectedDrugsList.innerHTML = 'You can select from one of the sample drugs below or search for a new drug in the search bar.'
                     }
                     ul.appendChild(li);
-                    li.style.border = "1px solid #ddd";
                 }
             });
 

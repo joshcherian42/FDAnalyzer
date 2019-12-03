@@ -9,72 +9,21 @@ body {
     display: flex;
     box-sizing: border-box;
 }
-#drug-viz-circle {
-  width: 100%;
-  left:550px;
-  position: relative;
-}
-svg {
-  width: 100%;
-  height: 100%;
-}
-#drug-search {
-  background-image: url('../img/searchicon.png'); /* Add a search icon to input */
-  background-position: 10px 12px; /* Position the search icon */
-  background-repeat: no-repeat; /* Do not repeat the icon image */
-  width: 452px; /* Full-width */
-  font-size: 16px; /* Increase font-size */
-  padding: 10px 8px 12px 40px; /* Add some padding */
-  border: 1px solid #ddd; /* Add a grey border */
-  margin-bottom: 5px; /* Add some space below the input */
-}
-
-#selected-drugs {
-  border-bottom: 1px #ddd solid;
-  padding-bottom: 10px;
-}
-.drug-list {
-  /* Remove default list styling */
-  list-style-type: none;
-  width: 470px;
-  padding: 0;
-  margin: 0;
-}
-
-.drug-list li {
-  display: inline-block;
-  margin-right: 15px;
-  border: 1px solid #ddd; /* Add a border to all links */
-  margin-top: 15px; /* Prevent double borders */
-  background-color: #f6f6f6; /* Grey background color */
-  padding: 7px 12px; /* Add some padding */
-  text-decoration: none; /* Remove default text underline */
-  font-size: 18px; /* Increase the font-size */
-  color: black; /* Add a black text color */
-  display: inline-block; /* Make it into a block element to fill the whole list */
-  padding-right: 25px;
-  border-radius:25px;
-  opacity: 1;
-}
-
-.drug-list li:hover {
-  opacity: 0.6;
-  color: #eee;
-  transition-duration: 0.5s;
-}
-
-#scroll-list {
-  height: 600px;
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-
-#scroll-list:hover {
-  overflow-y: auto;
-}
 
 .links line {
   stroke: #666;
+}
+
+#body-content {
+  display: flex;
+  flex-direction: column;
+}
+#body-content .header {
+  padding-left: 12%;
+}
+#columns {
+  display: flex;
+
 }
 
 h1 {
@@ -89,13 +38,17 @@ h1 {
 #left {
     flex-shrink: 0;  /*makes sure that content is not cut off in a smaller browser window*/
     width: 10%;
-    padding-top: 100px;
-    padding-top: 60px;
-    margin:0px 20px;
+    margin:0px 1%;
+    background-color: #f9f9f9;
 }
 
 #left h1 {
     font-style: italic;
+}
+
+#left-header {
+  background-color: rgba(255, 13, 5,0.8);
+  height:10%;
 }
 
 .header {
@@ -104,7 +57,9 @@ h1 {
     height: 50px;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    background-color: rgba(255, 13, 5,0.8);
 }
 
 .header ul {
@@ -121,7 +76,6 @@ h1 {
  font-size: 1.5em;
 }
 
-
 .sidebar {
     flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
 }
@@ -132,7 +86,7 @@ h1 {
 }
 
 .text {
-  width: 1000px;
+  width: 70%;
 }
 #right {
     width: 100vw;
@@ -154,41 +108,6 @@ h2 span {
     flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
     overflow-y: auto;  /*adds scroll to this container*/    
     height: 100%;
-}
-
-#results-viz {
-  display: flex;
-  position: relative;
-  height:1000px;
-}
-
-#drug-info {
-  width: 550px;
-  position: absolute;
-  z-index: 3;
-}
-
-#event-info {
-  position: absolute;
-  min-height:500px;
-  max-height:700px;
-  width: 500px;
-  top: 84px;
-  overflow-y: auto;
-  z-index: 2;
-}
-
-.instructions{
-  position: absolute;
-  top: 200px;
-  color: #444;
-  font-style: italic;
-  font-size: larger;
-}
-
-#drug-viz-circle .instructions {
-  top: 305px;
-  left:100px;
 }
 
 a {
@@ -250,20 +169,71 @@ a:active {
     top: 1px;
 }
 
-/* Dropdown Button */
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
+.header a {
+  color:whitesmoke;
 }
 
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
+.header a::after {
+  content: unset;
 }
+
+/*visualization.html*/
+#viz-column {
+  width: 100%;
+}
+#viz-column .header{
+  /*margin-left:20px;*/
+  padding-left: 20px;
+  padding-bottom: 20px;
+  margin: 0;
+}
+
+#results-viz {
+  display: flex;
+  /*position: relative;*/
+  height: 100%;
+  width:100%;
+
+}
+
+#search-drugs {
+  padding: 20px;
+  width: 20%;
+  background-color: #f9f9f9;
+}
+
+#drug-viz-circle {
+  width: 60%;
+  /*left:550px;*/
+  /*position: relative;*/
+}
+
+#events {
+  width:20%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  
+}
+
+#drug-info {
+  width: 100%;
+  z-index: 3;
+}
+
+#event-info {
+  height:100%;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.instructions{
+  position: absolute;
+  top: 50%;
+  color: #444;
+  font-style: italic;
+  font-size: larger;
+}
+
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
@@ -274,8 +244,6 @@ a:active {
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
-  position: absolute;
-  /*min-width: 230px;*/
   border: 1px solid #ddd;
   z-index: 1;
   padding: 15px;
@@ -290,30 +258,26 @@ a:active {
   display: block;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
 .event-card {
   min-height: 130px;
   width:100%;
-  border-bottom:1px solid #ddd;
+  /*border-bottom:1px solid #ddd;*/
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 10px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
 
-}
-
-.event-card:first-child {
-  border-top:1px solid #ddd;
 }
 
 .event-card > * {
   width: 100%;
   display: flex;
   line-height: 22px;
+  padding-right: 5px;
 }
 
 .event-card > * p {
@@ -329,6 +293,7 @@ a:active {
 
 .event-card > *:first-child p{
   font-size:larger;
+  color: #ff0000;
 }
 
 .title {
@@ -339,10 +304,10 @@ a:active {
 }
 
 #results-viz h2 {
-  position: absolute;
-  top: 35px;
   font-weight: 300;
   border-bottom: 1px solid #ddd;
+  margin-bottom: 2px;
+  margin-top:0px;
 }
 
 #selected-drugs-tooltip {
@@ -350,8 +315,8 @@ a:active {
   min-height: 100px;
   min-width:200px;
   max-width: 400px;
-  top: 600px;
-  left: 550px;
+  top: 75%;
+  left: 25%;
   background-color: white;
   border:1px solid #ddd;
   border-radius: 2px;
@@ -366,3 +331,67 @@ a:active {
   border-bottom: 1px solid #ddd;
 }
 
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+#drug-search {
+  background-image: url('../img/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: -webkit-fill-available; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 10px 8px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 5px; /* Add some space below the input */
+  border-radius: 20px;
+}
+
+#drug-search:focus {
+  outline:0px;
+}
+#selected-drugs {
+  border-bottom: 1px #ddd solid;
+  padding-bottom: 10px;
+}
+.drug-list {
+  /* Remove default list styling */
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.drug-list li {
+  display: inline-block;
+  margin-right: 15px;
+  margin-top: 15px; /* Prevent double borders */
+  background-color: rgba(255, 13, 5,0.8); /* Grey background color */
+  padding: 7px 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+  display: inline-block; /* Make it into a block element to fill the whole list */
+  padding-right: 25px;
+  border-radius:25px;
+}
+
+.drug-list li:hover {
+  background-color: rgba(255, 13, 5, 1); /* Grey background color */
+  transition-duration: 0.5s;
+}
+
+.drug-list a {
+  color: #eee;
+}
+
+#scroll-list {
+  height: 600px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#scroll-list:hover {
+  overflow-y: auto;
+}

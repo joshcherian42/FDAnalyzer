@@ -25,9 +25,11 @@ DRUG_EVENTS = None
 
 @app.route("/", methods=['GET'])
 def index():
-    init()
     return render_template("index.html")
 
+@app.route("/visualization", methods=['GET'])
+def viz_index():
+    return render_template("visualization.html")
 
 @app.route("/getdrugs", methods=["GET", "POST"])
 def getDrugs():
@@ -122,5 +124,5 @@ def compress(data):
 if __name__ == '__main__':
     # init_drug()
     # init_events()
-
+    init()
     app.run(host='0.0.0.0', port=8888)

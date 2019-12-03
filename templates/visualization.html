@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FDAnalyzer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="{{url_for('static',filename='ico/favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css') }}">
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/pako.js')}}"></script>
+    <script  src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src = "{{url_for('static', filename='js/index.js')}}"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300, 700&display=swap&subset=latin-ext" rel="stylesheet">
+</head>
+<body onload="populateSearch();">
+
+
+<div id = 'viz-column' class = 'column'>
+    <div class = 'header'>
+        <ul>
+         <li><a href="{{ url_for('index') }}"> &larr; Back to Report</a></li>
+       </ul>
+    </div>
+
+    <div id = "results-viz">
+        <div id = "search-drugs">
+            <div class="dropdown" id = "drug-info">
+                <input type="text" onclick = "showSearch()" id="drug-search" onkeyup="filterSearch()" placeholder="Search for drugs.." title="Type in a drug">
+                <div id="search-dropdown" class="dropdown-content">
+                    <div id="scroll-list">
+                        <ul class = "drug-list" id="unselected-drug-list"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id = "selected-drugs">
+                <ul class = "drug-list" id="selected-drugs-list">You can select from one of the sample drugs below or search for a new drug in the search bar.</ul>
+            </div>
+        </div>
+
+        <div id = "drug-viz-circle">
+            <svg id = "drug-viz-circle-svg"></svg>
+            <p class = 'instructions' id = 'viz-instructions'> When you select a drug, a circular packing visualization will be shown here.</p>
+        </div>
+
+        <div id = "selected-drugs-tooltip">
+            <p> Selected Drugs </p>
+            <p></p>
+        </div>
+
+        <div id = "events">
+            <h2> List of Events </h2>
+            <div id = "event-info">
+                <p class = "instructions"> When you select a drug, a list of all the events in the FAERS database in which the individual took the selected drug will be shown here.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
