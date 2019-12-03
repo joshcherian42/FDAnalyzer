@@ -19,9 +19,14 @@
 <div id = "left" class = "column">
     <div class = 'sidebar'>
         <h1>TLDR</h1>
-        <p> We're studying <span style="color: rgba(255,13,5,1)">Adverse Drug Events</span></p>
+        <!--<p> We're studying <span style="color: rgba(255,13,5,1)">Adverse Drug Events</span></p>
         <p> We're using data from the <span style="color: rgba(255,13,5,1)">FDA Adverse Events Reporting System</span></p>
-        <p> We cured <span style="color: rgba(255,13,5,1)">cancer </span></p>
+        <p> We cured <span style="color: rgba(255,13,5,1)">cancer </span></p>-->
+		<p>We're visualizing <span style="color: rgba(255,13,5,1)">Adverse Drug Events</span></p>
+		<p>We thought we had clean data that we could mine to find underlying patterns</p>
+		<p>It turned out the data was a mess</p>
+		<p>So we decided to clean it up and visualize the events with a focus on which drugs were taken together and their symptoms</p>
+		<p>Click <a onclick="scrollToElem('Results');">here</a> to see our visualization!</p>
     </div>
 </div>
 
@@ -34,6 +39,7 @@
 		 <li><a onclick="scrollToElem('Data');">Datasets</a></li>
 		 <li><a onclick="scrollToElem('Cleaning');">Getting Clean</a></li>
          <!--<li><a onclick="scrollToElem('Process');">Data Mining</a></li>-->
+		 <li><a onclick="scrollToElem('Website');">Visualizing Events</a></li>
          <li><a onclick="scrollToElem('Results');">Results</a></li>
        </ul>
     </div>
@@ -45,24 +51,37 @@
                 <h2 id = "Motivation">Why does anyone care? </h2>
                 <p> <span style="color: rgba(255,13,5,1)">Adverse drug events (ADEs)</span>, i.e., unintended pharmacologic effects, are a major source of concern when determining what medicine a patient needs. The study of the detection, understanding, and prevention of adverse events in order to promote and maintain drug safety is known as <span style="color: rgba(255,13,5,1)">pharmacovigilance (PhV)</span>. </p>
 
-                <p>To support the goals of pharmacovigilance, data mining techniques can provide insights into the sources and causes behind these adverse events so that healthcare professionals and responsible consumers can make better-informed choices when prescribing drugs or purchasing over-the-counter medicine, respectively.</p>
+                <!--<p>To support the goals of pharmacovigilance, data mining techniques can provide insights into the sources and causes behind these adverse events so that healthcare professionals and responsible consumers can make better-informed choices when prescribing drugs or purchasing over-the-counter medicine, respectively.</p>
+				-->
+				<p>To support the goals of pharmacovigilance, data mining techniques can provide insights into any patterns existing within the large volume of ADE data available.
+				This enables healthcare professionals and responsible consumers to more easily view and understand this data so that they
+				can make better-informed choices when prescribing drugs or purchasing over-the-counter medicine, respectively.</p>
+				
 
                 <h2 id = "Questions">What are we trying to find out? </h2>
-                <p>Are certain groups prone to adverse effects from similar drugs or drug components?</p>
+				<p>How should events be represented in order to determine how frequently the event occurs? Should drugs be defined by their labels or their components?</p>
+				<p>What is the best data cleaning policy for unconstrained, crowd-sourced data missing potentially important information? How should we interpret ambiguous reports?</p>
+				<p>Can we develop an effective visualization to communicate our findings without sensationalizing them or misleading people?</p>
+				<p>How best to visualize very large quantities of data such that conclusions can be taken away?</p>
+                <!--
+				ORIGINAL
+				<p>Are certain groups prone to adverse effects from similar drugs or drug components?</p>
                 <p>What adverse events are associated with different drug components? Are any of them unexpected?</p>
                 <p>Can we discover adverse events caused by drug interactions?</p>
                 <p>Can we predict what drugs or drug components caused a patient's adverse events given the events and the patient's demographics?</p>
                 <p>Can we develop an effective visualization to communicate our findings without sensationalizing them or misleading people?</p>
-                
+                -->
+				
                 <!--<p> We used data from the <span style="color: rgba(255,13,5,1)">FDA Adverse Events Reporting System (FAERS).</span></p>
                 <p>You can find the dataset here: <a href="https://open.fda.gov/data/faers/">FAERS DATA</a></p>
 				-->
-				<h2 id="Data"> Where did we get our data? </h2>
-				<p>Using the <a href="https://open.fda.gov/data/faers/">FDA Adverse Event Reporting System (FAERS)</a> dataset, we investigate if there are any underlying patterns to the reported adverse events with respect to the drugs taken, their components, and the symptoms experienced. This dataset supports the FDA’s goals of promoting and maintaining drug safety, i.e., pharmacovigilance. It is updated every 3 months with reports from health professionals, e.g., physicians and pharmacists, and non-health professionals, e.g., lawyers and consumers. The dataset contains over 10,000,000 adverse events from 2004 onwards.</p>
+				<h2 id="Data"> Where did we get this data? </h2>
+				<h3 id="FAERS">FAERS</h3>
+				<p>Using the FDA Adverse Event Reporting System <a href="https://open.fda.gov/data/faers/">(FAERS)</a> dataset, we investigate if there are any underlying patterns to the reported adverse events with respect to the drugs taken, their components, and the symptoms experienced. This dataset supports the FDA’s goals of promoting and maintaining drug safety, i.e., pharmacovigilance. It is updated every 3 months with reports from health professionals, e.g., physicians and pharmacists, and non-health professionals, e.g., lawyers and consumers. The dataset contains over 10,000,000 adverse events from 2004 onwards.</p>
 				<p>Adverse events refer to when a drug causes an unexpected negative symptom. The key word ‘unexpected’ is what differentiates them from side effects which are known and predictable. They can occur due to interacting with another drug in the patient’s system or simply because the patient had a complication with the drug.</p>
                 <p>Each entry in the FAERS dataset corresponds with an event. Events have a patient, a primary source, and flags on how serious the event was. Patients have lists of drugs, reactions, and personal information. Event seriousness contains the following flags: death, congenital anomaly, disabling, hospitalization, life threatening, and other. Details about the drugs include but are not limited to: administration route, drug characterization (role of drug in event), cumulative dosage, start and end dates for taking the drug, drug name, brand name, generic name(s), manufacturer name, and active ingredients. Patient information can include age, if they died, sex, and weight. The event’s records may be incomplete, missing any amount of the aforementioned fields.</p>
-				<br>
-				<p>The National Drug Code (NDC) Directory contains the listings of all the drugs approved by the FDA. Information about each drug includes but is not limited to: product type (over-the-counter or prescription), route, dosage form, brand name, generic name(s), manufacturer name, labeler name, and active ingredients and their respective strengths.</p>
+				<h3 id="NDC">NDC</h3>
+				<p>The National Drug Code <a href="https://www.fda.gov/drugs/drug-approvals-and-databases/national-drug-code-directory">(NDC)</a> Directory contains the listings of all the drugs approved by the FDA. Information about each drug includes but is not limited to: product type (over-the-counter or prescription), route, dosage form, brand name, generic name(s), manufacturer name, labeler name, and active ingredients and their respective strengths.</p>
 				<p>Brand names combined with dosage form uniquely identify each drug. Functionally, each drug is identified by its brand name (though the name may not be informative without the generic name information and/or active ingredients). </p>
 				<p>Multiple generic names can be associated with a brand name. Often times these generic names will overlap with the active components of the drug. However, the generic names are not unique to a set of components, so a generic name alone generally will not reveal the drug taken.</p>
 				<p>There are 205,302 different drug entries in the NDC data. Within these entries, there are 16,828 generic names (8,144 unique) and 33,309 brand names (15,338 unique). The repetitions generally come from the same drug being listed with every dosage and/or route it is sold in. 178,555 of the drug entries have both a brand name and generic names listed; there are 84,241 brand name and generic name pairs (61,586 unique). 173,528 of the drug entries have listed a brand name, generic name(s), and their components.</p>
@@ -70,8 +89,17 @@
                 <p>To gain insights into the causes of ADEs, we will use both association rule mining and clustering methods to find unexpected relationships in the data. Our first milestone focuses on data cleaning to convert the data into a format where we analyze the ADEs, the drugs taken, the drugs' components, and the patients' demographics. Then, the second milestone focuses on the data analysis. The association rule mining will look for associations between the combination of patient demographics and drugs to predict ADEs. In a similar fashion, we want to encode the patients' demographics and symptoms, apply clustering methods, and determine if the clusters have similar associated drugs. Our third milestone involves predicting the drug that caused an ADE given a patient's symptoms and demographics and visualizing our findings. We intend to use sklearn packages to create our classifier. </p>
 				-->
 				<h2 id="Cleaning">Getting Clean</h2>
-				<p>Because both the FAERS and NDC data come from the NDC, we thought that the adverse events reported were required to do so in terms of the drugs in the NDC. However, it turned out that event reporting is completely unconstrained. The NDC data is well formatted. The FAERS data is clearly crowd-sourced. Example issues include:
-				<ul>
+				<p>Because both the FAERS and NDC data come from the FDA, we thought that the adverse events reported were required to do so in terms of the drugs in the NDC. However, it turned out that event reporting is completely unconstrained. The NDC data is well formatted. The FAERS data is clearly crowd-sourced. Example issues include:
+				<p style="text-indent:3%">Not including the full name of the drug</p>
+				<p style="text-indent:3%">Adding special characters, e.g., ?</p>
+				<p style="text-indent:3%">Including the dosage in the drug name</p>
+				<p style="text-indent:3%">Not knowing the drug’s name</p>
+				<p style="text-indent:3%">Simply not being a drug in the dataset</p>
+				<p style="text-indent:3%">Being in another language</p>
+				<p style="text-indent:3%">Vague name, e.g., steroid, antidepressant</p>
+				<p style="text-indent:3%">Being poorly formatted</p>
+				<p style="text-indent:3%">Containing the wrong field</p>
+				<!--<ul>
 					<li>Not including the full name of the drug</li>
 					<li>Adding special characters, e.g., ?</li>
 					<li>Including the dosage in the drug name</li>
@@ -81,9 +109,16 @@
 					<li>Vague name, e.g., steroid, antidepressant</li>
 					<li>Being poorly formatted</li>
 					<li>Containing the wrong field</li>
-				</ul>
+				</ul>-->
 				Some examples illustrating the above issues:
-				<ul>
+				<p style="text-indent:3%">zicam nasal spray  i threw it away</p>
+				<p style="text-indent:3%">Have so many don’t know where list is right now</p>
+				<p style="text-indent:3%">Many medications – patient did not wish to provided at this time</p>
+				<p style="text-indent:3%">b.c</p>
+				<p style="text-indent:3%">edvil</p>
+				<p style="text-indent:3%">no energy coughing</p>
+				<p style="text-indent:3%">gatorade energy drink</p>
+				<!--<ul>
 					<li>zicam nasal spray  i threw it away</li>
 					<li>Have so many don’t know where list is right now</li>
 					<li>Many medications – patient did not wish to provided at this time</li>
@@ -91,18 +126,29 @@
 					<li>edvil</li>
 					<li>no energy coughing</li>
 					<li>gatorade energy drink</li>
-				</ul>
+				</ul>-->
 				</p>
 				
+				<h3> Interpretation and Representation </h3>
 				<p>As a result, we had to choose how we wanted to interpret the reports to handle these “missing” drugs. We wanted to keep as much of the data as possible, but we also could not keep events that contained unknown drugs. We put the data through some basic preprocessing steps, e.g., making all the text lowercase, to avoid missing known entries due to case sensitivity. If the reported drug did not have an exact match in our data, we used a series of regular expression patterns to extract the drug names based off commonly observed patterns in the reports. For example, some would put the generic name followed by the brand name in parentheses, so that became a pattern. Because drug names can contain multiple words, most of the patterns would involve extracting text around special characters to avoid the possibility of splitting drug names apart, e.g., extracting calcium from calcium sulfate.</p>
 				<p>First, we wanted to focus on just the generic names because we found the active ingredients of the drug to be more important than the exact brand of drug taken. However, because generic names, unsurprisingly, generally do not provide enough information to identify the drug taken, we would not know exactly which drug entry in the NDC dataset to associate it with. Generic names did not uniquely map back to the same list of active ingredients, so this information loss would negatively impact our conclusions.</p>
 				<p>The next approach was to focus on the brand names as some of the “brand” names were actually generic drug names, i.e., were just the name of the active ingredients. Brand names are the unique identifiers in the NDC dataset, after all, so this approach had the least information loss or risk of making assumptions on what the event reported. However, this revealed the downside that some of the different brand names were extremely similar, e.g., all the variations of basic, pure-acetaminophen Tylenol.</p>
 				<p>Our solution to this pair of problems was to recognize drugs as sets of components instead of as a brand name or a generic name. There are 10,836 sets of components among all 33,309 brand names, generalizing the drugs into their active ingredients like we originally planned to. If a reported drug matched one of the known brand names, the components associated with that brand name would be added as part of our cleaned event. If there was no match, we would check if the reported drug was a known component set.</p>
 				
 				
-				<h2> Recognizing Bias </h2>
+				<h3> Recognizing Bias </h3>
 				<p>For our purposes, we focused on events that had multiple different drugs to analyze events that potentially contained negative drug interactions. Originally, we wished to predict the possibility of an adverse event occurring based off this data due to its size. However, we later shifted our perspective to making this information more accessible via developing visualizations as we do not have data to determine how common these adverse events are. Predictions based off this data alone would be highly susceptible to survivorship bias, ironically.</p>
 				
+				<h3>Shifting Perspective </h3>
+				<p>With the doubt that any predictions made from this data alone would not be meaningful, we decided to focus on making this data more accessible. There is a lot of data in the FAERS dataset, but it is difficult to read and understand. The <a href="https://open.fda.gov/apis/drug/event/explore-the-api-with-an-interactive-chart/">openFDA portal</a> provides a simple interactive chart to visualize some queries on their API.</p>
+
+				<p>We want to expand the visualizations of the chart by creating an interactive visualization of the events based on what drugs they contain and what symptoms they caused, illustrating drug interactions.<p>
+
+				<p>This shifted our data cleaning policy to focus on quality and completeness over quantity. If the event contained unknown drugs or only one unique drug, then that event would not be depicted in the visualization due to not representing an event with drug interactions.</p>
+
+			<h2 id= "Website">Visualizing Events </h2>
+			
+			<p> ~~~~~~~~ </p>
 				
 			</div>
             <h2 id= "Results">What did we find? </h2>
