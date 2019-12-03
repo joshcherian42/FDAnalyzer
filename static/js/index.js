@@ -15,7 +15,6 @@ function showSearch() {
 
 function hideOnClickOutside() {
     const outsideClickListener = event => {
-        console.log(document.getElementById("search-dropdown").classList)
         if (!document.getElementById("drug-info").contains(event.target) && document.getElementById("search-dropdown").classList.contains("show")) { // or use: event.target.closest(selector) === null
           showSearch()
         }
@@ -289,6 +288,7 @@ function circularPacking(data) {
             d.fy = null;
         }
     }
+    document.getElementById('viz-instructions').style.display = 'none'
 }
 
 
@@ -314,7 +314,7 @@ async function populateSearch() {
                 if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
                     li.style.border = "1px solid black";
                     ul.removeChild(li);
-                    console.log(selectedDrugsList.firstChild)
+
                     if (selectedDrugsList.innerHTML.indexOf("You can select") !== -1) {
                         selectedDrugsList.innerHTML = ''    
                     }
@@ -365,7 +365,7 @@ function filterSearch() {
  *
  */
 function updateSearch (drugs) {
-
+    document.getElementById('viz-instructions').innerHTML = 'Loading...'
     postJSON(function (value) {
         console.log(value);
     }, selectedDrugs, 'getdrugs')
@@ -389,14 +389,14 @@ function updateSearch (drugs) {
  *
  */
 function updateSelectedDrugs(drugName) {
-    var eventInfo = document.getElementById('event-info')
-    var selectedDrugTooltip = document.getElementById('selected-drugs-tooltip')
+    var eventInfo = document.getElementById('event-info');
+    var selectedDrugTooltip = document.getElementById('selected-drugs-tooltip');
 
     while(eventInfo.firstChild ){
         eventInfo.removeChild(eventInfo.firstChild);
     }
 
-    var index = selectedDrugs.indexOf(drugName)
+    var index = selectedDrugs.indexOf(drugName);
     if (index === -1) {
         selectedDrugs.push(drugName);
     } else {
@@ -404,21 +404,23 @@ function updateSelectedDrugs(drugName) {
     }
 
     if (selectedDrugs.length) {
-        console.log(selectedDrugs)
-        document.getElementById('viz-instructions').style.display = 'none'
+        console.log(selectedDrugs);
+        document.getElementById('viz-instructions').innerHTML = 'Loading...';
         postJSON(function (data) {
-            circularPacking(data)
-            populateEvents(data['events'])
-        }, selectedDrugs, "/getevents")
+            circularPacking(data);
+            populateEvents(data['events']);
+        }, selectedDrugs, "/getevents");
     } else {
         var eventInstructions = document.createElement('p')
-        eventInstructions.innerHTML = "When you select a drug, a list of all the events in the FAERS database in which the individual took the selected drug will be shown here."
-        eventInstructions.className = "instructions"
-        eventInfo.appendChild(eventInstructions)
+        eventInstructions.innerHTML = "When you select a drug, a list of all the events in the FAERS database in which the individual took the selected drug will be shown here.";
+        eventInstructions.className = "instructions";
+        eventInfo.appendChild(eventInstructions);
 
-        document.getElementById('viz-instructions').style.display = 'block'
-        var svgCircle = d3.select("#drug-viz-circle-svg")
-        svgCircle.selectAll("*").remove()
+        document.getElementById('viz-instructions').innerHTML = "When you select a drug, a circular packing visualization will be shown here.";
+        document.getElementById('viz-instructions').style.display = 'block';
+
+        var svgCircle = d3.select("#drug-viz-circle-svg");
+        svgCircle.selectAll("*").remove();
     }
 
     selectedDrugTooltip.lastElementChild.innerHTML = selectedDrugs.join(', ');
@@ -554,4 +556,3 @@ function postJSON(callback, data, path) {
       callback(data);
   });
 }
-
