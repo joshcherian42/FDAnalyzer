@@ -14,7 +14,7 @@
     <script type="text/javascript" src = "{{url_for('static', filename='js/index.js')}}"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway:300, 700&display=swap&subset=latin-ext" rel="stylesheet">
 </head>
-<body onload="loadViz();">
+<body onload="populateSearch();">
 
 <div id = "left" class = "column">
     <div class = 'sidebar'>
@@ -120,26 +120,7 @@
                         </div>
                     </div>
                 </div>
-                <div id = "event-info">
-                    <div class = 'event-card'>
-                        <div class = 'event-details'>
-                            <p> A 71-year old male took aspirin, evista, and coffee.</p>
-                        </div>
-                        <div class = 'Symptoms'>
-                            <p class = 'title'> Symptoms: </p>
-                            <p> Cough, runny nose, stomach ache </p>
-                        </div>
-                        <div class = 'Outcome'>
-                            <p class = 'title'> Outcome: </p>
-                            <p> Hospital </p>
-                        </div>
-                        <div class = 'Sender'>
-                            <p class = 'title'> Reported by: </p>
-                            <p> Consumer or non-health professional </p>
-                        </div>
-                    </div>
-                    
-                </div>
+                <div id = "event-info"></div>
                 <div id = "drug-viz-circle">
                     <svg id = "drug-viz-circle-svg"></svg>
                 </div>

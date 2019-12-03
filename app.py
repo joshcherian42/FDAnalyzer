@@ -71,12 +71,19 @@ def getEvents():
         d = [i.strip(' ') for i in d.split(',')]
         all_drugs.extend(d)
 
-    print("number of events ", len(events))
-    print("number of drugs ", len(all_drugs))
     count = Counter(all_drugs)
+
+    print("number of events ", len(events))
+    print("number of drugs ", len(count.keys()))
+
+    if len(count.keys()) > 1000:
+        count_thresh = {k:v for k,v in count.items() if v >= 5}
+    else:
+        count_thresh = count
+    
     events = EVENTS.loc[EVENTS.id.isin(events)]
     events = events.set_index("id")
-    return jsonify({"count": count, "events": events.to_dict("index")})
+    return jsonify({"count": count_thresh, "max_count":count.most_common(1)[-1][-1], "num_drugs": len(all_drugs), "events": events.to_dict("index")})
 
 
 def init():

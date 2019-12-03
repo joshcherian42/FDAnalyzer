@@ -170,9 +170,10 @@ h2 span {
 
 #event-info {
   position: absolute;
-  height:100%;
+  max-height:700px;
   width: 500px;
   top: 45px;
+  overflow-y: auto;
   z-index: 2;
 }
 

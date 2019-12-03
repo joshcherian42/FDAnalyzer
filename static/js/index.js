@@ -1,8 +1,5 @@
 var selectedDrugs = new Array()
 
-// $(document).ready(function() {
-//     populateSearch();
-// });
 /**
  * Scroll to element on header click
  *
@@ -11,9 +8,11 @@ function scrollToElem(elemId) {
     document.querySelector('.main').scrollTo(0, document.getElementById(elemId).offsetTop - document.querySelector('.main').offsetTop);
 }
 
+
 function showSearch() {
     document.getElementById("search-dropdown").classList.toggle("show");
 }
+
 
 function networkViz() {
     let scalingX = 200
@@ -152,9 +151,27 @@ function networkViz() {
     }
 }
 
-function circularPacking(data) {
-    let scalingX = 1050, scalingY = 550;
 
+function reSize(maxSize, value) {
+    width = document.getElementById("drug-viz-circle").getBoundingClientRect().width,
+    height = document.getElementById("drug-viz-circle").getBoundingClientRect().height
+    if (maxSize > 20000) {
+        max_size = width*height/maxSize
+    }
+    else{
+        max_size = 150
+    }
+
+    var t = d3.scaleLinear()
+              .domain([0, maxSize])
+              .range([10, max_size])  // circle will be between 20 and 55 px wide
+    return t(value)
+}
+
+
+function circularPacking(data) {
+    let scalingX = 300, scalingY = 50;
+    console.log(data['max_count'])
     var svgCircle = d3.select("#drug-viz-circle-svg"),
         width = document.getElementById("drug-viz-circle").getBoundingClientRect().width,
         height = document.getElementById("drug-viz-circle").getBoundingClientRect().height
@@ -196,7 +213,6 @@ function circularPacking(data) {
                         .style("top", "0px");
 
         var mouseover = function(d) {
-            console.log("hi")
             Tooltip.style("opacity", 1)
         }
         var mousemove = function(d) {
@@ -208,14 +224,14 @@ function circularPacking(data) {
             Tooltip.style("opacity", 0)
         }
 
-        var bubbleData = d3.entries(data);
+        var bubbleData = d3.entries(data['count']);
         var node = svgCircle.append("g")
                             .selectAll("circle")
                             .data(bubbleData)
                             .enter()
                             .append("circle")
                             .attr("class", "node")
-                            .attr("r", function(d){return size(d.value)})
+                            .attr("r", function(d){return reSize(data['max_count'], d.value)})
                             .attr("cx", width / 2)
                             .attr("cy", height / 2)
                             .style("fill", function(d){ return color(d.region)})
@@ -232,9 +248,11 @@ function circularPacking(data) {
 
         // Features of the forces applied to the nodes:
         var simulation = d3.forceSimulation()
-                           .force("center", d3.forceCenter().x(width).y(height)) // Attraction to the center of the svg area
-                           .force("charge", d3.forceManyBody().strength(-5)) // Nodes are attracted one each other of value is > 0
-                           .force("collide", d3.forceCollide().strength(.2).radius(function(d){ return (size(d.common_events)+3) }).iterations(1)) // Force that avoids circle overlapping
+                           .force("forceX", d3.forceX().strength(.05).x(width * .5))
+                           .force("forceY", d3.forceY().strength(.05).y(height * .5))
+                           .force("center", d3.forceCenter().x(width / 2).y(height / 2)) // Attraction to the center of the svg area
+                           .force("charge", d3.forceManyBody().strength(-.1)) // Nodes are attracted one each other of value is > 0
+                           .force("collide", d3.forceCollide().strength(.2).radius(function(d){ return (reSize(data['max_count'], d.value)+3) }).iterations(1)) // Force that avoids circle overlapping
 
         // Apply these forces to the nodes and update their positions.
         // Once the force algorithm is happy with positions ('alpha' value is low enough), simulations will stop.
@@ -261,37 +279,6 @@ function circularPacking(data) {
             d.fy = null;
         }
     }
-}
-
-
-/**
- * Load visualizations onto page
- *
- */
-function loadViz(data) {
-    // var numitems =  document.getElementById("myUL").getElementsByTagName("li").length;
-    // var containerSize = document.getElementById("myUL").offsetWidth
-
-    // console.log(containerSize)
-    // document.getElementById("myUL").style.columnCount = parseInt(numitems/3);
-    // populateDrugList()
-    // networkViz()
-    // circularPacking()
-    // console.log(data);
-    // fetchJSON(function (stuff) {
-    //     console.log(stuff);
-    //
-    // },"/getdrugs")
-    // populateSearch();
-    testEvent = {age: 62, death: 0, disability: 0, drugs: "gabapentin,metoprolol,prednisone,prograf,sulfur,vfend,voriconazole", hospital: 0, lifethreaten: 0,
-                 num_drugs: 7, num_missing: 1, num_symps: 8, other: 1, sender: "Consumer or non-health professional", sex: "Male",
-                 symptoms: "abasia,balance disorder,drug ineffective,erythema,hallucination,mouth haemorrhage,pruritus,pulmonary mycosis"}
-    populateEvents(testEvent)
-    // testEvents();
-}
-
-function loadJSON(callback) {   
-  fetchJSON(callback, "/getdrugs");
 }
 
 
@@ -359,7 +346,7 @@ function filterSearch() {
  *
  */
 function updateSearch (drugs) {
-    console.log("hey");
+
     postJSON(function (value) {
         console.log(value);
     }, selectedDrugs, 'getdrugs')
@@ -383,6 +370,12 @@ function updateSearch (drugs) {
  *
  */
 function updateSelectedDrugs(drugName) {
+    var eventInfo = document.getElementById('event-info')
+
+    while(eventInfo.firstChild ){
+        eventInfo.removeChild(eventInfo.firstChild);
+    }
+
     var index = selectedDrugs.indexOf(drugName)
     if (index === -1) {
         selectedDrugs.push(drugName);
@@ -392,7 +385,7 @@ function updateSelectedDrugs(drugName) {
     if (selectedDrugs.length) {
         console.log(selectedDrugs)
         postJSON(function (data) {
-            // circularPacking(data['count'])
+            circularPacking(data)
             populateEvents(data['events'])
         }, selectedDrugs, "/getevents")
     } else {
@@ -401,125 +394,90 @@ function updateSelectedDrugs(drugName) {
     }
 }
 
-/* Scott's Implementation of table */
-function createEventTable() {
-    var path_drug = "/sample_data/bubble_viz/drug_nodes_sample.json"; // TODO : remember to change this to correct html.
-    var path_events = "events.json";
 
-    var div = document.getElementById('event-table')
-    // destructor
-    while (div.firstChild) {
-        div.removeChild(div.firstChild);
-    }
-    // constructor
-    readJSON(function (json) {
-        var events = new Set();
-        json.forEach(function (item) {
-            console.log(item);
-            if(selectedDrugs.includes(item['brand_name'])) {
-                console.log('found');
-                console.log(events.size);
-                if (events.size===0) {
-                    item['event_ids'].forEach(function (iid) {
-                        events.add(iid);
-                    })
-                } else {
-                    events = new Set(
-                        [...events].filter(x=>item['event_ids'].includes(x))
-                    );
-                }
-            }
-        })
-        console.log(events);
-
-    }, path_drug)
-}
-
-
-function populateEvents (event) {
+function populateEvents (eventsData) {
     //Loop through eventsData
-    // event = eventsData['1aadd6']
-    // console.log(event)
-    // console.log("A " + event.age + "-old " + event.sex)
+    
     var eventInfo = document.getElementById('event-info')
-    
-    var eventCard = document.createElement('div')
-    eventCard.className = "event-card"
 
-    // Create summary
-    var eventDetails = document.createElement('div')
-    eventDetails.className = "event-details"
+    Object.keys(eventsData).forEach(function(key) {
+        event = eventsData[key]
 
-    var eventDetailsP = document.createElement('p')
-    
-    var eventDrugs = event.drugs.split(',')
-    eventDetailsP.innerHTML = "A " + event.age + "-old " + event.sex.toLowerCase() + " took " + eventDrugs.slice(0, -1).join(', ') + ", and " + eventDrugs[eventDrugs.length - 1] + "."
-    eventDetails.append(eventDetailsP)
-    eventCard.append(eventDetails)
-    
-    // Symptoms
-    var symptoms = document.createElement('div')
-    symptoms.className = 'Symptoms'
+        var eventCard = document.createElement('div')
+        eventCard.className = "event-card"
 
-    symptomsTitle = document.createElement('p')
-    symptomsTitle.className = 'title'
-    symptomsTitle.innerHTML = 'Symptoms:'
+        // Create summary
+        var eventDetails = document.createElement('div')
+        eventDetails.className = "event-details"
 
-    symptomsList = document.createElement('p')
-    symptomsList.innerHTML = event.symptoms.split(',').join(', ')
+        var eventDetailsP = document.createElement('p')
+        
+        var eventDrugs = event.drugs.split(',')
+        eventDetailsP.innerHTML = "A " + event.age + "-old " + event.sex.toLowerCase() + " took " + eventDrugs.slice(0, -1).join(', ') + ", and " + eventDrugs[eventDrugs.length - 1] + "."
+        eventDetails.append(eventDetailsP)
+        eventCard.append(eventDetails)
+        
+        // Symptoms
+        var symptoms = document.createElement('div')
+        symptoms.className = 'Symptoms'
 
-    symptoms.append(symptomsTitle)
-    symptoms.append(symptomsList)
-    eventCard.append(symptoms)
-    
-    // Outcome
-    var outcome = document.createElement('div')
-    outcome.className = 'Outcome'
+        symptomsTitle = document.createElement('p')
+        symptomsTitle.className = 'title'
+        symptomsTitle.innerHTML = 'Symptoms:'
 
-    outcomeTitle = document.createElement('p')
-    outcomeTitle.className = 'title'
-    outcomeTitle.innerHTML = 'Outcome:'
+        symptomsList = document.createElement('p')
+        symptomsList.innerHTML = event.symptoms.split(',').join(', ')
 
-    outcomeList = document.createElement('p')
-    if (event.hospital === 1) {
-        outcomeList.innerHTML = 'Hospital'
-    } else if (event.lifethreaten === 1) {
-        outcomeList.innerHTML = 'Life Threatening'
-    } else if (event.death === 1) {
-        outcomeList.innerHTML = 'Death'
-    } else if (event.disability === 1) {
-        outcomeList.innerHTML = 'Disability'
-    } else if (event.other === 1) {
-        outcomeList.innerHTML = 'Other'
-    } else {
-        console.log("You done fucked up")
-    }
-    // outcome.innerHTML = event.symptoms.split(',').join(', ')
+        symptoms.append(symptomsTitle)
+        symptoms.append(symptomsList)
+        eventCard.append(symptoms)
+        
+        // Outcome
+        var outcome = document.createElement('div')
+        outcome.className = 'Outcome'
 
-    //hospital: 0, lifethreaten: 0, death: 0, disability: 0, other: 1
-    outcome.append(outcomeTitle)
-    outcome.append(outcomeList)
-    eventCard.append(outcome)
+        outcomeTitle = document.createElement('p')
+        outcomeTitle.className = 'title'
+        outcomeTitle.innerHTML = 'Outcome:'
 
-    // Sender
-    var sender = document.createElement('div')
-    sender.className = 'Sender'
+        outcomeList = document.createElement('p')
+        if (event.hospital === 1) {
+            outcomeList.innerHTML = 'Hospital'
+        } else if (event.lifethreaten === 1) {
+            outcomeList.innerHTML = 'Life Threatening'
+        } else if (event.death === 1) {
+            outcomeList.innerHTML = 'Death'
+        } else if (event.disability === 1) {
+            outcomeList.innerHTML = 'Disability'
+        } else if (event.other === 1) {
+            outcomeList.innerHTML = 'Other'
+        } else {
+            outcomeList.innerHTML = 'Unknown'
+        }
+        // outcome.innerHTML = event.symptoms.split(',').join(', ')
 
-    senderTitle = document.createElement('p')
-    senderTitle.className = 'title'
-    senderTitle.innerHTML = 'Reported By:'
+        //hospital: 0, lifethreaten: 0, death: 0, disability: 0, other: 1
+        outcome.append(outcomeTitle)
+        outcome.append(outcomeList)
+        eventCard.append(outcome)
 
-    senderList = document.createElement('p')
-    senderList.innerHTML = event.sender
+        // Sender
+        var sender = document.createElement('div')
+        sender.className = 'Sender'
 
-    sender.append(senderTitle)
-    sender.append(senderList)
-    eventCard.append(sender)
+        senderTitle = document.createElement('p')
+        senderTitle.className = 'title'
+        senderTitle.innerHTML = 'Reported By:'
 
-    eventInfo.append(eventCard)
-    
+        senderList = document.createElement('p')
+        senderList.innerHTML = event.sender
 
-    // console.log("A " + event.age + "-old " + event.sex.toLowerCase() + " took " + eventDrugs.slice(0, -1).join(', ') + ", and " + eventDrugs[eventDrugs.length - 1] + ".")
+        sender.append(senderTitle)
+        sender.append(senderList)
+        eventCard.append(sender)
+
+        eventInfo.append(eventCard)
+    });
 }
 
 
