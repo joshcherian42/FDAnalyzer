@@ -13,6 +13,20 @@ function showSearch() {
     document.getElementById("search-dropdown").classList.toggle("show");
 }
 
+function hideOnClickOutside() {
+    const outsideClickListener = event => {
+        console.log(document.getElementById("search-dropdown").classList)
+        if (!document.getElementById("drug-info").contains(event.target) && document.getElementById("search-dropdown").classList.contains("show")) { // or use: event.target.closest(selector) === null
+          showSearch()
+        }
+    }
+
+    const removeClickListener = () => {
+        document.removeEventListener('click', outsideClickListener)
+    }
+
+    document.addEventListener('click', outsideClickListener)
+}
 
 function networkViz() {
     let scalingX = 200
@@ -283,8 +297,10 @@ function circularPacking(data) {
  *
  */
 async function populateSearch() {
-    var ul = document.getElementById('unselected-drug-list')
-    var selectedDrugsList = document.getElementById('selected-drugs-list')
+    var ul = document.getElementById('unselected-drug-list');
+    var selectedDrugsList = document.getElementById('selected-drugs-list');
+    
+    hideOnClickOutside();
 
     fetchJSON(function(json) {
         json.forEach(function(drug) {
@@ -298,9 +314,16 @@ async function populateSearch() {
                 if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
                     li.style.border = "1px solid black";
                     ul.removeChild(li);
+                    console.log(selectedDrugsList.firstChild)
+                    if (selectedDrugsList.innerHTML.indexOf("You can select") !== -1) {
+                        selectedDrugsList.innerHTML = ''    
+                    }
                     selectedDrugsList.appendChild(li);
                 } else {
                     selectedDrugsList.removeChild(li);
+                    if (!selectedDrugsList.hasChildNodes()) {
+                        selectedDrugsList.innerHTML = 'You can select from one of the sample drugs below or search for a new drug in the search bar.'
+                    }
                     ul.appendChild(li);
                     li.style.border = "1px solid #ddd";
                 }
@@ -382,11 +405,18 @@ function updateSelectedDrugs(drugName) {
 
     if (selectedDrugs.length) {
         console.log(selectedDrugs)
+        document.getElementById('viz-instructions').style.display = 'none'
         postJSON(function (data) {
             circularPacking(data)
             populateEvents(data['events'])
         }, selectedDrugs, "/getevents")
     } else {
+        var eventInstructions = document.createElement('p')
+        eventInstructions.innerHTML = "When you select a drug, a list of all the events in the FAERS database in which the individual took the selected drug will be shown here."
+        eventInstructions.className = "instructions"
+        eventInfo.appendChild(eventInstructions)
+
+        document.getElementById('viz-instructions').style.display = 'block'
         var svgCircle = d3.select("#drug-viz-circle-svg")
         svgCircle.selectAll("*").remove()
     }
@@ -417,7 +447,14 @@ function populateEvents (eventsData) {
         var eventDetailsP = document.createElement('p')
         
         var eventDrugs = event.drugs.split(',')
-        eventDetailsP.innerHTML = "A " + event.age + "-old " + event.sex.toLowerCase() + " took " + eventDrugs.slice(0, -1).join(', ') + ", and " + eventDrugs[eventDrugs.length - 1] + "."
+        // var age = event.age
+        if (event.age < 1) {
+            var age = 'An infant '
+        }
+        else {
+            var age = "A " + event.age + "-year-old "
+        }
+        eventDetailsP.innerHTML = age + event.sex.toLowerCase() + " took " + eventDrugs.slice(0, -1).join(', ') + ", and " + eventDrugs[eventDrugs.length - 1] + "."
         eventDetails.append(eventDetailsP)
         eventCard.append(eventDetails)
         

@@ -112,18 +112,20 @@
                     <input type="text" onclick = "showSearch()" id="drug-search" onkeyup="filterSearch()" placeholder="Search for drugs.." title="Type in a drug">
                     <div id="search-dropdown" class="dropdown-content">
                         <div id = "selected-drugs">
-                            <ul class = "drug-list" id="selected-drugs-list">
+                            <ul class = "drug-list" id="selected-drugs-list">You can select from one of the sample drugs below or search for a new drug in the search bar.</ul>
                         </div>
                         <div id="scroll-list">
-                            <ul class = "drug-list" id="unselected-drug-list">
-                            </ul>
+                            <ul class = "drug-list" id="unselected-drug-list"></ul>
                         </div>
                     </div>
                 </div>
                 <h2> List of Events </h2>
-                <div id = "event-info"></div>
+                <div id = "event-info">
+                    <p class = "instructions"> When you select a drug, a list of all the events in the FAERS database in which the individual took the selected drug will be shown here.</p>
+                </div>
                 <div id = "drug-viz-circle">
                     <svg id = "drug-viz-circle-svg"></svg>
+                    <p class = 'instructions' id = 'viz-instructions'> When you select a drug, a circular packing visualization will be shown here.</p>
                 </div>
                 <div id = "selected-drugs-tooltip">
                     <p> Selected Drugs </p>

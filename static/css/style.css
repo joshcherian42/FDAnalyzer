@@ -170,11 +170,25 @@ h2 span {
 
 #event-info {
   position: absolute;
+  min-height:500px;
   max-height:700px;
   width: 500px;
   top: 84px;
   overflow-y: auto;
   z-index: 2;
+}
+
+.instructions{
+  position: absolute;
+  top: 200px;
+  color: #444;
+  font-style: italic;
+  font-size: larger;
+}
+
+#drug-viz-circle .instructions {
+  top: 305px;
+  left:100px;
 }
 
 a {
