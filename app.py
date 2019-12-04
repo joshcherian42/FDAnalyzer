@@ -79,6 +79,7 @@ def getEvents():
     events = events.set_index("id")
     events['rgb'] = events.apply(lambda row: translate(row), axis=1)
 
+
     drug_colors = {}
     for i in range(len(events.index)):
         drugs = events.iat[i, 0]
