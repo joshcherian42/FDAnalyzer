@@ -82,36 +82,39 @@ def getEvents():
 
     events = EVENTS.loc[EVENTS.id.isin(events)]
     events = events.set_index("id")
-    events['rgb'] = events.apply(lambda row: translate(row), axis=1)
+    if not events.empty:
+        events['rgb'] = events.apply(lambda row: translate(row), axis=1)
 
-    drug_colors = {}
-    for i in range(len(events.index)):
-        drugs = events.iat[i, 0]
-        rgb = events.iat[i, -1]
-        for i in drugs.split(','):
-            all_drugs.append(i)
-            if i not in drug_colors:
-                drug_colors[i] = np.array(rgb)
-            else:
-                drug_colors[i] += rgb
+        drug_colors = {}
+        for i in range(len(events.index)):
+            drugs = events.iat[i, 0]
+            rgb = events.iat[i, -1]
+            for i in drugs.split(','):
+                all_drugs.append(i)
+                if i not in drug_colors:
+                    drug_colors[i] = np.array(rgb)
+                else:
+                    drug_colors[i] += rgb
 
-    count = Counter(all_drugs)
-    most_common_count = count.most_common(1)[-1][-1]
-    drug_colors = {k:v for k, v in drug_colors.items() if count[k] > threshold}
-    count = {k:v for k, v in count.items() if v > threshold}
-    for drug in count:
-        # print(type(drug_colors[drug]), count[drug])
-        drug_colors[drug] = drug_colors[drug] / count[drug]
-        drug_colors[drug] = drug_colors[drug].tolist()
+        count = Counter(all_drugs)
+        most_common_count = count.most_common(1)[-1][-1]
+        drug_colors = {k:v for k, v in drug_colors.items() if count[k] > threshold}
+        count = {k:v for k, v in count.items() if v > threshold}
+        for drug in count:
+            # print(type(drug_colors[drug]), count[drug])
+            drug_colors[drug] = drug_colors[drug] / count[drug]
+            drug_colors[drug] = drug_colors[drug].tolist()
 
-    if len(count.keys()) > 1000:
-        count_thresh = {k:v for k,v in count.items() if v >= 5}
+        if len(count.keys()) > 1000:
+            count_thresh = {k:v for k,v in count.items() if v >= 5}
+        else:
+            count_thresh = count
+
+        print ("time taken to complete: ", time.time()-t)
+        return jsonify({"count": count_thresh, "max_count": most_common_count, "num_drugs": len(all_drugs),
+                        "drugs": events.drugs.tolist(), "events": events.to_dict("index"),  "color": drug_colors})
     else:
-        count_thresh = count
-
-    print ("time taken to complete: ", time.time()-t)
-    return jsonify({"count": count_thresh, "max_count": most_common_count, "num_drugs": len(all_drugs),
-                    "drugs": events.drugs.tolist(), "events": events.to_dict("index"),  "color": drug_colors})
+        return jsonify('No events')
 
 
 def translate(row):

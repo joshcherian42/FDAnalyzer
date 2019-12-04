@@ -321,7 +321,9 @@ async function populateSearch() {
 
             li.addEventListener('click', function(e) {
 
-                updateSelectedDrugs(e.target.innerText);
+                updateSelectedDrugs(drug);
+
+                document.getElementById('drug-search').value = "" //Clear search on click
 
                 if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
                     ul.removeChild(li);
@@ -384,7 +386,10 @@ function filterSearch() {
  *
  */
 function updateSearch (drugs) {
+
     document.getElementById('viz-instructions').innerHTML = 'Loading...'
+    document.getElementById('viz-instructions').style.display = 'block'
+    console.log("hi")
     ul = document.getElementById("unselected-drug-list");
     li = ul.getElementsByTagName('li');
     var num_visible = 0
@@ -428,10 +433,16 @@ function updateSelectedDrugs(drugName) {
     if (selectedDrugs.length) {
         console.log(selectedDrugs);
         document.getElementById('viz-instructions').innerHTML = 'Loading...';
+        document.getElementById('viz-instructions').style.display = 'block'
         postJSON(function (data) {
-            // updateSearch(data['drugs'])
-            circularPacking(data);
-            populateEvents(data['events']);
+            if (data === 'No events'){
+                document.getElementById('viz-instructions').innerHTML = 'No events found';
+                var svgCircle = d3.select("#drug-viz-circle-svg");
+                svgCircle.selectAll("*").remove();
+            } else {
+                circularPacking(data);
+                populateEvents(data['events']);
+            }
         }, selectedDrugs, "/getevents");
     } else {
         var eventInstructions = document.createElement('p')
@@ -481,12 +492,14 @@ function populateEvents (eventsData) {
         }
 
         if (eventDrugs.length == 2) {
-            var and = ' and '
+            var drugsTaken = eventDrugs.slice(0, -1).join(', ') + ' and ' + eventDrugs[eventDrugs.length - 1] + "."
+        } else if (eventDrugs.length == 1) {
+            var drugsTaken = eventDrugs[0] + '.'
         } else {
-            var and = ', and '
+            var drugsTaken = eventDrugs.slice(0, -1).join(', ') + ', and ' + eventDrugs[eventDrugs.length - 1] + "."
         }
 
-        eventDetailsP.innerHTML = age + event.sex.toLowerCase() + " took " + eventDrugs.slice(0, -1).join(', ') + and + eventDrugs[eventDrugs.length - 1] + "."
+        eventDetailsP.innerHTML = age + event.sex.toLowerCase() + " took " + drugsTaken
         eventDetails.append(eventDetailsP)
         eventCard.append(eventDetails)
         
