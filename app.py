@@ -93,7 +93,6 @@ def getEvents():
     drug_colors = {k:v for k, v in drug_colors.items() if count[k] > threshold}
     count = {k:v for k, v in count.items() if v > threshold}
     for drug in count:
-        if count['drug'] < threshold:
         drug_colors[drug] = drug_colors[drug] // count[drug]
         drug_colors[drug] = drug_colors[drug].tolist()
 
