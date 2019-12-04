@@ -57,7 +57,9 @@ def getEvents():
     if threads[1].isAlive():
         threads[1].join()
     t = time.time()
-    selected_drugs = request.json['data']
+    selected_drugs = request.json['data']['selected_drugs']
+    threshold = request.json['data']['threshold']
+
     # get events between these drugs
     print("selected drugs: ", selected_drugs)
     if len(selected_drugs) == 0:
@@ -88,8 +90,10 @@ def getEvents():
                 drug_colors[i] += rgb
 
     count = Counter(all_drugs)
+    drug_colors = {k:v for k, v in drug_colors.items() if count[k] > threshold}
+    count = {k:v for k, v in count.items() if v > threshold}
     for drug in count:
-        # print(type(drug_colors[drug]), count[drug])
+        if count['drug'] < threshold:
         drug_colors[drug] = drug_colors[drug] // count[drug]
         drug_colors[drug] = drug_colors[drug].tolist()
 
