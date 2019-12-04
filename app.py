@@ -90,7 +90,7 @@ def getEvents():
     count = Counter(all_drugs)
     for drug in count:
         # print(type(drug_colors[drug]), count[drug])
-        drug_colors[drug] = drug_colors[drug] // count[drug]
+        drug_colors[drug] = drug_colors[drug] / count[drug]
         drug_colors[drug] = drug_colors[drug].tolist()
 
     if len(count.keys()) > 1000:
@@ -103,16 +103,16 @@ def getEvents():
 
 
 def translate(row):
-    if row['death'] == 1:
-        return [169, 169, 169]
-    elif row['hospital'] == 1:
-        return [0, 0, 128]
-    elif row['disability'] == 1:
-        return [141, 2, 31]
-    elif row['lifethreaten'] == 1:
-        return [150, 123, 182]
+    if row['death'] == 1: # highest
+        return [255.0,13.0,5.0, 1.0]
+    elif row['hospital'] == 1: # 4
+        return [255.0,13.0,5.0, 0.4]
+    elif row['disability'] == 1: # 3
+        return [255.0,13.0,5.0, 0.6]
+    elif row['lifethreaten'] == 1: # 2
+        return [255.0,13.0,5.0, 0.8]
     else:
-        return [255, 162, 33]
+        return [255.0,13.0,5.0, 0.2]
 
 
 def getRGB(events, drugs):

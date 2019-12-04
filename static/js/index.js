@@ -242,7 +242,10 @@ function circularPacking(data) {
                             .attr("r", function(d){return reSize(data['max_count'], d.value)})
                             .attr("cx", width / 2)
                             .attr("cy", height / 2)
-                            .style("fill", 'rgba(255,13,5,1)')
+                            // .style("fill", 'rgba(255,13,5,1)')
+                            .style("fill", function(d) {
+                                return 'rgba(' + data.color[d.key].join(',') + ')'
+                            })
                             .style("fill-opacity", 0.8)
                             .attr("stroke", "black")
                             .style("stroke-width", 1)

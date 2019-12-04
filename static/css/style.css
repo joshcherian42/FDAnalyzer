@@ -315,7 +315,7 @@ a:active {
   min-height: 100px;
   min-width:200px;
   max-width: 400px;
-  top: 75%;
+  top: 80%;
   left: 25%;
   background-color: white;
   border:1px solid #ddd;
@@ -331,6 +331,54 @@ a:active {
   border-bottom: 1px solid #ddd;
 }
 
+#viz-legend {
+  position: absolute;
+  height: 100px;
+  width: 400px;
+  top: 80%;
+  left: 55%;
+  background-color: white;
+  border:1px solid #ddd;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  align-self: center;
+  margin-right: 5px;
+}
+
+.legend-entry {
+  display: flex;
+  padding-right: 20px;
+}
+
+.legend-row {
+  display: flex;
+  padding: 0px 10px;
+}
+#death {
+  background-color: rgba(255.0,13.0,5.0, 1.0);
+}
+
+#hospital {
+  background-color: rgba(255.0,13.0,5.0, 0.4); 
+}
+
+#disability {
+  background-color: rgba(255.0,13.0,5.0, 0.6); 
+}
+
+#lifethreat {
+  background-color: rgba(255.0,13.0,5.0, 0.8); 
+
+}
+#other {
+    background-color: rgba(255.0,13.0,5.0, 0.2); 
+}
 
 svg {
   width: 100%;
