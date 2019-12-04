@@ -411,7 +411,7 @@ svg {
 
 .drug-list li {
   display: inline-block;
-  margin-right: 15px;
+  margin-right: 5px;
   margin-top: 15px; /* Prevent double borders */
   background-color: rgba(255, 13, 5,0.8); /* Grey background color */
   padding: 7px 12px; /* Add some padding */
@@ -419,8 +419,10 @@ svg {
   font-size: 18px; /* Increase the font-size */
   color: black; /* Add a black text color */
   display: inline-block; /* Make it into a block element to fill the whole list */
-  padding-right: 25px;
-  border-radius:25px;
+  padding-right: 10px;
+  border-radius: 25px;
+  width: fit-content;
+  cursor: pointer;
 }
 
 .drug-list li:hover {
@@ -434,6 +436,18 @@ svg {
 
 .drug-list a {
   color: #eee;
+  width: min-content;
+}
+
+.li-container {
+  display: flex;
+  align-items: center;
+}
+
+.li-close {
+  padding-left: 8px;
+  color: #eee;
+  font-size: xx-large;
 }
 
 #drug-list-instructions {
@@ -444,7 +458,7 @@ svg {
   height: 600px;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 15px;
+  padding: 12px;
 }
 
 #scroll-list:hover {

@@ -309,6 +309,16 @@ async function populateSearch() {
             var li = document.createElement("li");
             var a = document.createElement('a');
             a.appendChild(document.createTextNode(drug));
+
+            var liContainer = document.createElement('div')
+            liContainer.className = 'li-container'
+            var close = document.createElement("div")
+            close.className = 'li-close'
+            close.innerHTML = '&times;'
+            close.style.display = "none";
+            liContainer.appendChild(a)
+            liContainer.appendChild(close)
+
             li.addEventListener('click', function(e) {
 
                 updateSelectedDrugs(e.target.innerText);
@@ -317,17 +327,19 @@ async function populateSearch() {
                     ul.removeChild(li);
                     drugsListInstructions.style.display = 'none'
                     selectedDrugsList.appendChild(li);
+                    close.style.display = "block";
                 } else {
                     selectedDrugsList.removeChild(li);
                     if (!selectedDrugs.length) {
                         drugsListInstructions.style.display = 'block'
                     }
+                    close.style.display = "none";
                     ul.appendChild(li);
                 }
             });
 
             a.href = "#";
-            li.appendChild(a);
+            li.appendChild(liContainer)
 
             if (ul.childElementCount > drugstoShow) {
                 li.style.display = 'none'
