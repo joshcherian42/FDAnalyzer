@@ -1,13 +1,11 @@
 body {
-    /*margin-left: 10%;*/
-    
-    font-family: "Raleway", sans-serif;;
-    font-style: normal;
-    overflow: hidden;
-    color: rgba(0,0,0,.85);
-    margin: 0px;
-    display: flex;
-    box-sizing: border-box;
+  font-family: "Raleway", sans-serif;;
+  font-style: normal;
+  overflow: hidden;
+  color: rgba(0,0,0,.85);
+  margin: 0px;
+  display: flex;
+  box-sizing: border-box;
 }
 
 .links line {
@@ -23,27 +21,27 @@ body {
 }
 #columns {
   display: flex;
-
 }
 
 h1 {
-    font-weight: 300;
+  font-weight: 300;
 }
+
 .column {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 #left {
-    flex-shrink: 0;  /*makes sure that content is not cut off in a smaller browser window*/
-    width: 10%;
-    margin:0px 1%;
-    background-color: #f9f9f9;
+  flex-shrink: 0;  /*makes sure that content is not cut off in a smaller browser window*/
+  width: 10%;
+  margin:0px 1%;
+  background-color: #f9f9f9;
 }
 
 #left h1 {
-    font-style: italic;
+  font-style: italic;
 }
 
 #left-header {
@@ -52,72 +50,72 @@ h1 {
 }
 
 .header {
-    flex-shrink: 0;
-    display: inline-flex;
-    height: 50px;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    background-color: rgba(255, 13, 5,0.8);
+  flex-shrink: 0;
+  display: inline-flex;
+  height: 50px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  background-color: rgba(255, 13, 5,0.8);
 }
 
 .header ul {
- display: flex;
- flex-flow: row wrap;
- list-style-type: none;
- padding-inline-start: 0px;
- display: inline-flex;
- list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+  padding-inline-start: 0px;
+  display: inline-flex;
+  list-style: none;
 }
 
 .header ul li {
- padding: 0 1.4em 0 0;
- font-size: 1.5em;
+  padding: 0 1.4em 0 0;
+  font-size: 1.5em;
 }
 
 .sidebar {
-    flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
+  flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
 }
 
 .content {
-    width: 100%;
-    height:100%;
+  width: 100%;
+  height:100%;
 }
 
 .text {
   width: 70%;
 }
 #right {
-    width: 100vw;
+  width: 100vw;
 }
 
 .main::-webkit-scrollbar { 
-       display: none; 
+  display: none; 
 }
 
 h2 {
-    position: rellative;
+  position: rellative;
 }
 
 h2 span {
-    position: absolute;
-    top:-50px;
+  position: absolute;
+  top:-50px;
 }
 .main {
-    flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
-    overflow-y: auto;  /*adds scroll to this container*/    
-    height: 100%;
+  flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
+  overflow-y: auto;  /*adds scroll to this container*/    
+  height: 100%;
 }
 
 a {
-    text-decoration: none;
-    position: relative;
-    color: rgba(0,0,0,.85);
-    bottom: 0px;
-    -webkit-transition: .1s linear bottom;
-    -moz-transition: .1s linear bottom;
-    transition: .1s linear bottom;
+  text-decoration: none;
+  position: relative;
+  color: rgba(0,0,0,.85);
+  bottom: 0px;
+  -webkit-transition: .1s linear bottom;
+  -moz-transition: .1s linear bottom;
+  transition: .1s linear bottom;
 }
 
 a::after {
@@ -152,21 +150,11 @@ a:hover {
   transform: rotate(-1deg);
 }
 
-#myUL li a:hover:not(.header) {
-  background-color: #eee; /* Add a hover effect to all links, except for headers */
-  cursor: pointer;
-}
-
-#myUL li a:hover:not(.header) {
-  background-color: #eee; /* Add a hover effect to all links, except for headers */
-  cursor: pointer;
-}
-
 a:nth-of-type(2):hover::after {
   background: rgba(255,228,50,1);
 }
 a:active {
-    top: 1px;
+  top: 1px;
 }
 
 .header a {
@@ -188,35 +176,41 @@ a:active {
   margin: 0;
 }
 
+#viz-column .header h1 {
+  position: absolute;
+  line-height: 0px;
+  color: whitesmoke;
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+}
+
 #results-viz {
   display: flex;
-  /*position: relative;*/
   height: 100%;
   width:100%;
 
 }
 
 #search-drugs {
-  padding: 20px;
+  padding: 1%;
   width: 20%;
   background-color: #f9f9f9;
 }
 
 #drug-viz-circle {
   width: 60%;
-  /*left:550px;*/
-  /*position: relative;*/
 }
 
 #events {
   width:20%;
-  padding: 20px;
+  padding: 1%;
   background-color: #f9f9f9;
   
 }
 
 #drug-info {
-  width: 100%;
+  width: 19%;
   z-index: 3;
 }
 
@@ -228,16 +222,21 @@ a:active {
 
 .instructions{
   position: absolute;
-  top: 50%;
+  /*top: 50%;*/
   color: #444;
   font-style: italic;
   font-size: larger;
+  text-align: center;
 }
 
+#viz-instructions {
+  top: 50%;
+  width: 58%;
+}
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  position: relative;
+  position: absolute;
   display: inline-block;
 }
 
@@ -246,8 +245,8 @@ a:active {
   display: none;
   border: 1px solid #ddd;
   z-index: 1;
-  padding: 15px;
   background-color: white;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.2)
 }
 
 /* Links inside the dropdown */
@@ -310,43 +309,22 @@ a:active {
   margin-top:0px;
 }
 
-#selected-drugs-tooltip {
-  position: absolute;
-  min-height: 100px;
-  min-width:200px;
-  max-width: 400px;
-  top: 80%;
-  left: 25%;
-  background-color: white;
-  border:1px solid #ddd;
-  border-radius: 2px;
-  display: none;
-}
-
-#selected-drugs-tooltip p {
-  padding-left: 5px;
-}
-
-#selected-drugs-tooltip p:first-child {
-  border-bottom: 1px solid #ddd;
-}
-
 #viz-legend {
   position: absolute;
-  height: 100px;
-  width: 400px;
   top: 80%;
   left: 55%;
   background-color: white;
-  border:1px solid #ddd;
   border-radius: 2px;
-  display: flex;
-  flex-direction: column
+  flex-direction: column;
+  display: none;
+  background-color: #f9f9f9;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+
 }
 
 .legend-color {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   align-self: center;
   margin-right: 5px;
 }
@@ -356,9 +334,24 @@ a:active {
   padding-right: 20px;
 }
 
+.legend-entry p {
+  margin: 7px auto;
+}
 .legend-row {
   display: flex;
-  padding: 0px 10px;
+  padding: 0px 15px;
+}
+
+#viz-legend .legend-row:first-child {
+  padding-top: 15px;
+}
+
+#viz-legend .legend-row:last-child {
+  padding-bottom: 15px;
+}
+
+.legend-row .legend-entry:last-child {
+  padding-right: 0px;
 }
 #death {
   background-color: rgba(255.0,13.0,5.0, 1.0);
@@ -377,7 +370,7 @@ a:active {
 
 }
 #other {
-    background-color: rgba(255.0,13.0,5.0, 0.2); 
+  background-color: rgba(255.0,13.0,5.0, 0.2); 
 }
 
 svg {
@@ -389,11 +382,13 @@ svg {
   background-position: 10px 12px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
   width: -webkit-fill-available; /* Full-width */
-  font-size: 16px; /* Increase font-size */
+  font-size: 20px; /* Increase font-size */
   padding: 10px 8px 12px 40px; /* Add some padding */
   border: 1px solid #ddd; /* Add a grey border */
   margin-bottom: 5px; /* Add some space below the input */
-  border-radius: 20px;
+  border-radius: 25px;
+  line-height: 25px;
+  color:#666;
 }
 
 #drug-search:focus {
@@ -402,6 +397,9 @@ svg {
 #selected-drugs {
   border-bottom: 1px #ddd solid;
   padding-bottom: 10px;
+  position: absolute;
+  top: 15%;
+  width: 19%;
 }
 .drug-list {
   /* Remove default list styling */
@@ -430,14 +428,23 @@ svg {
   transition-duration: 0.5s;
 }
 
+.drug-list li:first-child {
+  margin-top: 0px;
+}
+
 .drug-list a {
   color: #eee;
 }
 
+#drug-list-instructions {
+  text-align:center;
+}
+
 #scroll-list {
   height: 600px;
-  overflow-y: hidden;
+  overflow-y: auto;
   overflow-x: hidden;
+  padding: 15px;
 }
 
 #scroll-list:hover {

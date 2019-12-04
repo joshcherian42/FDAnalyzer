@@ -242,12 +242,11 @@ function circularPacking(data) {
                             .attr("r", function(d){return reSize(data['max_count'], d.value)})
                             .attr("cx", width / 2)
                             .attr("cy", height / 2)
-                            // .style("fill", 'rgba(255,13,5,1)')
                             .style("fill", function(d) {
                                 return 'rgba(' + data.color[d.key].join(',') + ')'
                             })
                             .style("fill-opacity", 0.8)
-                            .attr("stroke", "black")
+                            .attr("stroke", "#333")
                             .style("stroke-width", 1)
                             .on("mouseover", mouseover) // What to do when hovered
                             .on("mousemove", mousemove)
@@ -301,6 +300,7 @@ function circularPacking(data) {
 async function populateSearch() {
     var ul = document.getElementById('unselected-drug-list');
     var selectedDrugsList = document.getElementById('selected-drugs-list');
+    var drugsListInstructions = document.getElementById('drug-list-instructions')
     
     hideOnClickOutside();
 
@@ -315,15 +315,12 @@ async function populateSearch() {
 
                 if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
                     ul.removeChild(li);
-
-                    if (selectedDrugsList.innerHTML.indexOf("You can select") !== -1) {
-                        selectedDrugsList.innerHTML = ''    
-                    }
+                    drugsListInstructions.style.display = 'none'
                     selectedDrugsList.appendChild(li);
                 } else {
                     selectedDrugsList.removeChild(li);
-                    if (!selectedDrugsList.hasChildNodes()) {
-                        selectedDrugsList.innerHTML = 'You can select from one of the sample drugs below or search for a new drug in the search bar.'
+                    if (!selectedDrugs.length) {
+                        drugsListInstructions.style.display = 'block'
                     }
                     ul.appendChild(li);
                 }
@@ -403,7 +400,7 @@ function updateSearch (drugs) {
  */
 function updateSelectedDrugs(drugName) {
     var eventInfo = document.getElementById('event-info');
-    var selectedDrugTooltip = document.getElementById('selected-drugs-tooltip');
+    var vizLegend = document.getElementById('viz-legend');
 
     while(eventInfo.firstChild ){
         eventInfo.removeChild(eventInfo.firstChild);
@@ -437,11 +434,10 @@ function updateSelectedDrugs(drugName) {
         svgCircle.selectAll("*").remove();
     }
 
-    selectedDrugTooltip.lastElementChild.innerHTML = selectedDrugs.join(', ');
     if (selectedDrugs.length) {
-        selectedDrugTooltip.style.display = "block";
+        vizLegend.style.display = "flex";
     } else {
-        selectedDrugTooltip.style.display = "none";
+        vizLegend.style.display = "none";
     }
 }
 

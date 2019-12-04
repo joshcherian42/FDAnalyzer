@@ -57,9 +57,14 @@ def getEvents():
     if threads[1].isAlive():
         threads[1].join()
     t = time.time()
-    data = request.json['data']
-    selected_drugs = data['selected_drugs']
-    threshold = data['threshold']
+
+    try:
+        data = request.json['data']
+        selected_drugs = data['selected_drugs']
+        threshold = data['threshold']
+    except (TypeError, AttributeError) as e:
+        selected_drugs = request.json['data']
+        threshold = 1
 
     # get events between these drugs
     print("selected drugs: ", selected_drugs)
@@ -95,12 +100,8 @@ def getEvents():
     drug_colors = {k:v for k, v in drug_colors.items() if count[k] > threshold}
     count = {k:v for k, v in count.items() if v > threshold}
     for drug in count:
-<<<<<<< HEAD
         # print(type(drug_colors[drug]), count[drug])
         drug_colors[drug] = drug_colors[drug] / count[drug]
-=======
-        drug_colors[drug] = drug_colors[drug] // count[drug]
->>>>>>> f0510d70ed6760654a2037e84ef8a744fdcaf7e1
         drug_colors[drug] = drug_colors[drug].tolist()
 
     if len(count.keys()) > 1000:

@@ -22,6 +22,7 @@
         <ul>
          <li><a href="{{ url_for('index') }}"> &larr; Back to Report</a></li>
        </ul>
+       <h1> FDAnalyzer </h1>
     </div>
 
     <div id = "results-viz">
@@ -36,18 +37,16 @@
             </div>
 
             <div id = "selected-drugs">
-                <ul class = "drug-list" id="selected-drugs-list">You can select from one of the sample drugs below or search for a new drug in the search bar.</ul>
+                <ul class = "drug-list" id="selected-drugs-list">
+                    <p id = "drug-list-instructions">Selected drugs will appear here.</p>
+                </ul>
             </div>
         </div>
 
         <div id = "drug-viz-circle">
             <svg id = "drug-viz-circle-svg"></svg>
+            <!-- <p class = 'instructions' id = 'viz-instructions'> Loading...</p> -->
             <p class = 'instructions' id = 'viz-instructions'> When you select a drug, a circular packing visualization will be shown here.</p>
-        </div>
-
-        <div id = "selected-drugs-tooltip">
-            <p> Selected Drugs </p>
-            <p></p>
         </div>
 
         <div id = "viz-legend">
