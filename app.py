@@ -57,9 +57,14 @@ def getEvents():
     if threads[1].isAlive():
         threads[1].join()
     t = time.time()
-    data = request.json['data']
-    selected_drugs = data['selected_drugs']
-    threshold = data['threshold']
+
+    try:
+        data = request.json['data']
+        selected_drugs = data['selected_drugs']
+        threshold = data['threshold']
+    except (TypeError, AttributeError) as e:
+        selected_drugs = request.json['data']
+        threshold = 1
 
     # get events between these drugs
     print("selected drugs: ", selected_drugs)
@@ -77,47 +82,50 @@ def getEvents():
 
     events = EVENTS.loc[EVENTS.id.isin(events)]
     events = events.set_index("id")
-    events['rgb'] = events.apply(lambda row: translate(row), axis=1)
+    if not events.empty:
+        events['rgb'] = events.apply(lambda row: translate(row), axis=1)
 
+        drug_colors = {}
+        for i in range(len(events.index)):
+            drugs = events.iat[i, 0]
+            rgb = events.iat[i, -1]
+            for i in drugs.split(','):
+                all_drugs.append(i)
+                if i not in drug_colors:
+                    drug_colors[i] = np.array(rgb)
+                else:
+                    drug_colors[i] += rgb
 
-    drug_colors = {}
-    for i in range(len(events.index)):
-        drugs = events.iat[i, 0]
-        rgb = events.iat[i, -1]
-        for i in drugs.split(','):
-            all_drugs.append(i)
-            if i not in drug_colors:
-                drug_colors[i] = np.array(rgb)
-            else:
-                drug_colors[i] += rgb
+        count = Counter(all_drugs)
+        most_common_count = count.most_common(1)[-1][-1]
+        drug_colors = {k:v for k, v in drug_colors.items() if count[k] > threshold}
+        count = {k:v for k, v in count.items() if v > threshold}
+        for drug in count:
+            # print(type(drug_colors[drug]), count[drug])
+            drug_colors[drug] = drug_colors[drug] / count[drug]
+            drug_colors[drug] = drug_colors[drug].tolist()
 
-    count = Counter(all_drugs)
-    most_common_count = count.most_common(1)[-1][-1]
-    drug_colors = {k:v for k, v in drug_colors.items() if count[k] > threshold}
-    count = {k:v for k, v in count.items() if v > threshold}
-    for drug in count:
-        drug_colors[drug] = drug_colors[drug] // count[drug]
-        drug_colors[drug] = drug_colors[drug].tolist()
+        if len(count.keys()) > 1000:
+            count_thresh = {k:v for k,v in count.items() if v >= 5}
+        else:
+            count_thresh = count
 
-    if len(count.keys()) > 1000:
-        count_thresh = {k:v for k,v in count.items() if v >= 5}
+        print ("time taken to complete: ", time.time()-t)
+        return jsonify({"count": count_thresh, "max_count": most_common_count, "num_drugs": len(all_drugs),
+                        "drugs": events.drugs.tolist(), "events": events.to_dict("index"),  "color": drug_colors})
     else:
-        count_thresh = count
-
-    print ("time taken to complete: ", time.time()-t)
-    return jsonify({"count": count_thresh, "max_count": most_common_count, "num_drugs": len(all_drugs),
-                    "drugs": events.drugs.tolist(), "events": events.to_dict("index"),  "color": drug_colors})
+        return jsonify('No events')
 
 
 def translate(row):
-    if row['death'] == 1:
-        return [169, 169, 169]
-    elif row['hospital'] == 1:
-        return [0, 0, 128]
-    elif row['disability'] == 1:
-        return [141, 2, 31]
-    elif row['lifethreaten'] == 1:
-        return [150, 123, 182]
+    if row['death'] == 1: # highest
+        return [255.0,13.0,5.0, 1.0]
+    elif row['hospital'] == 1: # 4
+        return [255.0,13.0,5.0, 0.4]
+    elif row['disability'] == 1: # 3
+        return [255.0,13.0,5.0, 0.6]
+    elif row['lifethreaten'] == 1: # 2
+        return [255.0,13.0,5.0, 0.8]
     else:
         return [255, 162, 33]
 
