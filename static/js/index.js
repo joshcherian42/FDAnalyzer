@@ -1,5 +1,5 @@
 var selectedDrugs = new Array();
-var drugstoShow = 19;
+// var drugstoShow = 19;
 
 /**
  * Scroll to element on header click
@@ -248,9 +248,29 @@ function circularPacking(data) {
                             .style("fill-opacity", 0.8)
                             .attr("stroke", "#333")
                             .style("stroke-width", 1)
+                            .style("cursor", "pointer")
                             .on("mouseover", mouseover) // What to do when hovered
                             .on("mousemove", mousemove)
                             .on("mouseout", mouseleave)
+                            .on("click", function(d) {
+                                if (selectedDrugs.indexOf(d.key) === -1) {
+                                    var ul = document.getElementById('unselected-drug-list');
+                                    var li = document.getElementById(d.key)
+                                    var selectedDrugsList = document.getElementById('selected-drugs-list');
+                                    var close = li.childNodes[0].childNodes[1]
+                                    console.log(close)
+                                    updateSelectedDrugs(d.key);
+
+                                    document.getElementById('drug-search').value = "" //Clear search
+                                    
+                                    ul.removeChild(li);
+                                    selectedDrugsList.appendChild(li);
+                                    li.style.display = "inline-block"
+                                    close.style.display = "block";
+
+                                    console.log(d.key)
+                                }
+                            })
                             .call(d3.drag() // call specific function when circle is dragged
                             .on("start", dragstarted)
                             .on("drag", dragged)
@@ -307,6 +327,7 @@ async function populateSearch() {
     fetchJSON(function(json) {
         json.forEach(function(drug) {
             var li = document.createElement("li");
+            li.id = drug
             var a = document.createElement('a');
             a.appendChild(document.createTextNode(drug));
 
@@ -343,9 +364,9 @@ async function populateSearch() {
             a.href = "#";
             li.appendChild(liContainer)
 
-            if (ul.childElementCount > drugstoShow) {
-                li.style.display = 'none'
-            }
+            // if (ul.childElementCount > drugstoShow) {
+            //     li.style.display = 'none'
+            // }
             ul.appendChild(li);
         })
     },"/getdrugs");
@@ -362,19 +383,20 @@ function filterSearch() {
     filter = input.value.toUpperCase();
     ul = document.getElementById("unselected-drug-list");
     li = ul.getElementsByTagName('li');
-    var num_visible = 0;
+    // var num_visible = 0;
 
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          if (num_visible > drugstoShow) {
-            li[i].style.display = "none";  
-          } else {
-            li[i].style.display = "";
-          }
-          num_visible += 1
+          // if (num_visible > drugstoShow) {
+          //   li[i].style.display = "none";  
+          // } else {
+          //   li[i].style.display = "";
+          // }
+          li[i].style.display = "";
+          // num_visible += 1
         } else {
           li[i].style.display = "none";
         }
@@ -392,19 +414,20 @@ function updateSearch (drugs) {
     console.log("hi")
     ul = document.getElementById("unselected-drug-list");
     li = ul.getElementsByTagName('li');
-    var num_visible = 0
+    // var num_visible = 0
 
     for (i = 0; i < li.length; i++) {
 
         a = li[i].getElementsByTagName("a")[0];
         txtValue = a.textContent || a.innerText;
         if (drugs.indexOf(txtValue.toUpperCase()) > -1 || li[i].style.border === "1px solid black") {
-            if (num_visible > drugstoShow) {
-                li[i].style.display = "none";  
-            } else {
-                li[i].style.display = "";
-            }
-            num_visible += 1
+            // if (num_visible > drugstoShow) {
+            //     li[i].style.display = "none";  
+            // } else {
+            //     li[i].style.display = "";
+            // }
+            // num_visible += 1
+            li[i].style.display = "";
         } else {
             li[i].style.display = "none";
         }
