@@ -12,11 +12,11 @@ body {
   stroke: #666;
 }
 
-#body-content {
+#content {
   display: flex;
   flex-direction: column;
 }
-#body-content .header {
+#content .header {
   padding-left: 12%;
 }
 #columns {
@@ -79,11 +79,6 @@ h1 {
   flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
 }
 
-.content {
-  width: 100%;
-  height:100%;
-}
-
 .text {
   width: 70%;
 }
@@ -107,6 +102,7 @@ h2 span {
   flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
   overflow-y: auto;  /*adds scroll to this container*/    
   height: 100%;
+  padding-bottom: 5%;
 }
 
 a {
@@ -197,6 +193,9 @@ a:active {
   padding: 1%;
   width: 20%;
   background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+
 }
 
 #drug-viz-circle {
@@ -211,7 +210,7 @@ a:active {
 }
 
 #drug-info {
-  width: 19%;
+  width: 100%;
   z-index: 3;
 }
 
@@ -235,11 +234,6 @@ a:active {
   width: 58%;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: absolute;
-  display: inline-block;
-}
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
@@ -247,7 +241,9 @@ a:active {
   border: 1px solid #ddd;
   z-index: 1;
   background-color: white;
-  box-shadow: 0px 5px 15px rgba(0,0,0,0.2)
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+  position: absolute;
+  width: 19%;
 }
 
 /* Links inside the dropdown */
@@ -398,9 +394,8 @@ svg {
 #selected-drugs {
   border-bottom: 1px #ddd solid;
   padding-bottom: 10px;
-  position: absolute;
-  top: 15%;
-  width: 19%;
+  position: inherit;
+  width: 100%;
 }
 .drug-list {
   /* Remove default list styling */

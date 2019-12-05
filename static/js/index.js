@@ -203,7 +203,6 @@ function populateSearch() {
     if (typeof allDrugs === 'undefined') {
         getAvailableDrugs()
     }
-    console.log(allDrugs)
     allDrugs.split(',').forEach(function(drug) {     
         var li = document.createElement("li");
         li.id = drug
