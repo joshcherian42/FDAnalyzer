@@ -229,21 +229,21 @@
 
                     <p>To visualize this we created a circular packing diagram (<a href="https://www.d3-graph-gallery.com/graph/circularpacking_template.html">Circular Packing</a>). In this visualization when users search for a drug, circles will be displayed for each drug that was in at least one event with the selected drug(s). The size of the circles represents the number of events the drug has in common with the selected drug(s) while the color of circle represents the average severity of the reported events. Events are shown as a scrollable list of cards on the right of the visualization. Users can further filter the shown drugs and events by either searching for another drug or clicking on the circle of another drug within the visualization.</p>
 
+                    <h3>Deploying our Visualization</h3>
+
+                    <p>We attempted to push our entire database on Heroku for our visualization. 
+                        However, we soon encountered trouble with the service provider in regard to the total amount of swap space we can access. 
+                        For any given query from the front-end, our back-end needed a large amount of swap space in order to find all related events and drugs. 
+                        This process could sometimes peak at 2 to 3 GB of RAM. 
+                        We had two options to remedy this problem. 
+                        First, we could pony up and pay for the priviledge of using more swap space, or second, we could just sample the entire dataset. For this project we went with the latter option.</p>
+
                     <h3>Limitations and Future Work</h3>
                     <p>We can further refine our visualization to better represent drug interactions. Communicating the frequency of the drugs using the size of the circles can be ambiguous as the size could also correlate with the severity of the events with those drugs. Similarly, our color scale from most serious to least serious could convey that the least serious events were not negative, but all of the events are negative. We received feedback that clustering the drugs together based on their level of severity would better convey the distribution of severity levels across the events.
                     </p>
 
                     <p> To improve our visualization, we would need to consult with medical profressionals and researchers to help us with designing our data cleaning approach and understand what they want from our visualization interface. They would provide us with the chemistry knowledge to know what assumptions we can and cannot make during the data cleaning. We will leave discovering the negative drug interactions to the professionals, but we can help them in this task by making the data more accessible.
                     </p>
-
-                    <h3>Deploying the Visualization</h3>
-
-                    <p>We attempted to push our entire database on Heroku for our visualization. 
-                        However, we soon encountered troubles with the service provider in regard to the total amount of swap space we can access. 
-                        For any given query from the front-end, our back-end needed a large amount of swap space in order to find all related events and drugs. 
-                        This process could sometimes peak at 2 to 3 GB of RAM. 
-                        We have two options to remedy this problem. 
-                        First, we could pony up and pay for the priviledge of using more swap space, or second, we could just sample the entire dataset. We chose the latter option.</p>
 
                     <p>Check out our visualization <a href="{{ url_for('viz_index') }}">ADE Visualization</a></p>    
                     <p>Check out our code on <a href="https://github.tamu.edu/jcherian14/FDAnalyzer">GitHub</a></p>
