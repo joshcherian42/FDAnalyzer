@@ -127,7 +127,7 @@ def translate(row):
     elif row['lifethreaten'] == 1: # 2
         return [255.0,13.0,5.0, 0.8]
     else:
-        return [255, 162, 33]
+        return [255.0,13.0,5.0, 0.2]
 
 
 def getRGB(events, drugs):

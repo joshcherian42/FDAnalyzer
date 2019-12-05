@@ -1,4 +1,5 @@
 var selectedDrugs = new Array();
+var allDrugs;
 // var drugstoShow = 19;
 
 /**
@@ -26,143 +27,6 @@ function hideOnClickOutside() {
     }
 
     document.addEventListener('click', outsideClickListener)
-}
-
-function networkViz() {
-    let scalingX = 200
-    let scalingY = 100
-    var svg = d3.select("#drug-viz"),
-        width = +svg.attr("width"),
-        height = +svg.attr("height");
-    var simulation = d3.forceSimulation()
-        .force("link", d3.forceLink().id(function(d) { return d.id; }))
-        .force("charge", d3.forceManyBody().strength(function (d, i) {
-            var a = i == 0 ? -10000 : -1000;
-            return a;
-        }).distanceMin(200).distanceMax(1000))
-        .force("center", d3.forceCenter(width / 2, height / 2));
-
-    d3.json("/getevents", function(error, graph) {
-        if (error) throw error;
-
-        var link = svg.append("g")
-                    .attr("class", "links")
-                    .selectAll("line")
-                    .data(graph.links)
-                    .enter().append("line");
-        var color = d3.scaleOrdinal(d3.schemeCategory20);
-        var node = svg.append("g")
-                    .attr("class", "nodes")
-                    .selectAll("circle")
-                    .data(graph.nodes)
-                    .enter().append("circle")
-                    .attr("cursor", "pointer")
-                    .attr("fill", "rgb(31, 119, 180)")
-                    .call(d3.drag()
-                    .on("start", dragstarted_network)
-                    .on("drag", dragged_network)
-                    .on("end", dragended_network));
-        
-
-        node.append("title")
-          .text(function(d) { return d.id; });
-        
-        node.attr("r", function(d) {return d.count * 7});
-        
-        node.on("click", function(d) {
-            var brand_name = document.getElementById('brand_name')
-            var drug_name = document.getElementById('drug_name')
-
-            brand_name.textContent = d.id
-            drug_name.textContent = d.count
-        })
-
-        node.on("mouseover", function(d) {
-            var connectedNodeIds = graph
-              .links
-              .filter(x => x.source.id == d.id || x.target.id == d.id)
-              .map(x => x.source.id == d.id ? x.target.id : x.source.id);
-            
-            d3.select(".nodes")
-              .selectAll("circle")
-              .attr("fill", function(c) {
-                if (connectedNodeIds.indexOf(c.id) > -1 || c.id == d.id) return "red";
-                else return color(c.group);
-              })
-              .attr("opacity", function(c) {
-                if (connectedNodeIds.indexOf(c.id) == -1 && c.id != d.id) return 0.3;
-                else return 1;
-              });
-            
-            d3.select(".links")
-              .selectAll("line")
-              .attr("opacity", function(c) {
-                if ((connectedNodeIds.indexOf(c.source.id) > -1 && c.target.id == d.id) ||
-                    (connectedNodeIds.indexOf(c.target.id) > -1 && c.source.id == d.id)) {
-                    return 1;
-                }
-                else return 0.2;
-              });
-
-            d3.select(this).transition()
-                .duration(500)
-                .attr("r", d.count * 7 * 1.5)
-                .attr("opacity", 0.7);
-            
-        });
-
-        node.on("mouseout", function(d) {
-            d3.select(".nodes")
-              .selectAll("circle")
-              .attr("fill", function(c) { return color(c.group); })
-              .attr("opacity", 1);
-            d3.select(this).transition()
-                .duration(500)
-                .attr("r", d.count * 7)
-                .attr("opacity", 1);
-            d3.select(".links")
-              .selectAll("line")
-              .attr("opacity", 1);
-        });
-
-        simulation
-          .nodes(graph.nodes)
-          .on("tick", ticked);
-
-        simulation.force("link")
-          .links(graph.links);
-
-        function ticked() {
-            link
-                .attr("x1", function(d) { return d.source.x - scalingX; })
-                .attr("y1", function(d) { return d.source.y + scalingY; })
-                .attr("x2", function(d) { return d.target.x - scalingX; })
-                .attr("y2", function(d) { return d.target.y + scalingY; });
-
-            node
-                .attr("cx", function(d) { return d.x - scalingX; })
-                .attr("cy", function(d) { return d.y + scalingY; });
-        }
-    });
-
-    function dragstarted_network(d) {
-        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-            d.fx = d.x;
-            d.fy = d.y;
-            d3.select(d).style.zIndex = 1;
-    }
-
-    function dragged_network(d) {
-        d.fx = d3.event.x;
-        d.fy = d3.event.y;
-    }
-
-    function dragended_network(d) {
-        if (!d3.event.active) simulation.alphaTarget(0);
-        d.fx = null;
-        d.fy = null;
-        d3.select(d).style.zIndex = 'initial';
-    }
 }
 
 
@@ -199,7 +63,12 @@ function circularPacking(data) {
         while(ul.firstChild ){
             ul.removeChild(ul.firstChild);
         }
-        populateSearch()
+        if (allDrugs.length) {
+            populateSearch(allDrugs);
+        } else {
+            getAvailableDrugs();
+        }
+        
     } else {
 
         svgCircle.selectAll("*").remove()
@@ -313,63 +182,63 @@ function circularPacking(data) {
 }
 
 
+async function getAvailableDrugs () {
+    fetchJSON(function(json) {
+        populateSearch(json)
+    }, "/getdrugs");
+}
+
 /**
  * Populates the search area with drugs
  *
  */
-async function populateSearch() {
+function populateSearch(allDrugs) {
     var ul = document.getElementById('unselected-drug-list');
     var selectedDrugsList = document.getElementById('selected-drugs-list');
     var drugsListInstructions = document.getElementById('drug-list-instructions')
     
     hideOnClickOutside();
 
-    fetchJSON(function(json) {
-        json.forEach(function(drug) {
-            var li = document.createElement("li");
-            li.id = drug
-            var a = document.createElement('a');
-            a.appendChild(document.createTextNode(drug));
+    allDrugs.forEach(function(drug) {     
+        var li = document.createElement("li");
+        li.id = drug
+        var a = document.createElement('a');
+        a.appendChild(document.createTextNode(drug));
 
-            var liContainer = document.createElement('div')
-            liContainer.className = 'li-container'
-            var close = document.createElement("div")
-            close.className = 'li-close'
-            close.innerHTML = '&times;'
-            close.style.display = "none";
-            liContainer.appendChild(a)
-            liContainer.appendChild(close)
+        var liContainer = document.createElement('div')
+        liContainer.className = 'li-container'
+        var close = document.createElement("div")
+        close.className = 'li-close'
+        close.innerHTML = '&times;'
+        close.style.display = "none";
+        liContainer.appendChild(a)
+        liContainer.appendChild(close)
 
-            li.addEventListener('click', function(e) {
+        li.addEventListener('click', function(e) {
 
-                updateSelectedDrugs(drug);
+            updateSelectedDrugs(drug);
 
-                document.getElementById('drug-search').value = "" //Clear search on click
+            document.getElementById('drug-search').value = "" //Clear search on click
 
-                if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
-                    ul.removeChild(li);
-                    drugsListInstructions.style.display = 'none'
-                    selectedDrugsList.appendChild(li);
-                    close.style.display = "block";
-                } else {
-                    selectedDrugsList.removeChild(li);
-                    if (!selectedDrugs.length) {
-                        drugsListInstructions.style.display = 'block'
-                    }
-                    close.style.display = "none";
-                    ul.appendChild(li);
+            if (selectedDrugs.indexOf(e.target.innerText) > -1 ) {
+                ul.removeChild(li);
+                drugsListInstructions.style.display = 'none'
+                selectedDrugsList.appendChild(li);
+                close.style.display = "block";
+            } else {
+                selectedDrugsList.removeChild(li);
+                if (!selectedDrugs.length) {
+                    drugsListInstructions.style.display = 'block'
                 }
-            });
+                close.style.display = "none";
+                ul.appendChild(li);
+            }
+        });
 
-            a.href = "#";
-            li.appendChild(liContainer)
-
-            // if (ul.childElementCount > drugstoShow) {
-            //     li.style.display = 'none'
-            // }
-            ul.appendChild(li);
-        })
-    },"/getdrugs");
+        a.href = "#";
+        li.appendChild(liContainer)
+        ul.appendChild(li);
+    });
 }
 
 /**
