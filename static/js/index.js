@@ -1,5 +1,5 @@
 var selectedDrugs = new Array();
-var allDrugs;
+var allDrugs = localStorage['allDrugs']
 // var drugstoShow = 19;
 
 /**
@@ -184,22 +184,27 @@ function circularPacking(data) {
 
 async function getAvailableDrugs () {
     fetchJSON(function(json) {
+        localStorage["allDrugs"] = json
         populateSearch(json)
     }, "/getdrugs");
 }
+
 
 /**
  * Populates the search area with drugs
  *
  */
-function populateSearch(allDrugs) {
+function populateSearch() {
     var ul = document.getElementById('unselected-drug-list');
     var selectedDrugsList = document.getElementById('selected-drugs-list');
     var drugsListInstructions = document.getElementById('drug-list-instructions')
     
     hideOnClickOutside();
-
-    allDrugs.forEach(function(drug) {     
+    if (typeof allDrugs === 'undefined') {
+        getAvailableDrugs()
+    }
+    console.log(allDrugs)
+    allDrugs.split(',').forEach(function(drug) {     
         var li = document.createElement("li");
         li.id = drug
         var a = document.createElement('a');
